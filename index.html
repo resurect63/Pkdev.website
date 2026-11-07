@@ -95,29 +95,27 @@ header{
   margin-top:3px;
 }
 
+/* SIMPLE THREE-DOT LOGO */
+
 .server-logo{
-  width:43px;
-  height:43px;
-  border:1px solid rgba(22,186,255,.5);
-  border-radius:10px;
-  background:linear-gradient(145deg,#102b43,#07111e);
+  width:auto;
+  height:auto;
+  border:0;
+  border-radius:0;
+  background:none;
   display:flex;
-  flex-direction:column;
+  flex-direction:row;
+  align-items:center;
   justify-content:center;
   gap:5px;
-  padding:8px;
-  box-shadow:0 0 20px #079bff20;
-  transform:skewY(-3deg);
+  padding:0;
+  box-shadow:none;
+  transform:none;
 }
 
-.server-line{
-  height:6px;
-  border:1px solid #138fd2;
-  border-radius:3px;
-  display:flex;
-  align-items:center;
-  justify-content:flex-end;
-  padding-right:3px;
+.server-logo .dot{
+  width:7px;
+  height:7px;
 }
 
 .server-lights{display:flex;gap:2px}
@@ -415,6 +413,8 @@ header{
   width:330px;
   height:330px;
   background:radial-gradient(circle,#087fdc22,transparent 70%);
+  pointer-events:none;
+  z-index:0;
 }
 
 .project.emerald{border-color:#00d69a40}
@@ -695,22 +695,10 @@ footer strong{color:#cce5f7}
 <div class="container nav">
 
   <a class="brand" href="#home">
-    <div class="server-logo" aria-label="PKDEV server logo">
-      <div class="server-line">
-        <div class="server-lights">
-          <i class="dot red"></i><i class="dot yellow"></i><i class="dot green"></i>
-        </div>
-      </div>
-      <div class="server-line">
-        <div class="server-lights">
-          <i class="dot red"></i><i class="dot yellow"></i><i class="dot green"></i>
-        </div>
-      </div>
-      <div class="server-line">
-        <div class="server-lights">
-          <i class="dot red"></i><i class="dot yellow"></i><i class="dot green"></i>
-        </div>
-      </div>
+    <div class="server-logo" aria-label="PKDEV three-dot logo">
+      <i class="dot red"></i>
+      <i class="dot yellow"></i>
+      <i class="dot green"></i>
     </div>
 
     <div>
@@ -875,7 +863,7 @@ footer strong{color:#cce5f7}
         </div>
         <a class="project-link"
            href="https://resurect63.github.io/Pkdev.Security-/"
-           target="_blank" rel="noopener">VISIT WEBSITE ↗</a>
+           target="_blank" rel="noopener noreferrer">VISIT WEBSITE ↗</a>
       </div>
     </article>
 
@@ -896,7 +884,7 @@ footer strong{color:#cce5f7}
         </div>
         <a class="project-link"
            href="https://resurect63.github.io/Imperial-Launcher-Website-/"
-           target="_blank" rel="noopener">VISIT WEBSITE ↗</a>
+           target="_blank" rel="noopener noreferrer">VISIT WEBSITE ↗</a>
       </div>
     </article>
 
@@ -917,7 +905,47 @@ footer strong{color:#cce5f7}
         </div>
         <a class="project-link"
            href="https://resurect63.github.io/moderator-academy/"
-           target="_blank" rel="noopener">VISIT WEBSITE ↗</a>
+           target="_blank" rel="noopener noreferrer">VISIT WEBSITE ↗</a>
+      </div>
+    </article>
+
+    <!-- PROJECT DELTA -->
+
+    <article class="project reveal">
+      <div class="project-top">
+        <div class="project-title">Project Delta</div>
+        <span class="project-label">IN DEVELOPMENT</span>
+      </div>
+
+      <p data-en="A custom Minecraft game mode combining survival gameplay, shooter mechanics, and PvP combat. Players will experience a mix of survival challenges and competitive battles."
+         data-fa="Ye game mode-e custom baraye Minecraft ke gameplay-e baqa ro ba mechanic-haye shooter va PvP tarkib mikone. Player-ha tajrobe-i az challenge-haye baqa va mobareze-haye رقابati khahand dasht.">
+        A custom Minecraft game mode combining survival gameplay, shooter mechanics, and PvP combat. Players will experience a mix of survival challenges and competitive battles.
+      </p>
+
+      <div class="project-bottom">
+        <div class="project-dots" aria-label="Decorative three-dot mark">
+          <span></span><span></span><span></span>
+        </div>
+      </div>
+    </article>
+
+    <!-- SWAT FORCE -->
+
+    <article class="project reveal">
+      <div class="project-top">
+        <div class="project-title">Swat Force</div>
+        <span class="project-label">IN DEVELOPMENT</span>
+      </div>
+
+      <p data-en="A custom tactical shooter game mode inspired by special forces operations. It features special missions, different maps, and a simulation-style experience based on coordinated special forces scenarios."
+         data-fa="Ye game mode-e custom-e tactical shooter ba elham az amaliyat-haye niruhaye vizhe. Shamel-e mamooriyat-haye makhsoos, map-haye mokhtalef va tajrobe-i shabih-sazi shode az senario-haye hamahang-e niruhaye vizhe ast.">
+        A custom tactical shooter game mode inspired by special forces operations. It features special missions, different maps, and a simulation-style experience based on coordinated special forces scenarios.
+      </p>
+
+      <div class="project-bottom">
+        <div class="project-dots" aria-label="Decorative three-dot mark">
+          <span></span><span></span><span></span>
+        </div>
       </div>
     </article>
 
@@ -1039,7 +1067,7 @@ Type "help" to see available commands.</div>
   <div class="contact-row reveal">
     <a class="btn btn-primary"
        href="https://github.com/resurect63"
-       target="_blank" rel="noopener">GitHub ↗</a>
+       target="_blank" rel="noopener noreferrer">GitHub ↗</a>
 
     <button class="btn btn-secondary" onclick="copyDiscord()">
       Discord: .resurect. ⧉
@@ -1052,7 +1080,7 @@ Type "help" to see available commands.</div>
 
 <footer>
   <div class="container footer-inner">
-    <span>© 2026 <strong>PKDEV</strong> · Created by Resurect</span>
+    <span>© 2026 <strong>PKDEV</strong> · Powered by Resurect</span>
     <span>BUILD · DEVELOP · INNOVATE</span>
   </div>
 </footer>
@@ -1063,7 +1091,7 @@ Type "help" to see available commands.</div>
 
 function setLanguage(lang){
   document.querySelectorAll("[data-en]").forEach(el=>{
-    el.textContent=el.dataset[lang];
+    el.textContent=el.dataset[lang] || el.dataset.en;
   });
 
   document.getElementById("enBtn").classList.toggle("active",lang==="en");
@@ -1113,7 +1141,9 @@ Focus: Minecraft Development & Software Development`,
   projects:
 `[01] PKDEV.SECURITY
 [02] Imperial Launcher
-[03] Moderator Academy`,
+[03] Moderator Academy
+[04] Project Delta
+[05] Swat Force`,
 
   github:"https://github.com/resurect63",
 
