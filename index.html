@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -95,7 +96,7 @@ header{
   margin-top:3px;
 }
 
-/* SIMPLE THREE-DOT LOGO */
+/* THREE-DOT LOGO */
 
 .server-logo{
   width:auto;
@@ -326,7 +327,6 @@ header{
 /* SECTIONS */
 
 .section{padding:75px 0}
-
 .section-heading{margin-bottom:30px}
 
 .kicker{
@@ -364,7 +364,6 @@ header{
 }
 
 .panel p{color:#9db1c4;font-size:13px;line-height:2}
-
 .info-list{display:grid;gap:15px}
 
 .info-row{
@@ -400,9 +399,13 @@ header{
   border-color:#168dc9;
 }
 
+/* FIXED FEATURED CARD CLICK AREA */
+
 .project.featured{
   grid-column:1/-1;
   border-color:#168bc966;
+  isolation:isolate;
+  cursor:pointer;
 }
 
 .project.featured:before{
@@ -414,7 +417,12 @@ header{
   height:330px;
   background:radial-gradient(circle,#087fdc22,transparent 70%);
   pointer-events:none;
-  z-index:0;
+  z-index:-1;
+}
+
+.project.featured > *{
+  position:relative;
+  z-index:1;
 }
 
 .project.emerald{border-color:#00d69a40}
@@ -464,6 +472,10 @@ header{
 }
 
 .project-link{
+  position:relative;
+  z-index:5;
+  display:inline-block;
+  pointer-events:auto;
   font-size:11px;
   font-weight:700;
   color:#7bd6ff;
@@ -734,7 +746,7 @@ footer strong{color:#cce5f7}
   <div class="reveal">
     <div class="eyebrow">
       <span class="pulse"></span>
-      <span data-en="IN DEVELOPMENT DEVELOPER" data-fa="DEVELOPER-E MOSTAGHEL">INDEPENDENT DEVELOPER</span>
+      <span data-en="INDEPENDENT DEVELOPER" data-fa="DEVELOPER-E MOSTAGHEL">INDEPENDENT DEVELOPER</span>
     </div>
 
     <h1>RESURECT<span class="gradient">.</span></h1>
@@ -846,7 +858,12 @@ footer strong{color:#cce5f7}
 
   <div class="projects-grid">
 
-    <article class="project featured reveal">
+    <!-- PKDEV SECURITY -->
+
+    <article class="project featured reveal" id="securityProject"
+             role="link" tabindex="0"
+             aria-label="Open PKDEV.SECURITY website">
+
       <div class="project-top">
         <div class="project-title">PKDEV.SECURITY</div>
         <span class="project-label">IN DEVELOPMENT</span>
@@ -861,11 +878,15 @@ footer strong{color:#cce5f7}
         <div class="project-dots" aria-label="Decorative three-dot mark">
           <span></span><span></span><span></span>
         </div>
+
         <a class="project-link"
            href="https://resurect63.github.io/Pkdev.Security-/"
-           target="_blank" rel="noopener noreferrer">VISIT WEBSITE ↗</a>
+           target="_blank"
+           rel="noopener noreferrer">VISIT WEBSITE ↗</a>
       </div>
     </article>
+
+    <!-- IMPERIAL LAUNCHER -->
 
     <article class="project emerald reveal">
       <div class="project-top">
@@ -882,11 +903,15 @@ footer strong{color:#cce5f7}
         <div class="project-dots" aria-label="Decorative three-dot mark">
           <span></span><span></span><span></span>
         </div>
+
         <a class="project-link"
            href="https://resurect63.github.io/Imperial-Launcher-Website-/"
-           target="_blank" rel="noopener noreferrer">VISIT WEBSITE ↗</a>
+           target="_blank"
+           rel="noopener noreferrer">VISIT WEBSITE ↗</a>
       </div>
     </article>
+
+    <!-- MODERATOR ACADEMY -->
 
     <article class="project emerald reveal">
       <div class="project-top">
@@ -903,9 +928,11 @@ footer strong{color:#cce5f7}
         <div class="project-dots" aria-label="Decorative three-dot mark">
           <span></span><span></span><span></span>
         </div>
+
         <a class="project-link"
            href="https://resurect63.github.io/moderator-academy/"
-           target="_blank" rel="noopener noreferrer">VISIT WEBSITE ↗</a>
+           target="_blank"
+           rel="noopener noreferrer">VISIT WEBSITE ↗</a>
       </div>
     </article>
 
@@ -918,7 +945,7 @@ footer strong{color:#cce5f7}
       </div>
 
       <p data-en="A custom Minecraft game mode combining survival gameplay, shooter mechanics, and PvP combat. Players will experience a mix of survival challenges and competitive battles."
-         data-fa="Ye game mode-e custom baraye Minecraft ke gameplay-e baqa ro ba mechanic-haye shooter va PvP tarkib mikone. Player-ha tajrobe-i az challenge-haye baqa va mobareze-haye رقابati khahand dasht.">
+         data-fa="Ye game mode-e custom baraye Minecraft ke gameplay-e baqa ro ba mechanic-haye shooter va PvP tarkib mikone. Player-ha ba challenge-haye baqa va mobareze-haye PvP rooberoo mishan.">
         A custom Minecraft game mode combining survival gameplay, shooter mechanics, and PvP combat. Players will experience a mix of survival challenges and competitive battles.
       </p>
 
@@ -1013,7 +1040,7 @@ footer strong{color:#cce5f7}
 
   <p class="skill-note"
      data-en="This stack includes technologies used, explored, or related to my projects. It does not imply equal proficiency in every technology."
-     data-fa="In list shamel technology-haye morede estefade, dar hale yadgiri ya mortabet ba project-hast. In be mani-e tasallot-e yekسان be hame nist.">
+     data-fa="In list shamel technology-haye morede estefade, dar hale yadgiri ya mortabet ba project-hast. In be mani-e tasallot-e yeksan be hame nist.">
     This stack includes technologies used, explored, or related to my projects. It does not imply equal proficiency in every technology.
   </p>
 
@@ -1114,6 +1141,38 @@ document.querySelectorAll(".nav-links a").forEach(a=>{
   a.addEventListener("click",()=>{
     document.getElementById("navLinks").classList.remove("open");
   });
+});
+
+
+/* PKDEV.SECURITY FULL CARD CLICK */
+
+const securityCard=document.getElementById("securityProject");
+
+const securityUrl="https://resurect63.github.io/Pkdev.Security-/";
+
+securityCard.addEventListener("click",function(e){
+
+  // Let the actual website link work normally.
+  if(e.target.closest("a")) return;
+
+  window.open(
+    securityUrl,
+    "_blank",
+    "noopener,noreferrer"
+  );
+});
+
+// Keyboard accessibility
+securityCard.addEventListener("keydown",function(e){
+  if(e.key==="Enter" || e.key===" "){
+    e.preventDefault();
+
+    window.open(
+      securityUrl,
+      "_blank",
+      "noopener,noreferrer"
+    );
+  }
 });
 
 
