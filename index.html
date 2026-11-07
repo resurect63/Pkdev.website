@@ -4,1709 +4,559 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#070a12">
-<title>Resurect — PKDEV</title>
-
+<meta name="theme-color" content="#050a12">
+<title>Resurect | PKDEV</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
-
 <style>
 :root {
-  --bg: #070a12;
-  --panel: #0c1220;
-  --panel2: #101a2b;
-  --blue: #2563eb;
-  --light: #60a5fa;
-  --text: #e8eefb;
-  --muted: #8391a8;
-  --border: rgba(110,150,210,.14);
-  --mono: "JetBrains Mono", monospace;
-}
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-html {
-  scroll-behavior: smooth;
-  scroll-padding-top: 95px;
-}
-
-body {
-  background: var(--bg);
-  color: var(--text);
-  font-family: Inter, sans-serif;
-  overflow-x: hidden;
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-button {
-  font: inherit;
-  cursor: pointer;
-}
-
-::selection {
-  background: #2563eb;
-  color: white;
-}
-
-/* BACKGROUND */
-
-#background {
-  position: fixed;
-  inset: 0;
-  z-index: -2;
-  width: 100%;
-  height: 100%;
-}
-
-.background-glow {
-  position: fixed;
-  width: 500px;
-  height: 500px;
-  border-radius: 50%;
-  filter: blur(140px);
-  background: #1646a5;
-  opacity: .12;
-  pointer-events: none;
-  z-index: -1;
-  top: 10%;
-  left: -200px;
-}
-
-.background-glow.two {
-  top: 65%;
-  left: auto;
-  right: -250px;
-  background: #1646a5;
-  opacity: .10;
-}
-
-.grid-overlay {
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: -1;
-  opacity: .12;
-  background-image:
-    linear-gradient(rgba(80,120,180,.12) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(80,120,180,.12) 1px, transparent 1px);
-  background-size: 55px 55px;
-  mask-image: linear-gradient(to bottom, black, transparent 85%);
-}
-
-/* NAVIGATION */
-
-.navbar {
-  height: 78px;
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  padding: 0 7%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-bottom: 1px solid var(--border);
-  background: rgba(7,10,18,.83);
-  backdrop-filter: blur(20px);
-}
-
-.brand {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.brand-symbol {
-  font-family: "Space Grotesk", sans-serif;
-  font-weight: 800;
-  font-size: 30px;
-  letter-spacing: -3px;
-  color: white;
-}
-
-.brand-symbol span {
-  color: var(--light);
-}
-
-.brand-divider {
-  height: 27px;
-  width: 1px;
-  background: #31415b;
-}
-
-.brand-name {
-  font: 700 13px "Space Grotesk";
-  letter-spacing: 3px;
-}
-
-.brand-name small {
-  display: block;
-  color: #71829d;
-  font: 9px var(--mono);
-  letter-spacing: 2px;
-  margin-top: 2px;
-}
-
-.nav-links {
-  display: flex;
-  gap: 30px;
-}
-
-.nav-links a {
-  color: #91a0b6;
-  font-size: 11px;
-  transition: .25s;
-}
-
-.nav-links a:hover {
-  color: var(--light);
-}
-
-.nav-right {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.language-btn {
-  color: #b9d7ff;
-  background: #101c30;
-  border: 1px solid #29436b;
-  border-radius: 7px;
-  padding: 9px 12px;
-  font-size: 10px;
-}
-
-.menu-btn {
-  display: none;
-  color: white;
-  background: none;
-  border: none;
-  font-size: 23px;
-}
-
-/* COMMON */
-
-.container {
-  max-width: 1120px;
-  padding: 0 25px;
-  margin: auto;
-}
-
-.section {
-  padding-top: 105px;
-  padding-bottom: 25px;
-}
-
-.section-heading {
-  display: flex;
-  align-items: center;
-  gap: 13px;
-  margin-bottom: 32px;
-}
-
-.section-number {
-  font: 11px var(--mono);
-  color: var(--light);
-}
-
-.section-heading h2 {
-  font: 700 29px "Space Grotesk";
-}
-
-.section-heading::after {
-  content: "";
-  height: 1px;
-  flex: 1;
-  background: linear-gradient(90deg, #29446c, transparent);
-  margin-left: 15px;
-}
-
-.section-subtitle {
-  color: var(--muted);
-  font-size: 12px;
-  margin-top: -20px;
-  margin-bottom: 28px;
-}
-
-.blue {
-  color: var(--light);
-}
-
-/* HERO */
-
-.hero {
-  min-height: 690px;
-  display: grid;
-  grid-template-columns: 1.1fr .9fr;
-  align-items: center;
-  gap: 30px;
-  padding-top: 70px;
-}
-
-.eyebrow {
-  display: inline-flex;
-  align-items: center;
-  gap: 9px;
-  border: 1px solid #263e62;
-  background: #101b2c;
-  padding: 8px 13px;
-  border-radius: 5px;
-  color: #8bbcff;
-  font: 10px var(--mono);
-  letter-spacing: 1px;
-  margin-bottom: 25px;
-}
-
-.live-dot {
-  width: 7px;
-  height: 7px;
-  background: #3b82f6;
-  border-radius: 50%;
-  box-shadow: 0 0 12px #3b82f6;
-  animation: pulse 1.8s infinite;
-}
-
-@keyframes pulse {
-  50% { opacity: .35; }
-}
-
-.hero-pretitle {
-  color: #9aabc3;
-  font-size: 15px;
-  margin-bottom: 5px;
-}
-
-.hero h1 {
-  font: 800 clamp(65px, 9vw, 105px)/1.05 "Space Grotesk";
-  letter-spacing: -7px;
-}
-
-.hero h1 span {
-  color: var(--light);
-  text-shadow: 0 0 35px #2563eb70;
-}
-
-.hero-role {
-  margin-top: 17px;
-  font: 600 clamp(15px, 2vw, 20px) "Space Grotesk";
-  color: #d4e2f8;
-}
-
-.hero-description {
-  max-width: 520px;
-  color: #8999b1;
-  font-size: 13px;
-  line-height: 2;
-  margin-top: 20px;
-}
-
-.hero-buttons {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-  margin-top: 28px;
-}
-
-.btn {
-  padding: 12px 18px;
-  border-radius: 6px;
-  font-size: 11px;
-  font-weight: 700;
-  transition: .25s;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-}
-
-.btn-primary {
-  color: white;
-  background: #2563eb;
-  box-shadow: 0 5px 25px #2563eb35;
-}
-
-.btn-primary:hover {
-  background: #397cf5;
-  transform: translateY(-3px);
-}
-
-.btn-outline {
-  color: #b9d5fa;
-  border: 1px solid #2b4569;
-  background: #101827;
-}
-
-.btn-outline:hover {
-  border-color: #60a5fa;
-  transform: translateY(-3px);
-}
-
-.hero-meta {
-  display: flex;
-  gap: 22px;
-  margin-top: 35px;
-  flex-wrap: wrap;
-}
-
-.hero-meta span {
-  font: 10px var(--mono);
-  color: #64758f;
-}
-
-/* HERO VISUAL */
-
-.hero-art {
-  height: 440px;
-  display: grid;
-  place-items: center;
-  position: relative;
-}
-
-.art-ring {
-  position: absolute;
-  border: 1px solid #2563eb30;
-  border-radius: 50%;
-}
-
-.ring-one {
-  width: 370px;
-  height: 370px;
-  animation: rotate 30s linear infinite;
-  border-style: dashed;
-}
-
-.ring-two {
-  width: 285px;
-  height: 285px;
-  border-color: #60a5fa35;
-}
-
-@keyframes rotate {
-  to { transform: rotate(360deg); }
-}
-
-.profile-visual {
-  width: 290px;
-  padding: 23px;
-  border-radius: 13px;
-  background: linear-gradient(140deg, #111e33, #0b1220);
-  border: 1px solid #35527a;
-  box-shadow: 0 20px 100px #0009, 0 0 45px #2563eb12;
-  position: relative;
-  z-index: 2;
-}
-
-.visual-top {
-  display: flex;
-  justify-content: space-between;
-  color: #7386a2;
-  font: 9px var(--mono);
-  letter-spacing: 1px;
-}
-
-.visual-avatar {
-  text-align: center;
-  margin: 28px 0 17px;
-}
-
-.visual-avatar strong {
-  font: 800 77px/1 "Space Grotesk";
-  letter-spacing: -8px;
-  color: white;
-}
-
-.visual-avatar strong span {
-  color: var(--light);
-}
-
-.visual-name {
-  font: 700 20px "Space Grotesk";
-  text-align: center;
-}
-
-.visual-role {
-  font: 10px var(--mono);
-  color: #8295b1;
-  text-align: center;
-  margin-top: 5px;
-}
-
-.visual-line {
-  height: 1px;
-  background: #293c59;
-  margin: 20px 0;
-}
-
-.visual-bottom {
-  display: flex;
-  justify-content: space-between;
-  color: #8ba0bd;
-  font: 9px var(--mono);
-}
-
-.floating {
-  position: absolute;
-  z-index: 3;
-  background: #101d31;
-  border: 1px solid #29466d;
-  border-radius: 6px;
-  padding: 9px 12px;
-  color: #a9ccff;
-  font: 10px var(--mono);
-  box-shadow: 0 8px 25px #0008;
-}
-
-.float-one { top: 50px; right: 0; }
-.float-two { bottom: 55px; left: 0; }
-.float-three { bottom: 80px; right: -10px; }
-
-/* ABOUT */
-
-.about-grid {
-  display: grid;
-  grid-template-columns: 1.3fr .7fr;
-  gap: 17px;
-}
-
-.panel {
-  background: linear-gradient(140deg, #101a2b, #0b1220);
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  padding: 28px;
-}
-
-.panel-label {
-  font: 10px var(--mono);
-  color: var(--light);
-  letter-spacing: 2px;
-}
-
-.panel h3 {
-  font: 600 23px "Space Grotesk";
-  margin: 15px 0;
-}
-
-.panel p {
-  color: #8798b0;
-  font-size: 12px;
-  line-height: 2;
-  margin-top: 12px;
-}
-
-.info-list {
-  display: grid;
-  gap: 10px;
-}
-
-.info-item {
-  background: #0d1625;
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  padding: 15px;
-  display: flex;
-  align-items: center;
-  gap: 13px;
-}
-
-.info-icon {
-  width: 36px;
-  height: 36px;
-  display: grid;
-  place-items: center;
-  background: #142746;
-  color: #7eb7ff;
-  border-radius: 7px;
-  font-size: 15px;
-}
-
-.info-item small {
-  display: block;
-  font: 9px var(--mono);
-  color: #6e809b;
-  margin-bottom: 4px;
-}
-
-.info-item strong, .info-item a {
-  font-size: 11px;
-  color: #d6e4f7;
-}
-
-/* SKILLS */
-
-.skills-group {
-  margin-top: 30px;
-}
-
-.skills-group h3 {
-  font: 600 14px "Space Grotesk";
-  margin-bottom: 14px;
-  color: #c5d6ee;
-}
-
-.tech-grid {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 11px;
-}
-
-.tech-card {
-  min-height: 95px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  gap: 10px;
-  background: linear-gradient(145deg, #101a2b, #0b1220);
-  border: 1px solid var(--border);
-  border-radius: 9px;
-  transition: .25s;
-}
-
-.tech-card:hover {
-  transform: translateY(-5px);
-  border-color: #3978d5;
-  background: #13213a;
-}
-
-.tech-card img, .tech-card i {
-  width: 32px;
-  height: 32px;
-  object-fit: contain;
-  font-size: 32px;
-  color: #91c3ff;
-}
-
-.tech-card span {
-  font-size: 10px;
-  color: #aabbd2;
-  font-weight: 600;
-}
-
-.tech-note {
-  font-size: 10px;
-  color: #667994;
-  margin-top: 16px;
-}
-
-/* PROJECTS */
-
-.projects-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 15px;
-}
-
-.project-card {
-  background: linear-gradient(145deg, #101a2b, #0a111e);
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  padding: 22px;
-  min-height: 300px;
-  display: flex;
-  flex-direction: column;
-  transition: .25s;
-  position: relative;
-  overflow: hidden;
-}
-
-.project-card::before {
-  content: "";
-  position: absolute;
-  height: 2px;
-  top: 0;
-  left: 0;
-  width: 0;
-  background: #3b82f6;
-  transition: .3s;
-}
-
-.project-card:hover {
-  transform: translateY(-5px);
-  border-color: #31517c;
-}
-
-.project-card:hover::before {
-  width: 100%;
-}
-
-.project-number {
-  font: 9px var(--mono);
-  color: #627895;
-}
-
-.project-symbol {
-  width: 45px;
-  height: 45px;
-  border-radius: 9px;
-  display: grid;
-  place-items: center;
-  font: 700 22px "Space Grotesk";
-  margin: 24px 0 16px;
-}
-
-.symbol-one { background: #d7aa4918; color: #e7c477; }
-.symbol-two { background: #16a34a18; color: #86efac; }
-.symbol-three { background: #2563eb22; color: #60a5fa; }
-
-.project-card h3 {
-  font: 600 16px "Space Grotesk";
-}
-
-.project-card p {
-  font-size: 11px;
-  color: #8798b0;
-  line-height: 1.9;
-  margin: 10px 0 15px;
-  flex: 1;
-}
-
-.tags {
-  display: flex;
-  gap: 6px;
-  flex-wrap: wrap;
-}
-
-.tags span {
-  padding: 4px 8px;
-  border-radius: 4px;
-  background: #18253a;
-  color: #9cb2d0;
-  font-size: 9px;
-}
-
-.project-link {
-  display: inline-block;
-  color: #73b3ff;
-  font: 10px var(--mono);
-  margin-top: 20px;
-}
-
-.project-link:hover {
-  color: white;
-}
-
-.project-status {
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
-  font: 9px var(--mono);
-  color: #8abaff;
-  margin-top: 10px;
-}
-
-/* MINI CONSOLE */
-
-.console-section {
-  margin-top: 40px;
-}
-
-.console {
-  border: 1px solid #263e61;
-  background: #080e19;
-  border-radius: 10px;
-  overflow: hidden;
-  box-shadow: 0 20px 70px #0005;
-}
-
-.console-header {
-  background: #101a29;
-  border-bottom: 1px solid #24344c;
-  padding: 13px 16px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.console-dots {
-  display: flex;
-  gap: 6px;
-}
-
-.console-dots span {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: #52647e;
-}
-
-.console-title {
-  font: 9px var(--mono);
-  color: #8396b2;
-}
-
-.console-body {
-  padding: 20px;
-  min-height: 210px;
-  font: 11px/2 var(--mono);
-  color: #b6c9e4;
-}
-
-.console-output {
-  min-height: 125px;
-  white-space: pre-wrap;
-}
-
-.console-input-line {
-  display: flex;
-  align-items: center;
-  gap: 9px;
-  border-top: 1px solid #1d2c40;
-  padding-top: 12px;
-}
-
-.console-prompt {
-  color: #60a5fa;
-}
-
-#consoleInput {
-  flex: 1;
-  min-width: 0;
-  background: transparent;
-  border: none;
-  outline: none;
-  color: #e5efff;
-  font: 11px var(--mono);
-}
-
-.console-hint {
-  font-size: 9px;
-  color: #637792;
-  margin-top: 10px;
-}
-
-/* CONTACT */
-
-.contact-box {
-  padding: 48px 25px;
-  border: 1px solid #29466b;
-  border-radius: 11px;
-  background: radial-gradient(ellipse at top, #1b438230, transparent 70%), #0c1422;
-  text-align: center;
-}
-
-.contact-box h2 {
-  font: 700 clamp(28px, 5vw, 43px) "Space Grotesk";
-  margin: 15px 0;
-}
-
-.contact-box p {
-  color: #8799b2;
-  font-size: 12px;
-  margin-bottom: 23px;
-}
-
-.contact-buttons {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 11px;
-}
-
-.discord-copy {
-  color: #c4d9f7;
-  background: #13233b;
-  border: 1px solid #2c4568;
-  border-radius: 6px;
-  padding: 12px 18px;
-  font-size: 11px;
-}
-
-#copyMessage {
-  display: block;
-  margin-top: 17px;
-  color: #7186a4;
-  font: 10px var(--mono);
-}
-
-/* FOOTER */
-
-footer {
-  max-width: 1120px;
-  margin: 80px auto 0;
-  padding: 25px;
-  border-top: 1px solid var(--border);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  color: #667991;
-  font-size: 10px;
-}
-
-.footer-brand {
-  font: 700 13px "Space Grotesk";
-  letter-spacing: 2px;
-  color: #e2ebfa;
-}
-
-.footer-brand span {
-  color: #60a5fa;
-}
-
-footer a:hover {
-  color: #60a5fa;
-}
-
-/* REVEAL ANIMATION */
-
-.reveal {
-  opacity: 0;
-  transform: translateY(22px);
-  transition: opacity .7s ease, transform .7s ease;
-}
-
-.reveal.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* MOBILE */
-
-@media(max-width:850px) {
-  .hero {
-    grid-template-columns: 1fr;
-    padding-top: 75px;
-  }
-
-  .hero-art {
-    height: 390px;
-  }
-
-  .about-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .projects-grid {
-    grid-template-columns: 1fr 1fr;
-  }
-
-  .tech-grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-
-@media(max-width:600px) {
-  .navbar {
-    padding: 0 18px;
-  }
-
-  .menu-btn {
-    display: block;
-  }
-
-  .nav-links {
-    display: none;
-    position: absolute;
-    top: 78px;
-    left: 0;
-    right: 0;
-    padding: 22px;
-    flex-direction: column;
-    background: #0b1220;
-    border-bottom: 1px solid var(--border);
-  }
-
-  .nav-links.open {
-    display: flex;
-  }
-
-  .section {
-    padding-top: 80px;
-  }
-
-  .hero h1 {
-    font-size: 65px;
-  }
-
-  .hero-art {
-    transform: scale(.9);
-    margin: -10px -20px;
-  }
-
-  .tech-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .projects-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .section-heading h2 {
-    font-size: 24px;
-  }
-
-  footer {
-    flex-wrap: wrap;
-    gap: 15px;
-  }
-}
-
-@media(prefers-reduced-motion:reduce) {
-  *, *::before, *::after {
-    scroll-behavior: auto !important;
-    animation-duration: .01ms !important;
-    transition-duration: .01ms !important;
-  }
+  --bg:#050a12;
+  --panel:#0a1421;
+  --panel2:#0d1b2b;
+  --blue:#16baff;
+  --blue2:#0879dc;
+  --green:#00d69a;
+  --text:#e9f4ff;
+  --muted:#8296aa;
+  --border:rgba(105,174,220,.15);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg);color:var(--text);
+  font-family:Inter,Arial,sans-serif;overflow-x:hidden;
+}
+a{color:inherit;text-decoration:none}
+button{font:inherit}
+#particles{
+  position:fixed;inset:0;width:100%;height:100%;
+  z-index:-2;pointer-events:none;
+}
+body:before{
+  content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
+  background:
+  linear-gradient(rgba(16,80,125,.055) 1px,transparent 1px),
+  linear-gradient(90deg,rgba(16,80,125,.055) 1px,transparent 1px);
+  background-size:48px 48px;
+  mask-image:linear-gradient(to bottom,black,transparent 90%);
+}
+body:after{
+  content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
+  background:radial-gradient(ellipse at 50% 0%,rgba(0,130,220,.13),transparent 55%);
+}
+.container{width:min(1160px,92%);margin:auto}
+header{
+  position:sticky;top:0;z-index:20;
+  background:rgba(5,10,18,.82);
+  backdrop-filter:blur(18px);
+  border-bottom:1px solid var(--border);
+}
+.nav{
+  min-height:78px;display:flex;align-items:center;
+  justify-content:space-between;gap:25px;
+}
+.brand{display:flex;align-items:center;gap:13px}
+.brand-name{font-weight:900;font-size:21px;letter-spacing:1px}
+.brand-sub{font-size:10px;color:var(--muted);letter-spacing:2px;margin-top:3px}
+.server-logo{
+  width:43px;height:43px;border:1px solid rgba(22,186,255,.5);
+  border-radius:10px;background:linear-gradient(145deg,#102b43,#07111e);
+  display:flex;flex-direction:column;justify-content:center;
+  gap:5px;padding:8px;box-shadow:0 0 20px #079bff20;
+  transform:skewY(-3deg);
+}
+.server-line{
+  height:6px;border:1px solid #138fd2;border-radius:3px;
+  display:flex;align-items:center;justify-content:flex-end;padding-right:3px;
+}
+.server-lights{display:flex;gap:2px}
+.dot{width:4px;height:4px;border-radius:50%}
+.red{background:#ff4e5d;box-shadow:0 0 6px #ff4e5d}
+.yellow{background:#ffd34e;box-shadow:0 0 6px #ffd34e}
+.green{background:#00e58b;box-shadow:0 0 6px #00e58b}
+.nav-links{display:flex;align-items:center;gap:27px}
+.nav-links a{font-size:12px;color:#a9bbce;transition:.2s}
+.nav-links a:hover{color:var(--blue)}
+.nav-right{display:flex;align-items:center;gap:10px}
+.lang{
+  border:1px solid var(--border);background:#0b1724;color:#b9cde0;
+  padding:8px 12px;border-radius:8px;cursor:pointer;font-size:11px;
+}
+.lang.active{color:var(--blue);border-color:var(--blue)}
+.menu-btn{display:none;background:none;border:0;color:white;font-size:24px}
+.hero{
+  min-height:610px;display:grid;grid-template-columns:1.05fr .95fr;
+  align-items:center;gap:50px;padding:85px 0 75px;
+}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:9px;
+  color:var(--blue);font:11px "JetBrains Mono",monospace;
+  letter-spacing:2px;text-transform:uppercase;
+  border:1px solid #16baff35;background:#0a1a2a;padding:9px 13px;border-radius:30px;
+}
+.pulse{width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 12px var(--green)}
+.hero h1{
+  font-size:clamp(48px,7vw,82px);line-height:1.03;
+  letter-spacing:-4px;margin:25px 0 15px;font-weight:900;
+}
+.gradient{
+  background:linear-gradient(100deg,#eaf7ff 5%,#19baff 55%,#0879dc);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.hero h2{font-size:18px;color:#a8bdd0;font-weight:500}
+.hero p{color:var(--muted);line-height:1.9;font-size:14px;max-width:520px;margin:22px 0 28px}
+.actions{display:flex;flex-wrap:wrap;gap:12px}
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:10px;
+  padding:13px 19px;border-radius:8px;font-size:12px;font-weight:700;
+  transition:.25s;border:1px solid var(--border);
+}
+.btn-primary{background:linear-gradient(110deg,#0879dc,#13baff);color:white;border:0}
+.btn-secondary{background:#0b1724;color:#c6d8e8}
+.btn:hover{transform:translateY(-3px);box-shadow:0 8px 30px #079bff25}
+.hero-visual{position:relative;display:grid;place-items:center;min-height:390px}
+.server-stage{
+  width:min(340px,85%);padding:27px;border:1px solid #168ccc50;
+  border-radius:22px;background:linear-gradient(145deg,#10283cdd,#07111ddd);
+  box-shadow:0 0 80px #009eff20,inset 0 0 35px #0789cb10;
+  transform:perspective(900px) rotateY(-9deg);
+}
+.stage-label{
+  font:10px "JetBrains Mono",monospace;color:#6b9bbd;
+  letter-spacing:2px;margin-bottom:20px;
+}
+.rack-unit{
+  background:linear-gradient(110deg,#132b40,#091521);
+  border:1px solid #1c6b99;border-radius:8px;
+  padding:18px 15px;margin:12px 0;
+  display:flex;align-items:center;justify-content:space-between;
+  box-shadow:inset 0 0 20px #008acb12;
+}
+.rack-slots{display:flex;gap:6px;align-items:center}
+.rack-slots i{display:block;width:27px;height:5px;border-radius:4px;background:#145579}
+.rack-lights{display:flex;gap:7px}
+.rack-lights span{width:8px;height:8px;border-radius:50%}
+.stage-footer{
+  display:flex;justify-content:space-between;margin-top:20px;
+  color:#7194ae;font:10px "JetBrains Mono",monospace;
+}
+.orbit{
+  position:absolute;width:390px;height:390px;border:1px solid #16baff25;
+  border-radius:50%;animation:spin 22s linear infinite;pointer-events:none;
+}
+.orbit:after{
+  content:"";position:absolute;top:35px;left:30px;width:8px;height:8px;
+  border-radius:50%;background:var(--blue);box-shadow:0 0 20px var(--blue);
+}
+@keyframes spin{to{transform:rotate(360deg)}}
+.section{padding:75px 0}
+.section-heading{margin-bottom:30px}
+.kicker{color:var(--blue);font:10px "JetBrains Mono",monospace;letter-spacing:2px}
+.section-heading h2{font-size:30px;margin-top:10px;letter-spacing:-1px}
+.section-heading p{font-size:13px;color:var(--muted);margin-top:10px;line-height:1.8}
+.about-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:20px}
+.panel{
+  background:linear-gradient(145deg,#0d1b2b,#08121e);
+  border:1px solid var(--border);border-radius:15px;padding:27px;
+}
+.panel p{color:#9db1c4;font-size:13px;line-height:2}
+.info-list{display:grid;gap:15px}
+.info-row{display:flex;justify-content:space-between;gap:12px;font-size:12px}
+.info-row span:first-child{color:var(--muted)}
+.info-row span:last-child{color:#d9edff;text-align:right}
+.projects-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.project{
+  position:relative;overflow:hidden;padding:26px;border-radius:15px;
+  background:linear-gradient(145deg,#0d1b2b,#08121e);
+  border:1px solid var(--border);transition:.3s;
+}
+.project:hover{transform:translateY(-5px);border-color:#168dc9}
+.project.featured{grid-column:1/-1;border-color:#168bc966}
+.project.featured:before{
+  content:"";position:absolute;right:-100px;top:-130px;width:330px;height:330px;
+  background:radial-gradient(circle,#087fdc22,transparent 70%);
+}
+.project.emerald{border-color:#00d69a40}
+.project.emerald:hover{border-color:#00d69a}
+.project-top{display:flex;justify-content:space-between;align-items:center;gap:15px}
+.project-title{font-size:20px;font-weight:800}
+.project-label{
+  font:9px "JetBrains Mono",monospace;color:#60caff;
+  border:1px solid #168bc955;padding:7px 9px;border-radius:5px;
+}
+.emerald .project-label{color:#00dfa2;border-color:#00d69a55}
+.project p{color:var(--muted);font-size:12px;line-height:1.9;margin:17px 0 22px;max-width:650px}
+.project-bottom{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.project-dots{display:flex;gap:7px}
+.project-dots span{width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 9px #00d69a75}
+.project-link{font-size:11px;font-weight:700;color:#7bd6ff}
+.emerald .project-link{color:#00dfa2}
+.project-link:hover{text-decoration:underline}
+.skills-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:13px}
+.skill{
+  padding:20px 12px;text-align:center;background:#0b1724;
+  border:1px solid var(--border);border-radius:12px;transition:.25s;
+}
+.skill:hover{transform:translateY(-4px);border-color:#168bc9}
+.skill i{font-size:31px;display:block;margin-bottom:12px}
+.skill span{font-size:11px;color:#b5c9da}
+.skill-note{color:var(--muted);font-size:11px;margin-top:18px;line-height:1.8}
+.terminal{
+  background:#050c14;border:1px solid #168bc955;border-radius:14px;overflow:hidden;
+  box-shadow:0 20px 70px #0005;
+}
+.terminal-head{
+  padding:13px 16px;background:#0d1a28;border-bottom:1px solid var(--border);
+  display:flex;align-items:center;gap:7px;
+}
+.terminal-head .dot{width:9px;height:9px}
+.terminal-title{margin-left:8px;color:#7795ad;font:10px "JetBrains Mono",monospace}
+.terminal-body{padding:20px;font:12px/2 "JetBrains Mono",monospace;min-height:190px}
+.terminal-output{color:#9db5c9;white-space:pre-wrap;overflow-wrap:anywhere}
+.terminal-input-row{display:flex;gap:9px;margin-top:12px}
+.terminal-input-row b{color:var(--green)}
+.terminal-input{
+  background:transparent;border:0;outline:0;color:#e9f4ff;
+  font:12px "JetBrains Mono",monospace;width:100%;
+}
+.contact-row{display:flex;flex-wrap:wrap;gap:12px}
+footer{
+  padding:28px 0;border-top:1px solid var(--border);
+  color:#71869a;font-size:11px;
+}
+.footer-inner{display:flex;justify-content:space-between;gap:15px;flex-wrap:wrap}
+footer strong{color:#cce5f7}
+.reveal{opacity:0;transform:translateY(20px);transition:.7s}
+.reveal.visible{opacity:1;transform:none}
+@media(max-width:800px){
+  .nav-links{display:none;position:absolute;top:78px;left:0;right:0;
+    background:#07111e;padding:22px;flex-direction:column;border-bottom:1px solid var(--border)}
+  .nav-links.open{display:flex}
+  .menu-btn{display:block}
+  .hero{grid-template-columns:1fr;text-align:center;padding:65px 0}
+  .hero p{margin-left:auto;margin-right:auto}
+  .actions{justify-content:center}
+  .hero-visual{min-height:350px}
+  .about-grid{grid-template-columns:1fr}
+}
+@media(max-width:560px){
+  .projects-grid{grid-template-columns:1fr}
+  .project.featured{grid-column:auto}
+  .skills-grid{grid-template-columns:repeat(2,1fr)}
+  .hero h1{letter-spacing:-2px}
+  .section{padding:55px 0}
+  .project-top{align-items:flex-start;flex-direction:column}
+  .project-bottom{align-items:flex-start;flex-direction:column}
+  .orbit{width:300px;height:300px}
 }
 </style>
 </head>
-
 <body>
+<canvas id="particles"></canvas>
 
-<canvas id="background"></canvas>
-<div class="background-glow"></div>
-<div class="background-glow two"></div>
-<div class="grid-overlay"></div>
+<header>
+  <div class="container nav">
+    <a class="brand" href="#home">
+      <div class="server-logo" aria-label="PKDEV server logo">
+        <div class="server-line"><div class="server-lights"><i class="dot red"></i><i class="dot yellow"></i><i class="dot green"></i></div></div>
+        <div class="server-line"><div class="server-lights"><i class="dot red"></i><i class="dot yellow"></i><i class="dot green"></i></div></div>
+        <div class="server-line"><div class="server-lights"><i class="dot red"></i><i class="dot yellow"></i><i class="dot green"></i></div></div>
+      </div>
+      <div>
+        <div class="brand-name">PKDEV</div>
+        <div class="brand-sub">BUILD · DEVELOP · INNOVATE</div>
+      </div>
+    </a>
 
-<header class="navbar">
+    <nav class="nav-links" id="navLinks">
+      <a href="#home" data-en="Home" data-fa="Home">Home</a>
+      <a href="#about" data-en="About" data-fa="About">About</a>
+      <a href="#projects" data-en="Projects" data-fa="Projects">Projects</a>
+      <a href="#skills" data-en="Technologies" data-fa="Technology-ha">Technologies</a>
+      <a href="#terminal" data-en="Console" data-fa="Console">Console</a>
+      <a href="#contact" data-en="Contact" data-fa="Contact">Contact</a>
+    </nav>
 
-  <a href="#home" class="brand">
-    <div class="brand-symbol">R<span>.</span></div>
-    <div class="brand-divider"></div>
-    <div class="brand-name">
-      PKDEV
-      <small>DEVELOPER PORTFOLIO</small>
+    <div class="nav-right">
+      <button class="lang active" id="enBtn" onclick="setLanguage('en')">EN</button>
+      <button class="lang" id="faBtn" onclick="setLanguage('fa')">FA-LATIN</button>
+      <button class="menu-btn" onclick="toggleMenu()" aria-label="Open menu">☰</button>
     </div>
-  </a>
-
-  <nav class="nav-links" id="navLinks">
-    <a href="#home">Home</a>
-    <a href="#about">About</a>
-    <a href="#skills">Technologies</a>
-    <a href="#projects">Projects</a>
-    <a href="#console">Console</a>
-    <a href="#contact">Contact</a>
-  </nav>
-
-  <div class="nav-right">
-    <button class="language-btn" id="languageBtn">EN / FA-LATIN</button>
-    <button class="menu-btn" id="menuBtn">☰</button>
   </div>
-
 </header>
 
 <main>
-
-<!-- HERO -->
-
 <section class="container hero" id="home">
-
-  <div class="hero-content">
-
-    <div class="eyebrow">
-      <span class="live-dot"></span>
-      INDEPENDENT DEVELOPER
+  <div class="reveal">
+    <div class="eyebrow"><span class="pulse"></span>
+      <span data-en="INDEPENDENT DEVELOPER" data-fa="DEVELOPER-E MOSTAGHEL">INDEPENDENT DEVELOPER</span>
     </div>
-
-    <p class="hero-pretitle">Hello, I'm</p>
-
-    <h1>Resurect<span>.</span></h1>
-
-    <h2 class="hero-role"
-        data-en="Minecraft Developer & Software Developer"
-        data-fa="Minecraft Developer va Software Developer">
-      Minecraft Developer & Software Developer
-    </h2>
-
-    <p class="hero-description"
-       data-en="I create digital experiences and development projects focused on Minecraft, server ecosystems, community tools, and software engineering. My goal is to turn ideas into useful and meaningful products."
-       data-fa="Man tajrobehaye digital va projehaye development dar zamine Minecraft, server ecosystem, abzarhaye community va software engineering misazam. Hadafam tabdile ide be mahsulati mofid va karbordie.">
-      I create digital experiences and development projects focused on Minecraft, server ecosystems, community tools, and software engineering. My goal is to turn ideas into useful and meaningful products.
+    <h1>RESURECT<span class="gradient">.</span></h1>
+    <h2 data-en="Minecraft Developer & Software Developer" data-fa="Minecraft Developer va Software Developer">Minecraft Developer & Software Developer</h2>
+    <p data-en="I build digital experiences, Minecraft-related projects, and software with a focus on clean design, functionality, and continuous improvement."
+       data-fa="Man tajrobe-haye digital, project-haye Minecraft va software misazam. Tamarkozam rooye tarahi tamiz, performance va behtar kardan-e mostamer-e project-hast.">
+       I build digital experiences, Minecraft-related projects, and software with a focus on clean design, functionality, and continuous improvement.
     </p>
-
-    <div class="hero-buttons">
-      <a href="#projects" class="btn btn-primary"
-         data-en="Explore My Projects ↗"
-         data-fa="Didane Projehaye Man ↗">
-        Explore My Projects ↗
-      </a>
-
-      <a href="#about" class="btn btn-outline"
-         data-en="Discover More"
-         data-fa="Etelaate Bishtar">
-        Discover More
-      </a>
+    <div class="actions">
+      <a class="btn btn-primary" href="#projects" data-en="Explore Projects ↗" data-fa="Didan Project-ha ↗">Explore Projects ↗</a>
+      <a class="btn btn-secondary" href="#contact" data-en="Get in Touch" data-fa="Ertebat ba Man">Get in Touch</a>
     </div>
-
-    <div class="hero-meta">
-      <span>⌘ MINECRAFT DEVELOPMENT</span>
-      <span>⌘ SOFTWARE PROJECTS</span>
-    </div>
-
   </div>
 
-  <div class="hero-art">
-
-    <div class="art-ring ring-one"></div>
-    <div class="art-ring ring-two"></div>
-
-    <div class="profile-visual">
-
-      <div class="visual-top">
-        <span>IDENTITY / PROFILE</span>
-        <span>R-001</span>
+  <div class="hero-visual reveal">
+    <div class="orbit"></div>
+    <div class="server-stage">
+      <div class="stage-label">PKDEV // SERVER SYSTEM</div>
+      <div class="rack-unit">
+        <div class="rack-slots"><i></i><i></i><i></i></div>
+        <div class="rack-lights"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span></div>
       </div>
-
-      <div class="visual-avatar">
-        <strong>R<span>.</span></strong>
+      <div class="rack-unit">
+        <div class="rack-slots"><i></i><i></i><i></i></div>
+        <div class="rack-lights"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span></div>
       </div>
-
-      <div class="visual-name">Resurect</div>
-      <div class="visual-role">MINECRAFT DEVELOPER</div>
-
-      <div class="visual-line"></div>
-
-      <div class="visual-bottom">
-        <span>PKDEV</span>
-        <span>CREATING THE FUTURE</span>
+      <div class="rack-unit">
+        <div class="rack-slots"><i></i><i></i><i></i></div>
+        <div class="rack-lights"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span></div>
       </div>
-
+      <div class="stage-footer"><span>DEVELOPMENT NODE</span><span>PK // 001</span></div>
     </div>
-
-    <div class="floating float-one">JAVA.DEV</div>
-    <div class="floating float-two">MINECRAFT.SYS</div>
-    <div class="floating float-three">SECURITY //</div>
-
   </div>
-
 </section>
 
-<!-- ABOUT -->
-
-<section class="container section reveal" id="about">
-
-  <div class="section-heading">
-    <span class="section-number">01 /</span>
-    <h2 data-en="About Me" data-fa="Darbare Man">About Me</h2>
+<section class="container section" id="about">
+  <div class="section-heading reveal">
+    <div class="kicker">01 / ABOUT</div>
+    <h2 data-en="Behind the Code" data-fa="Posht-e Code">Behind the Code</h2>
+    <p data-en="A little introduction." data-fa="Ye moarefi-e kootah az man.">A little introduction.</p>
   </div>
-
   <div class="about-grid">
-
-    <div class="panel">
-
-      <div class="panel-label">WHO AM I?</div>
-
-      <h3 data-en="A developer with a passion for building."
-          data-fa="Yek developer ba alaghe be sakhtan.">
-        A developer with a passion for building.
-      </h3>
-
-      <p data-en="I'm Resurect, an independent developer interested in Minecraft development and software engineering. I enjoy building projects that solve problems, improve communities, and create better experiences for users."
-         data-fa="Man Resurect hastam, yek developer mostaghel ke be Minecraft development va software engineering alaghe daram. Az sakhtane projehayi ke moshkelat ra hal mikonan va tajrobe behtari baraye karbaran misazan lezat mibaram.">
-        I'm Resurect, an independent developer interested in Minecraft development and software engineering. I enjoy building projects that solve problems, improve communities, and create better experiences for users.
+    <div class="panel reveal">
+      <p data-en="I'm Resurect, a developer interested in Minecraft development and software engineering. I enjoy building useful tools, experimenting with ideas, and turning concepts into working projects. PKDEV is the identity behind my development work."
+         data-fa="Man Resurect hastam; be Minecraft Development va Software Engineering alaghe daram. Az sakhtan-e abzarhaye karbordi, tajrobe kardan-e ide-ha va tabdil-e fekr be project lezzat mibaram. PKDEV hoviyat-e karhaye development-e mane.">
+        I'm Resurect, a developer interested in Minecraft development and software engineering. I enjoy building useful tools, experimenting with ideas, and turning concepts into working projects. PKDEV is the identity behind my development work.
       </p>
-
-      <p data-en="PKDEV is the professional title I use for my work. Resurect is my primary identity, personal username, and the name people know me by."
-         data-fa="PKDEV onvane herfei karhaye mane. Resurect hoviyat asli, username shakhsi va esmi ast ke man ra ba an mishenasand.">
-        PKDEV is the professional title I use for my work. Resurect is my primary identity, personal username, and the name people know me by.
-      </p>
-
     </div>
-
-    <div class="info-list">
-
-      <div class="info-item">
-        <div class="info-icon">⌘</div>
-        <div>
-          <small>PRIMARY ROLE</small>
-          <strong>Minecraft Developer</strong>
-        </div>
-      </div>
-
-      <div class="info-item">
-        <div class="info-icon">◇</div>
-        <div>
-          <small>MAIN INTEREST</small>
-          <strong>Plugins & Server Systems</strong>
-        </div>
-      </div>
-
-      <div class="info-item">
-        <div class="info-icon">◈</div>
-        <div>
-          <small>DISCORD</small>
-          <strong>.resurect.</strong>
-        </div>
-      </div>
-
-      <div class="info-item">
-        <div class="info-icon">↗</div>
-        <div>
-          <small>GITHUB</small>
-          <a href="https://github.com/resurect63" target="_blank" rel="noopener noreferrer">
-            @resurect63
-          </a>
-        </div>
-      </div>
-
+    <div class="panel info-list reveal">
+      <div class="info-row"><span>Developer</span><span>Resurect</span></div>
+      <div class="info-row"><span>Brand</span><span>PKDEV</span></div>
+      <div class="info-row"><span>Focus</span><span>Minecraft Development</span></div>
+      <div class="info-row"><span>Discord</span><span>.resurect.</span></div>
     </div>
-
   </div>
-
 </section>
 
-<!-- TECHNOLOGIES -->
-
-<section class="container section reveal" id="skills">
-
-  <div class="section-heading">
-    <span class="section-number">02 /</span>
-    <h2 data-en="Technologies" data-fa="Technologyha">Technologies</h2>
+<section class="container section" id="projects">
+  <div class="section-heading reveal">
+    <div class="kicker">02 / SELECTED WORK</div>
+    <h2 data-en="Featured Projects" data-fa="Project-haye Man">Featured Projects</h2>
+    <p data-en="A selection of projects built and developed under PKDEV."
+       data-fa="Nemone-i az project-hayi ke zir-e PKDEV sakhtam ya dar hale tose'e hastand.">
+       A selection of projects built and developed under PKDEV.
+    </p>
   </div>
-
-  <p class="section-subtitle">
-    Tools, languages and technologies connected to my work.
-  </p>
-
-  <div class="skills-group">
-
-    <h3>Core Languages</h3>
-
-    <div class="tech-grid">
-
-      <div class="tech-card">
-        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML5">
-        <span>HTML5</span>
-      </div>
-
-      <div class="tech-card">
-        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS3">
-        <span>CSS3</span>
-      </div>
-
-      <div class="tech-card">
-        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript">
-        <span>JavaScript</span>
-      </div>
-
-      <div class="tech-card">
-        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" alt="Java">
-        <span>Java</span>
-      </div>
-
-    </div>
-
-  </div>
-
-  <div class="skills-group">
-
-    <h3>Development & Minecraft Ecosystem</h3>
-
-    <div class="tech-grid">
-
-      <div class="tech-card">
-        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kotlin/kotlin-original.svg" alt="Kotlin">
-        <span>Kotlin</span>
-      </div>
-
-      <div class="tech-card">
-        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" alt="TypeScript">
-        <span>TypeScript</span>
-      </div>
-
-      <div class="tech-card">
-        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" alt="Node.js">
-        <span>Node.js</span>
-      </div>
-
-      <div class="tech-card">
-        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg" alt="Spring Boot">
-        <span>Spring Boot</span>
-      </div>
-
-      <div class="tech-card">
-        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" alt="PostgreSQL">
-        <span>PostgreSQL</span>
-      </div>
-
-      <div class="tech-card">
-        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg" alt="Linux">
-        <span>Linux</span>
-      </div>
-
-      <div class="tech-card">
-        <i class="devicon-git-plain colored" aria-hidden="true"></i>
-        <span>Git</span>
-      </div>
-
-      <div class="tech-card">
-        <i class="devicon-github-original" aria-hidden="true"></i>
-        <span>GitHub</span>
-      </div>
-
-      <div class="tech-card">
-        <i class="devicon-mysql-original colored" aria-hidden="true"></i>
-        <span>MySQL</span>
-      </div>
-
-      <div class="tech-card">
-        <i class="devicon-docker-plain colored" aria-hidden="true"></i>
-        <span>Docker</span>
-      </div>
-
-    </div>
-
-  </div>
-
-  <div class="skills-group">
-
-    <h3>Minecraft Development APIs</h3>
-
-    <div class="tech-grid">
-
-      <div class="tech-card">
-        <i class="devicon-java-plain colored" aria-hidden="true"></i>
-        <span>Paper API</span>
-      </div>
-
-      <div class="tech-card">
-        <i class="devicon-java-plain colored" aria-hidden="true"></i>
-        <span>Spigot API</span>
-      </div>
-
-      <div class="tech-card">
-        <i class="devicon-java-plain colored" aria-hidden="true"></i>
-        <span>Velocity API</span>
-      </div>
-
-      <div class="tech-card">
-        <i class="devicon-java-plain colored" aria-hidden="true"></i>
-        <span>Bukkit API</span>
-      </div>
-
-    </div>
-
-  </div>
-
-  <p class="tech-note">
-    Some technologies are related to my project stack and areas of exploration, rather than confirmed professional proficiency.
-  </p>
-
-</section>
-
-<!-- PROJECTS -->
-
-<section class="container section reveal" id="projects">
-
-  <div class="section-heading">
-    <span class="section-number">03 /</span>
-    <h2 data-en="Featured Projects" data-fa="Projehaye Man">Featured Projects</h2>
-  </div>
-
-  <p class="section-subtitle">
-    A selection of my development work and ideas.
-  </p>
 
   <div class="projects-grid">
-
-    <article class="project-card">
-
-      <div class="project-number">PROJECT_001</div>
-      <div class="project-symbol symbol-one">I</div>
-
-      <h3>Imperial Launcher</h3>
-
-      <p>
-        A Minecraft launcher project focused on delivering a dedicated and customized launch experience.
-      </p>
-
-      <div class="tags">
-        <span>Java</span>
-        <span>Minecraft</span>
+    <article class="project featured reveal">
+      <div class="project-top">
+        <div class="project-title">PKDEV.SECURITY</div>
+        <span class="project-label">IN DEVELOPMENT</span>
       </div>
-
-      <a class="project-link"
-         href="https://github.com/resurect63/Imperial-Launcher"
-         target="_blank" rel="noopener noreferrer">
-        VIEW SOURCE CODE ↗
-      </a>
-
+      <p data-en="A project focused on Minecraft network management, monitoring, and security. The platform is under development, with planned tools for centralized visibility and administration."
+         data-fa="Project-i baraye modiriat, monitoring va amniat-e network-haye Minecraft. Platform dar hale tose'e ast va abzarhaye modiriat-e markazi baraye an barname-rizi shode-and.">
+        A project focused on Minecraft network management, monitoring, and security. The platform is under development, with planned tools for centralized visibility and administration.
+      </p>
+      <div class="project-bottom">
+        <div class="project-dots" aria-label="Decorative three-dot mark"><span></span><span></span><span></span></div>
+        <a class="project-link" href="https://resurect63.github.io/Pkdev.Security-/" target="_blank" rel="noopener">VISIT WEBSITE ↗</a>
+      </div>
     </article>
 
-    <article class="project-card">
-
-      <div class="project-number">PROJECT_002</div>
-      <div class="project-symbol symbol-two">M</div>
-
-      <h3>Moderator Academy</h3>
-
-      <p>
-        An educational platform designed to teach Minecraft server moderation and help prepare moderation teams.
-      </p>
-
-      <div class="tags">
-        <span>Education</span>
-        <span>Minecraft</span>
+    <article class="project emerald reveal">
+      <div class="project-top">
+        <div class="project-title">Imperial Launcher</div>
+        <span class="project-label">MINECRAFT</span>
       </div>
-
-      <a class="project-link"
-         href="https://github.com/resurect63/moderator-academy"
-         target="_blank" rel="noopener noreferrer">
-        VIEW SOURCE CODE ↗
-      </a>
-
+      <p data-en="A Minecraft launcher project designed to provide a dedicated entry point for the game."
+         data-fa="Ye project launcher baraye Minecraft ke yek masir-e makhsoos baraye ejraye bazi faraham mikone.">
+        A Minecraft launcher project designed to provide a dedicated entry point for the game.
+      </p>
+      <div class="project-bottom">
+        <div class="project-dots" aria-label="Decorative three-dot mark"><span></span><span></span><span></span></div>
+        <a class="project-link" href="https://resurect63.github.io/Imperial-Launcher-Website-/" target="_blank" rel="noopener">VISIT WEBSITE ↗</a>
+      </div>
     </article>
 
-    <article class="project-card">
-
-      <div class="project-number">PROJECT_003</div>
-      <div class="project-symbol symbol-three">R.</div>
-
-      <div class="project-status">
-        <span class="live-dot"></span>
-        IN DEVELOPMENT
+    <article class="project emerald reveal">
+      <div class="project-top">
+        <div class="project-title">Moderator Academy</div>
+        <span class="project-label">EDUCATION</span>
       </div>
-
-      <h3>PKDEV.SECURITY</h3>
-
-      <p>
-        A planned Minecraft network security and management ecosystem focused on infrastructure monitoring, security insights, and server administration.
+      <p data-en="An educational project designed to help Minecraft server staff learn moderation principles and responsibilities."
+         data-fa="Ye project amoozeshi baraye komak be staff-haye server-haye Minecraft ta ba osoul va masouliat-haye moderation ashena beshan.">
+        An educational project designed to help Minecraft server staff learn moderation principles and responsibilities.
       </p>
-
-      <div class="tags">
-        <span>Security</span>
-        <span>Monitoring</span>
-        <span>Minecraft</span>
+      <div class="project-bottom">
+        <div class="project-dots" aria-label="Decorative three-dot mark"><span></span><span></span><span></span></div>
+        <a class="project-link" href="https://resurect63.github.io/moderator-academy/" target="_blank" rel="noopener">VISIT WEBSITE ↗</a>
       </div>
-
-      <span class="project-link">COMING SOON</span>
-
     </article>
-
   </div>
-
 </section>
 
-<!-- MINI CONSOLE -->
-
-<section class="container section reveal" id="console">
-
-  <div class="section-heading">
-    <span class="section-number">04 /</span>
-    <h2>Developer Console</h2>
+<section class="container section" id="skills">
+  <div class="section-heading reveal">
+    <div class="kicker">03 / TOOLKIT</div>
+    <h2 data-en="Core Technologies" data-fa="Technology-haye Asli">Core Technologies</h2>
+    <p data-en="Technologies I work with." data-fa="Technology-hayi ke ba anha kar mikonam.">Technologies I work with.</p>
   </div>
-
-  <p class="section-subtitle">
-    A small interactive terminal — explore my portfolio using commands.
+  <div class="skills-grid reveal">
+    <div class="skill"><i class="devicon-html5-plain colored"></i><span>HTML5</span></div>
+    <div class="skill"><i class="devicon-css3-plain colored"></i><span>CSS3</span></div>
+    <div class="skill"><i class="devicon-javascript-plain colored"></i><span>JavaScript</span></div>
+    <div class="skill"><i class="devicon-java-plain colored"></i><span>Java</span></div>
+  </div>
+  <p class="skill-note" data-en="Project-related technologies may vary by project and are not all listed as professional proficiency."
+     data-fa="Technology-haye mortabet ba project momken ast motefavet bashand va hame be onvan-e takhasos-e herfei dar nazar gerefte nashode-and.">
+    Project-related technologies may vary by project and are not all listed as professional proficiency.
   </p>
-
-  <div class="console">
-
-    <div class="console-header">
-      <div class="console-dots">
-        <span style="background:#ef6464"></span>
-        <span style="background:#eabf55"></span>
-        <span style="background:#4cbd79"></span>
-      </div>
-
-      <div class="console-title">RESURECT@PKDEV — TERMINAL</div>
-
-      <span style="font:9px var(--mono);color:#6d82a0">v1.0</span>
-    </div>
-
-    <div class="console-body">
-
-      <div class="console-output" id="consoleOutput">Welcome to Resurect's developer terminal.
-Type "help" to see available commands.
-
-System: PKDEV Portfolio
-Identity: Resurect
-Status: Online
-</div>
-
-      <div class="console-input-line">
-        <span class="console-prompt">resurect@pkdev:~$</span>
-        <input id="consoleInput" type="text" placeholder="Type a command..." autocomplete="off">
-      </div>
-
-      <div class="console-hint">
-        Available commands: help, about, projects, github, discord, clear
-      </div>
-
-    </div>
-
-  </div>
-
 </section>
 
-<!-- CONTACT -->
-
-<section class="container section reveal" id="contact">
-
-  <div class="contact-box">
-
-    <span class="section-number">05 / CONTACT</span>
-
-    <h2>Let's Build Something.</h2>
-
-    <p>
-      Have an idea, project, or collaboration in mind? Find me on GitHub or Discord.
-    </p>
-
-    <div class="contact-buttons">
-
-      <a href="https://github.com/resurect63"
-         target="_blank" rel="noopener noreferrer"
-         class="btn btn-primary">
-        GITHUB ↗
-      </a>
-
-      <button class="discord-copy" id="discordCopy">
-        COPY DISCORD USERNAME
-      </button>
-
-    </div>
-
-    <small id="copyMessage">Discord: .resurect.</small>
-
+<section class="container section" id="terminal">
+  <div class="section-heading reveal">
+    <div class="kicker">04 / INTERACTIVE</div>
+    <h2 data-en="Developer Console" data-fa="Developer Console">Developer Console</h2>
+    <p data-en="Try a command below." data-fa="Yek dastoor vared kon.">Try a command below.</p>
   </div>
-
+  <div class="terminal reveal">
+    <div class="terminal-head">
+      <i class="dot red"></i><i class="dot yellow"></i><i class="dot green"></i>
+      <span class="terminal-title">pkdev-terminal — interactive</span>
+    </div>
+    <div class="terminal-body">
+      <div class="terminal-output" id="output">PKDEV Developer Console
+Type "help" to see available commands.</div>
+      <div class="terminal-input-row">
+        <b>visitor@pkdev:~$</b>
+        <input class="terminal-input" id="command" placeholder="type a command..." autocomplete="off">
+      </div>
+    </div>
+  </div>
 </section>
 
+<section class="container section" id="contact">
+  <div class="section-heading reveal">
+    <div class="kicker">05 / CONTACT</div>
+    <h2 data-en="Let's Connect" data-fa="Ertebat">Let's Connect</h2>
+    <p data-en="Find me on my developer platforms." data-fa="Man ro dar platform-haye zir peyda kon.">Find me on my developer platforms.</p>
+  </div>
+  <div class="contact-row reveal">
+    <a class="btn btn-primary" href="https://github.com/resurect63" target="_blank" rel="noopener">GitHub ↗</a>
+    <button class="btn btn-secondary" onclick="copyDiscord()">Discord: .resurect. ⧉</button>
+  </div>
+</section>
 </main>
 
 <footer>
-
-  <div class="footer-brand">
-    R. <span>PKDEV</span>
+  <div class="container footer-inner">
+    <span>© 2026 <strong>PKDEV</strong> · Crafted by Resurect</span>
+    <span>BUILD · DEVELOP · INNOVATE</span>
   </div>
-
-  <p>© <span id="year"></span> Resurect. All rights reserved.</p>
-
-  <a href="#home">BACK TO TOP ↑</a>
-
 </footer>
 
 <script>
-
-/* LANGUAGE */
-
-let currentLanguage = "en";
-
-document.getElementById("languageBtn").addEventListener("click", () => {
-
-  currentLanguage = currentLanguage === "en" ? "fa" : "en";
-
-  document.querySelectorAll("[data-en]").forEach(element => {
-    element.textContent = element.dataset[currentLanguage];
+/* Language */
+function setLanguage(lang){
+  document.querySelectorAll("[data-en]").forEach(el=>{
+    el.textContent = el.dataset[lang];
   });
+  document.getElementById("enBtn").classList.toggle("active",lang==="en");
+  document.getElementById("faBtn").classList.toggle("active",lang==="fa");
+  document.documentElement.lang=lang==="en"?"en":"en";
+  localStorage.setItem("pkdev-language",lang);
+}
+setLanguage(localStorage.getItem("pkdev-language")||"en");
 
-  document.getElementById("languageBtn").textContent =
-    currentLanguage === "en" ? "EN / FA-LATIN" : "FA-LATIN / EN";
-
-});
-
-/* MOBILE MENU */
-
-document.getElementById("menuBtn").addEventListener("click", () => {
+/* Mobile navigation */
+function toggleMenu(){
   document.getElementById("navLinks").classList.toggle("open");
+}
+document.querySelectorAll(".nav-links a").forEach(a=>{
+  a.addEventListener("click",()=>document.getElementById("navLinks").classList.remove("open"));
 });
 
-document.querySelectorAll(".nav-links a").forEach(link => {
-  link.addEventListener("click", () => {
-    document.getElementById("navLinks").classList.remove("open");
-  });
-});
-
-/* DISCORD COPY */
-
-document.getElementById("discordCopy").addEventListener("click", async () => {
-
-  const message = document.getElementById("copyMessage");
-
-  try {
-    await navigator.clipboard.writeText(".resurect.");
-    message.textContent = "Username copied successfully!";
-  } catch {
-    message.textContent = "Discord username: .resurect.";
-  }
-
-});
-
-/* FOOTER YEAR */
-
-document.getElementById("year").textContent = new Date().getFullYear();
-
-/* MINI TERMINAL */
-
-const terminalInput = document.getElementById("consoleInput");
-const terminalOutput = document.getElementById("consoleOutput");
-
-const commands = {
-
-  help:
-`Available commands:
-
-help       - Show available commands
-about      - Learn about Resurect
-projects   - View development projects
-github     - Open GitHub profile
-discord    - Show Discord username
-clear      - Clear terminal`,
-
-  about:
-`Identity: Resurect
-Professional Title: PKDEV
-Role: Minecraft Developer
-Focus: Software Development
-Discord: .resurect.`,
-
-  projects:
-`PROJECT_001: Imperial Launcher
-PROJECT_002: Moderator Academy
-PROJECT_003: PKDEV.SECURITY
-
-Status: See project cards above.`,
-
-  discord:
-`Discord Username: .resurect.`,
-
-  github:
-`Opening GitHub profile...`,
-
+/* Console */
+const output=document.getElementById("output");
+const input=document.getElementById("command");
+const commands={
+  help:"Available commands:\n help      - Show commands\n about     - About Resurect\n projects  - List projects\n github    - GitHub profile\n discord   - Discord username\n clear     - Clear terminal",
+  about:"Developer: Resurect\nBrand: PKDEV\nFocus: Minecraft Development & Software Development",
+  projects:"[01] PKDEV.SECURITY\n[02] Imperial Launcher\n[03] Moderator Academy",
+  github:"https://github.com/resurect63",
+  discord:"Discord: .resurect."
 };
-
-terminalInput.addEventListener("keydown", event => {
-
-  if (event.key !== "Enter") return;
-
-  const command = terminalInput.value.trim().toLowerCase();
-
-  if (!command) return;
-
-  if (command === "clear") {
-    terminalOutput.textContent = "";
-    terminalInput.value = "";
-    return;
-  }
-
-  if (command === "github") {
-    window.open("https://github.com/resurect63", "_blank", "noopener,noreferrer");
-  }
-
-  const response = commands[command] || "Command not found. Type 'help' for available commands.";
-
-  terminalOutput.textContent +=
-    `\n\nresurect@pkdev:~$ ${command}\n${response}`;
-
-  terminalInput.value = "";
-
-  terminalOutput.scrollTop = terminalOutput.scrollHeight;
-
-});
-
-/* PARTICLES */
-
-const canvas = document.getElementById("background");
-const ctx = canvas.getContext("2d");
-
-let particles = [];
-let w = 0;
-let h = 0;
-
-function resizeCanvas() {
-
-  const ratio = Math.min(window.devicePixelRatio || 1, 2);
-
-  w = window.innerWidth;
-  h = window.innerHeight;
-
-  canvas.width = w * ratio;
-  canvas.height = h * ratio;
-
-  ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
-
-  particles = Array.from(
-    { length: Math.min(85, Math.floor(w / 13)) },
-    () => ({
-      x: Math.random() * w,
-      y: Math.random() * h,
-      vx: (Math.random() - .5) * .22,
-      vy: (Math.random() - .5) * .22,
-      r: Math.random() * 1.4 + .4
-    })
-  );
-
+function runCommand(){
+  const cmd=input.value.trim().toLowerCase();
+  if(!cmd)return;
+  if(cmd==="clear"){output.textContent="Terminal cleared.";input.value="";return;}
+  output.textContent+="\n\nvisitor@pkdev:~$ "+cmd+"\n"+(commands[cmd]||"Command not found. Type help.");
+  input.value="";
+}
+input.addEventListener("keydown",e=>{if(e.key==="Enter")runCommand();});
+function copyDiscord(){
+  navigator.clipboard?.writeText(".resurect.")
+    .then(()=>alert("Discord username copied: .resurect."))
+    .catch(()=>alert("Discord: .resurect."));
 }
 
-function drawParticles() {
-
-  ctx.clearRect(0, 0, w, h);
-
-  particles.forEach((p, i) => {
-
-    p.x += p.vx;
-    p.y += p.vy;
-
-    if (p.x < 0 || p.x > w) p.vx *= -1;
-    if (p.y < 0 || p.y > h) p.vy *= -1;
-
-    ctx.beginPath();
-    ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-    ctx.fillStyle = "rgba(82,155,255,.65)";
-    ctx.fill();
-
-    for (let j = i + 1; j < particles.length; j++) {
-
-      const q = particles[j];
-      const distance = Math.hypot(p.x - q.x, p.y - q.y);
-
-      if (distance < 115) {
-
-        ctx.beginPath();
-        ctx.moveTo(p.x, p.y);
-        ctx.lineTo(q.x, q.y);
-
-        ctx.strokeStyle =
-          `rgba(54,123,225,${(1 - distance / 115) * .15})`;
-
-        ctx.stroke();
-
-      }
-
-    }
-
-  });
-
-  requestAnimationFrame(drawParticles);
-
-}
-
-resizeCanvas();
-drawParticles();
-
-window.addEventListener("resize", resizeCanvas);
-
-/* SCROLL REVEAL */
-
-const observer = new IntersectionObserver(entries => {
-
-  entries.forEach(entry => {
-
-    if (entry.isIntersecting) {
+/* Scroll reveal */
+const observer=new IntersectionObserver(entries=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
       entry.target.classList.add("visible");
       observer.unobserve(entry.target);
     }
-
   });
+},{threshold:.12});
+document.querySelectorAll(".reveal").forEach(el=>observer.observe(el));
 
-}, { threshold: .12 });
-
-document.querySelectorAll(".reveal").forEach(element => {
-  observer.observe(element);
-});
-
+/* Background particle network */
+const canvas=document.getElementById("particles");
+const ctx=canvas.getContext("2d");
+let particles=[];
+function resize(){
+  canvas.width=innerWidth*devicePixelRatio;
+  canvas.height=innerHeight*devicePixelRatio;
+  ctx.setTransform(devicePixelRatio,0,0,devicePixelRatio,0,0);
+  particles=Array.from({length:Math.min(75,Math.floor(innerWidth/16))},()=>({
+    x:Math.random()*innerWidth,y:Math.random()*innerHeight,
+    vx:(Math.random()-.5)*.35,vy:(Math.random()-.5)*.35
+  }));
+}
+function animate(){
+  ctx.clearRect(0,0,innerWidth,innerHeight);
+  for(let i=0;i<particles.length;i++){
+    const p=particles[i];
+    p.x+=p.vx;p.y+=p.vy;
+    if(p.x<0||p.x>innerWidth)p.vx*=-1;
+    if(p.y<0||p.y>innerHeight)p.vy*=-1;
+    ctx.fillStyle="rgba(22,186,255,.55)";
+    ctx.fillRect(p.x,p.y,2,2);
+    for(let j=i+1;j<particles.length;j++){
+      const q=particles[j],dx=p.x-q.x,dy=p.y-q.y;
+      const d=Math.sqrt(dx*dx+dy*dy);
+      if(d<115){
+        ctx.strokeStyle=`rgba(22,186,255,${(1-d/115)*.13})`;
+        ctx.lineWidth=.7;ctx.beginPath();
+        ctx.moveTo(p.x,p.y);ctx.lineTo(q.x,q.y);ctx.stroke();
+      }
+    }
+  }
+  requestAnimationFrame(animate);
+}
+addEventListener("resize",resize);
+resize();animate();
 </script>
-
 </body>
 </html>
