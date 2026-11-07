@@ -4,421 +4,1708 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#070b14">
-<title>Resurect | PKDEV</title>
+<meta name="theme-color" content="#070a12">
+<title>Resurect — PKDEV</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth;scroll-padding-top:85px}
-body{background:#070b14;color:#e8edf8;font-family:Inter,sans-serif;overflow-x:hidden;line-height:1.7}
-a{text-decoration:none;color:inherit}
-button{font:inherit;cursor:pointer}
-#particles{position:fixed;inset:0;width:100%;height:100%;z-index:-1;pointer-events:none;opacity:.45}
-.navbar{position:sticky;top:0;z-index:100;height:75px;padding:0 7%;display:flex;align-items:center;justify-content:space-between;background:#070b14d9;backdrop-filter:blur(18px);border-bottom:1px solid #1d293a}
-.brand{display:flex;align-items:center;gap:10px;font:700 16px 'Space Grotesk';letter-spacing:2px}
-.brand-icon{border:1px solid #2563eb;border-radius:9px;padding:4px 10px}
-.brand-icon span,.hero h1 span{color:#3b82f6}
-nav{display:flex;gap:25px}
-nav a{font-size:12px;color:#9ba8bd}
-nav a:hover{color:#60a5fa}
-.nav-actions{display:flex;gap:10px;align-items:center}
-#languageBtn{background:#101a2a;border:1px solid #263852;color:#bfdbfe;padding:9px 12px;border-radius:7px;font-size:10px}
-.menu-btn{display:none;background:none;color:white;border:0;font-size:22px}
-.section{max-width:1100px;margin:auto;padding:100px 25px}
-.hero{min-height:650px;display:grid;grid-template-columns:1.1fr .9fr;align-items:center}
-.status{font-size:10px;letter-spacing:2px;color:#60a5fa;margin-bottom:22px}
-.status-dot{width:7px;height:7px;background:#3b82f6;display:inline-block;border-radius:50%;box-shadow:0 0 12px #3b82f6;margin-right:8px}
-.hello{color:#8494aa;font-size:15px}
-.hero h1{font:700 clamp(55px,8vw,90px)/1.1 'Space Grotesk';letter-spacing:-4px}
-.hero h2{font:600 20px 'Space Grotesk';color:#cbd5e1;margin-top:10px}
-.description{color:#8795aa;font-size:14px;max-width:520px;margin:20px 0 27px}
-.hero-buttons,.contact-buttons{display:flex;gap:12px;flex-wrap:wrap}
-.btn{padding:12px 18px;border-radius:8px;font-size:12px;font-weight:700;display:inline-block;transition:.2s}
-.primary{background:#2563eb;color:white;box-shadow:0 8px 30px #2563eb30}
-.primary:hover{background:#3978f5;transform:translateY(-3px)}
-.secondary{border:1px solid #27364d;color:#cbd5e1;background:transparent}
-.secondary:hover{border-color:#3b82f6;color:#93c5fd}
-.hero-footer{display:flex;gap:17px;margin-top:32px;color:#718198;font-size:10px}
-.hero-visual{height:420px;display:grid;place-items:center;position:relative}
-.orbit{position:absolute;border:1px solid #2563eb27;border-radius:50%}
-.orbit.one{width:370px;height:260px;transform:rotate(-25deg)}
-.orbit.two{width:300px;height:390px;transform:rotate(45deg)}
-.identity-card{position:relative;width:270px;padding:22px;background:linear-gradient(145deg,#101d32,#0a1220);border:1px solid #29436a;border-radius:16px;text-align:center;box-shadow:0 25px 90px #0009}
-.card-top{display:flex;justify-content:space-between;color:#71839c;font-size:9px}
-.avatar{width:85px;height:85px;margin:28px auto 12px;border:1px solid #2563eb;border-radius:24px;display:grid;place-items:center;font:700 45px 'Space Grotesk';box-shadow:0 0 35px #2563eb25}
-.avatar span{color:#3b82f6}
-.identity-card h3{font:700 20px 'Space Grotesk'}
-.identity-card p{font-size:10px;color:#8494aa}
-.card-divider{height:1px;background:#263852;margin:20px 0}
-.card-status{font-size:10px;color:#8da0ba}
-.floating-tag{position:absolute;background:#0e1929;border:1px solid #263d5e;padding:9px 13px;border-radius:8px;font-size:10px;box-shadow:0 10px 35px #0006}
-.tag-java{top:55px;right:0}
-.tag-minecraft{bottom:60px;left:0}
-.tag-code{bottom:35px;right:5px;color:#60a5fa}
-.section-title{display:flex;align-items:center;gap:17px;margin-bottom:28px}
-.section-title>span,.section-index{color:#60a5fa;font-size:10px;letter-spacing:2px;font-weight:700}
-.section-title h2,.contact-box h2{font:700 clamp(27px,4vw,38px) 'Space Grotesk'}
-.about-grid{display:grid;grid-template-columns:1.4fr .8fr;gap:18px}
-.panel,.info-card,.project-card,.contact-box{background:linear-gradient(145deg,#101827e8,#0b1220);border:1px solid #1d2b40;border-radius:13px}
-.about-main{padding:30px}
-.about-main small{color:#60a5fa;letter-spacing:2px}
-.about-main h3{font:600 23px 'Space Grotesk';margin:15px 0}
-.about-main p{font-size:13px;color:#8998ad;margin-top:12px}
-.about-details{display:grid;gap:10px}
-.info-card{display:flex;align-items:center;gap:14px;padding:14px}
-.info-card>span{width:35px;height:35px;border-radius:9px;background:#142846;color:#60a5fa;display:grid;place-items:center}
-.info-card small{display:block;font-size:9px;letter-spacing:1px;color:#70829c}
-.info-card strong,.info-card a{font-size:12px;color:#dce7f7}
-.info-card a:hover{color:#60a5fa}
-.section-description{font-size:13px;color:#8998ad;margin-top:-14px;margin-bottom:25px}
-.subheading{font:600 14px 'Space Grotesk';color:#cbd5e1;margin:25px 0 14px}
-.tech-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:11px}
-.tech-card{min-height:85px;padding:14px;display:flex;align-items:center;gap:11px;background:#0d1625;border:1px solid #1d2c42;border-radius:10px;transition:.2s}
-.tech-card:hover{border-color:#2563eb88;transform:translateY(-3px)}
-.tech-card img,.text-logo{width:29px;height:29px;object-fit:contain}
-.tech-card span{font-size:12px;font-weight:600;color:#d4deed}
-.text-logo{display:grid;place-items:center;color:#60a5fa;font-weight:800;font-size:17px}
-.tech-note{font-size:10px;color:#64748b;margin-top:17px}
-.project-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
-.project-card{padding:21px;min-height:300px;display:flex;flex-direction:column;transition:.2s}
-.project-card:hover{transform:translateY(-5px);border-color:#315b94}
-.project-number{font-size:9px;color:#60738e}
-.project-icon{width:48px;height:48px;border-radius:12px;display:grid;place-items:center;font:700 23px 'Space Grotesk';margin:23px 0 14px}
-.imperial{background:#d6a84b18;color:#e8c77c}
-.academy{background:#16a34a18;color:#86efac}
-.security{background:#2563eb22;color:#60a5fa}
-.project-card h3{font:600 17px 'Space Grotesk'}
-.project-card p{font-size:11px;color:#8493a9;margin:10px 0 15px;flex:1}
-.project-tags{display:flex;gap:6px;flex-wrap:wrap}
-.project-tags span{font-size:9px;padding:4px 8px;border-radius:5px;background:#17243a;color:#91a6c2}
-.project-link{font-size:11px;color:#60a5fa;font-weight:700;margin-top:20px}
-.development-label{font-size:9px;color:#93c5fd;margin-top:8px}
-.contact-box{text-align:center;padding:40px;background:radial-gradient(ellipse at 50% 0%,#1d4ed820,transparent 65%),#0b1321}
-.contact-box h2{margin-top:15px}
-.contact-box p{font-size:13px;color:#8b9ab0;max-width:520px;margin:12px auto 22px}
-.contact-buttons{justify-content:center}
-#copyMessage{display:block;color:#65758e;font-size:10px;margin-top:15px}
-footer{max-width:1100px;margin:auto;padding:25px;border-top:1px solid #1b293b;display:flex;justify-content:space-between;align-items:center;color:#687991;font-size:10px}
-footer strong{color:#dce7f7}
-footer a:hover{color:#60a5fa}
-@media(max-width:800px){.hero{grid-template-columns:1fr}.hero-visual{height:370px}.about-grid{grid-template-columns:1fr}.project-grid{grid-template-columns:1fr 1fr}}
-@media(max-width:560px){
-.navbar{padding:0 18px}
-.menu-btn{display:block}
-nav{display:none;position:absolute;top:75px;left:0;right:0;background:#0a1220;padding:20px;flex-direction:column;gap:15px}
-nav.open{display:flex}
-.section{padding:75px 19px}
-.hero{padding-top:70px}
-.hero-visual{transform:scale(.9);margin:0 -15px}
-.tech-grid{grid-template-columns:repeat(2,1fr)}
-.project-grid{grid-template-columns:1fr}
-.contact-box{padding:30px 18px}
-footer{flex-wrap:wrap;gap:12px}
-footer p{width:100%;order:3}
+:root {
+  --bg: #070a12;
+  --panel: #0c1220;
+  --panel2: #101a2b;
+  --blue: #2563eb;
+  --light: #60a5fa;
+  --text: #e8eefb;
+  --muted: #8391a8;
+  --border: rgba(110,150,210,.14);
+  --mono: "JetBrains Mono", monospace;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 95px;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: Inter, sans-serif;
+  overflow-x: hidden;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font: inherit;
+  cursor: pointer;
+}
+
+::selection {
+  background: #2563eb;
+  color: white;
+}
+
+/* BACKGROUND */
+
+#background {
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  width: 100%;
+  height: 100%;
+}
+
+.background-glow {
+  position: fixed;
+  width: 500px;
+  height: 500px;
+  border-radius: 50%;
+  filter: blur(140px);
+  background: #1646a5;
+  opacity: .12;
+  pointer-events: none;
+  z-index: -1;
+  top: 10%;
+  left: -200px;
+}
+
+.background-glow.two {
+  top: 65%;
+  left: auto;
+  right: -250px;
+  background: #1646a5;
+  opacity: .10;
+}
+
+.grid-overlay {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+  opacity: .12;
+  background-image:
+    linear-gradient(rgba(80,120,180,.12) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(80,120,180,.12) 1px, transparent 1px);
+  background-size: 55px 55px;
+  mask-image: linear-gradient(to bottom, black, transparent 85%);
+}
+
+/* NAVIGATION */
+
+.navbar {
+  height: 78px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  padding: 0 7%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--border);
+  background: rgba(7,10,18,.83);
+  backdrop-filter: blur(20px);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.brand-symbol {
+  font-family: "Space Grotesk", sans-serif;
+  font-weight: 800;
+  font-size: 30px;
+  letter-spacing: -3px;
+  color: white;
+}
+
+.brand-symbol span {
+  color: var(--light);
+}
+
+.brand-divider {
+  height: 27px;
+  width: 1px;
+  background: #31415b;
+}
+
+.brand-name {
+  font: 700 13px "Space Grotesk";
+  letter-spacing: 3px;
+}
+
+.brand-name small {
+  display: block;
+  color: #71829d;
+  font: 9px var(--mono);
+  letter-spacing: 2px;
+  margin-top: 2px;
+}
+
+.nav-links {
+  display: flex;
+  gap: 30px;
+}
+
+.nav-links a {
+  color: #91a0b6;
+  font-size: 11px;
+  transition: .25s;
+}
+
+.nav-links a:hover {
+  color: var(--light);
+}
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.language-btn {
+  color: #b9d7ff;
+  background: #101c30;
+  border: 1px solid #29436b;
+  border-radius: 7px;
+  padding: 9px 12px;
+  font-size: 10px;
+}
+
+.menu-btn {
+  display: none;
+  color: white;
+  background: none;
+  border: none;
+  font-size: 23px;
+}
+
+/* COMMON */
+
+.container {
+  max-width: 1120px;
+  padding: 0 25px;
+  margin: auto;
+}
+
+.section {
+  padding-top: 105px;
+  padding-bottom: 25px;
+}
+
+.section-heading {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  margin-bottom: 32px;
+}
+
+.section-number {
+  font: 11px var(--mono);
+  color: var(--light);
+}
+
+.section-heading h2 {
+  font: 700 29px "Space Grotesk";
+}
+
+.section-heading::after {
+  content: "";
+  height: 1px;
+  flex: 1;
+  background: linear-gradient(90deg, #29446c, transparent);
+  margin-left: 15px;
+}
+
+.section-subtitle {
+  color: var(--muted);
+  font-size: 12px;
+  margin-top: -20px;
+  margin-bottom: 28px;
+}
+
+.blue {
+  color: var(--light);
+}
+
+/* HERO */
+
+.hero {
+  min-height: 690px;
+  display: grid;
+  grid-template-columns: 1.1fr .9fr;
+  align-items: center;
+  gap: 30px;
+  padding-top: 70px;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  border: 1px solid #263e62;
+  background: #101b2c;
+  padding: 8px 13px;
+  border-radius: 5px;
+  color: #8bbcff;
+  font: 10px var(--mono);
+  letter-spacing: 1px;
+  margin-bottom: 25px;
+}
+
+.live-dot {
+  width: 7px;
+  height: 7px;
+  background: #3b82f6;
+  border-radius: 50%;
+  box-shadow: 0 0 12px #3b82f6;
+  animation: pulse 1.8s infinite;
+}
+
+@keyframes pulse {
+  50% { opacity: .35; }
+}
+
+.hero-pretitle {
+  color: #9aabc3;
+  font-size: 15px;
+  margin-bottom: 5px;
+}
+
+.hero h1 {
+  font: 800 clamp(65px, 9vw, 105px)/1.05 "Space Grotesk";
+  letter-spacing: -7px;
+}
+
+.hero h1 span {
+  color: var(--light);
+  text-shadow: 0 0 35px #2563eb70;
+}
+
+.hero-role {
+  margin-top: 17px;
+  font: 600 clamp(15px, 2vw, 20px) "Space Grotesk";
+  color: #d4e2f8;
+}
+
+.hero-description {
+  max-width: 520px;
+  color: #8999b1;
+  font-size: 13px;
+  line-height: 2;
+  margin-top: 20px;
+}
+
+.hero-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 28px;
+}
+
+.btn {
+  padding: 12px 18px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 700;
+  transition: .25s;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.btn-primary {
+  color: white;
+  background: #2563eb;
+  box-shadow: 0 5px 25px #2563eb35;
+}
+
+.btn-primary:hover {
+  background: #397cf5;
+  transform: translateY(-3px);
+}
+
+.btn-outline {
+  color: #b9d5fa;
+  border: 1px solid #2b4569;
+  background: #101827;
+}
+
+.btn-outline:hover {
+  border-color: #60a5fa;
+  transform: translateY(-3px);
+}
+
+.hero-meta {
+  display: flex;
+  gap: 22px;
+  margin-top: 35px;
+  flex-wrap: wrap;
+}
+
+.hero-meta span {
+  font: 10px var(--mono);
+  color: #64758f;
+}
+
+/* HERO VISUAL */
+
+.hero-art {
+  height: 440px;
+  display: grid;
+  place-items: center;
+  position: relative;
+}
+
+.art-ring {
+  position: absolute;
+  border: 1px solid #2563eb30;
+  border-radius: 50%;
+}
+
+.ring-one {
+  width: 370px;
+  height: 370px;
+  animation: rotate 30s linear infinite;
+  border-style: dashed;
+}
+
+.ring-two {
+  width: 285px;
+  height: 285px;
+  border-color: #60a5fa35;
+}
+
+@keyframes rotate {
+  to { transform: rotate(360deg); }
+}
+
+.profile-visual {
+  width: 290px;
+  padding: 23px;
+  border-radius: 13px;
+  background: linear-gradient(140deg, #111e33, #0b1220);
+  border: 1px solid #35527a;
+  box-shadow: 0 20px 100px #0009, 0 0 45px #2563eb12;
+  position: relative;
+  z-index: 2;
+}
+
+.visual-top {
+  display: flex;
+  justify-content: space-between;
+  color: #7386a2;
+  font: 9px var(--mono);
+  letter-spacing: 1px;
+}
+
+.visual-avatar {
+  text-align: center;
+  margin: 28px 0 17px;
+}
+
+.visual-avatar strong {
+  font: 800 77px/1 "Space Grotesk";
+  letter-spacing: -8px;
+  color: white;
+}
+
+.visual-avatar strong span {
+  color: var(--light);
+}
+
+.visual-name {
+  font: 700 20px "Space Grotesk";
+  text-align: center;
+}
+
+.visual-role {
+  font: 10px var(--mono);
+  color: #8295b1;
+  text-align: center;
+  margin-top: 5px;
+}
+
+.visual-line {
+  height: 1px;
+  background: #293c59;
+  margin: 20px 0;
+}
+
+.visual-bottom {
+  display: flex;
+  justify-content: space-between;
+  color: #8ba0bd;
+  font: 9px var(--mono);
+}
+
+.floating {
+  position: absolute;
+  z-index: 3;
+  background: #101d31;
+  border: 1px solid #29466d;
+  border-radius: 6px;
+  padding: 9px 12px;
+  color: #a9ccff;
+  font: 10px var(--mono);
+  box-shadow: 0 8px 25px #0008;
+}
+
+.float-one { top: 50px; right: 0; }
+.float-two { bottom: 55px; left: 0; }
+.float-three { bottom: 80px; right: -10px; }
+
+/* ABOUT */
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 1.3fr .7fr;
+  gap: 17px;
+}
+
+.panel {
+  background: linear-gradient(140deg, #101a2b, #0b1220);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 28px;
+}
+
+.panel-label {
+  font: 10px var(--mono);
+  color: var(--light);
+  letter-spacing: 2px;
+}
+
+.panel h3 {
+  font: 600 23px "Space Grotesk";
+  margin: 15px 0;
+}
+
+.panel p {
+  color: #8798b0;
+  font-size: 12px;
+  line-height: 2;
+  margin-top: 12px;
+}
+
+.info-list {
+  display: grid;
+  gap: 10px;
+}
+
+.info-item {
+  background: #0d1625;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 15px;
+  display: flex;
+  align-items: center;
+  gap: 13px;
+}
+
+.info-icon {
+  width: 36px;
+  height: 36px;
+  display: grid;
+  place-items: center;
+  background: #142746;
+  color: #7eb7ff;
+  border-radius: 7px;
+  font-size: 15px;
+}
+
+.info-item small {
+  display: block;
+  font: 9px var(--mono);
+  color: #6e809b;
+  margin-bottom: 4px;
+}
+
+.info-item strong, .info-item a {
+  font-size: 11px;
+  color: #d6e4f7;
+}
+
+/* SKILLS */
+
+.skills-group {
+  margin-top: 30px;
+}
+
+.skills-group h3 {
+  font: 600 14px "Space Grotesk";
+  margin-bottom: 14px;
+  color: #c5d6ee;
+}
+
+.tech-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 11px;
+}
+
+.tech-card {
+  min-height: 95px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 10px;
+  background: linear-gradient(145deg, #101a2b, #0b1220);
+  border: 1px solid var(--border);
+  border-radius: 9px;
+  transition: .25s;
+}
+
+.tech-card:hover {
+  transform: translateY(-5px);
+  border-color: #3978d5;
+  background: #13213a;
+}
+
+.tech-card img, .tech-card i {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+  font-size: 32px;
+  color: #91c3ff;
+}
+
+.tech-card span {
+  font-size: 10px;
+  color: #aabbd2;
+  font-weight: 600;
+}
+
+.tech-note {
+  font-size: 10px;
+  color: #667994;
+  margin-top: 16px;
+}
+
+/* PROJECTS */
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+}
+
+.project-card {
+  background: linear-gradient(145deg, #101a2b, #0a111e);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 22px;
+  min-height: 300px;
+  display: flex;
+  flex-direction: column;
+  transition: .25s;
+  position: relative;
+  overflow: hidden;
+}
+
+.project-card::before {
+  content: "";
+  position: absolute;
+  height: 2px;
+  top: 0;
+  left: 0;
+  width: 0;
+  background: #3b82f6;
+  transition: .3s;
+}
+
+.project-card:hover {
+  transform: translateY(-5px);
+  border-color: #31517c;
+}
+
+.project-card:hover::before {
+  width: 100%;
+}
+
+.project-number {
+  font: 9px var(--mono);
+  color: #627895;
+}
+
+.project-symbol {
+  width: 45px;
+  height: 45px;
+  border-radius: 9px;
+  display: grid;
+  place-items: center;
+  font: 700 22px "Space Grotesk";
+  margin: 24px 0 16px;
+}
+
+.symbol-one { background: #d7aa4918; color: #e7c477; }
+.symbol-two { background: #16a34a18; color: #86efac; }
+.symbol-three { background: #2563eb22; color: #60a5fa; }
+
+.project-card h3 {
+  font: 600 16px "Space Grotesk";
+}
+
+.project-card p {
+  font-size: 11px;
+  color: #8798b0;
+  line-height: 1.9;
+  margin: 10px 0 15px;
+  flex: 1;
+}
+
+.tags {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.tags span {
+  padding: 4px 8px;
+  border-radius: 4px;
+  background: #18253a;
+  color: #9cb2d0;
+  font-size: 9px;
+}
+
+.project-link {
+  display: inline-block;
+  color: #73b3ff;
+  font: 10px var(--mono);
+  margin-top: 20px;
+}
+
+.project-link:hover {
+  color: white;
+}
+
+.project-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font: 9px var(--mono);
+  color: #8abaff;
+  margin-top: 10px;
+}
+
+/* MINI CONSOLE */
+
+.console-section {
+  margin-top: 40px;
+}
+
+.console {
+  border: 1px solid #263e61;
+  background: #080e19;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 20px 70px #0005;
+}
+
+.console-header {
+  background: #101a29;
+  border-bottom: 1px solid #24344c;
+  padding: 13px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.console-dots {
+  display: flex;
+  gap: 6px;
+}
+
+.console-dots span {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #52647e;
+}
+
+.console-title {
+  font: 9px var(--mono);
+  color: #8396b2;
+}
+
+.console-body {
+  padding: 20px;
+  min-height: 210px;
+  font: 11px/2 var(--mono);
+  color: #b6c9e4;
+}
+
+.console-output {
+  min-height: 125px;
+  white-space: pre-wrap;
+}
+
+.console-input-line {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  border-top: 1px solid #1d2c40;
+  padding-top: 12px;
+}
+
+.console-prompt {
+  color: #60a5fa;
+}
+
+#consoleInput {
+  flex: 1;
+  min-width: 0;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #e5efff;
+  font: 11px var(--mono);
+}
+
+.console-hint {
+  font-size: 9px;
+  color: #637792;
+  margin-top: 10px;
+}
+
+/* CONTACT */
+
+.contact-box {
+  padding: 48px 25px;
+  border: 1px solid #29466b;
+  border-radius: 11px;
+  background: radial-gradient(ellipse at top, #1b438230, transparent 70%), #0c1422;
+  text-align: center;
+}
+
+.contact-box h2 {
+  font: 700 clamp(28px, 5vw, 43px) "Space Grotesk";
+  margin: 15px 0;
+}
+
+.contact-box p {
+  color: #8799b2;
+  font-size: 12px;
+  margin-bottom: 23px;
+}
+
+.contact-buttons {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 11px;
+}
+
+.discord-copy {
+  color: #c4d9f7;
+  background: #13233b;
+  border: 1px solid #2c4568;
+  border-radius: 6px;
+  padding: 12px 18px;
+  font-size: 11px;
+}
+
+#copyMessage {
+  display: block;
+  margin-top: 17px;
+  color: #7186a4;
+  font: 10px var(--mono);
+}
+
+/* FOOTER */
+
+footer {
+  max-width: 1120px;
+  margin: 80px auto 0;
+  padding: 25px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #667991;
+  font-size: 10px;
+}
+
+.footer-brand {
+  font: 700 13px "Space Grotesk";
+  letter-spacing: 2px;
+  color: #e2ebfa;
+}
+
+.footer-brand span {
+  color: #60a5fa;
+}
+
+footer a:hover {
+  color: #60a5fa;
+}
+
+/* REVEAL ANIMATION */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity .7s ease, transform .7s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* MOBILE */
+
+@media(max-width:850px) {
+  .hero {
+    grid-template-columns: 1fr;
+    padding-top: 75px;
+  }
+
+  .hero-art {
+    height: 390px;
+  }
+
+  .about-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .projects-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .tech-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media(max-width:600px) {
+  .navbar {
+    padding: 0 18px;
+  }
+
+  .menu-btn {
+    display: block;
+  }
+
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: 78px;
+    left: 0;
+    right: 0;
+    padding: 22px;
+    flex-direction: column;
+    background: #0b1220;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-links.open {
+    display: flex;
+  }
+
+  .section {
+    padding-top: 80px;
+  }
+
+  .hero h1 {
+    font-size: 65px;
+  }
+
+  .hero-art {
+    transform: scale(.9);
+    margin: -10px -20px;
+  }
+
+  .tech-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .projects-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .section-heading h2 {
+    font-size: 24px;
+  }
+
+  footer {
+    flex-wrap: wrap;
+    gap: 15px;
+  }
+}
+
+@media(prefers-reduced-motion:reduce) {
+  *, *::before, *::after {
+    scroll-behavior: auto !important;
+    animation-duration: .01ms !important;
+    transition-duration: .01ms !important;
+  }
 }
 </style>
 </head>
 
 <body>
 
-<canvas id="particles"></canvas>
+<canvas id="background"></canvas>
+<div class="background-glow"></div>
+<div class="background-glow two"></div>
+<div class="grid-overlay"></div>
 
 <header class="navbar">
+
   <a href="#home" class="brand">
-    <span class="brand-icon">R<span>.</span></span>
-    PKDEV
+    <div class="brand-symbol">R<span>.</span></div>
+    <div class="brand-divider"></div>
+    <div class="brand-name">
+      PKDEV
+      <small>DEVELOPER PORTFOLIO</small>
+    </div>
   </a>
 
-  <nav id="nav">
-    <a href="#home" data-en="Home" data-fa="Khane">Home</a>
-    <a href="#about" data-en="About" data-fa="Darbare Man">About</a>
-    <a href="#skills" data-en="Skills" data-fa="Maharatha">Skills</a>
-    <a href="#projects" data-en="Projects" data-fa="Projeha">Projects</a>
-    <a href="#contact" data-en="Contact" data-fa="Ertebat">Contact</a>
+  <nav class="nav-links" id="navLinks">
+    <a href="#home">Home</a>
+    <a href="#about">About</a>
+    <a href="#skills">Technologies</a>
+    <a href="#projects">Projects</a>
+    <a href="#console">Console</a>
+    <a href="#contact">Contact</a>
   </nav>
 
-  <div class="nav-actions">
-    <button id="languageBtn">EN / FA-LATIN</button>
-    <button id="menuBtn" class="menu-btn">☰</button>
+  <div class="nav-right">
+    <button class="language-btn" id="languageBtn">EN / FA-LATIN</button>
+    <button class="menu-btn" id="menuBtn">☰</button>
   </div>
+
 </header>
 
 <main>
 
-<section class="section hero" id="home">
-  <div>
-    <div class="status"><span class="status-dot"></span> INDEPENDENT DEVELOPER</div>
-    <p class="hello" data-en="Hello, I'm" data-fa="Salam, man">Hello, I'm</p>
+<!-- HERO -->
+
+<section class="container hero" id="home">
+
+  <div class="hero-content">
+
+    <div class="eyebrow">
+      <span class="live-dot"></span>
+      INDEPENDENT DEVELOPER
+    </div>
+
+    <p class="hero-pretitle">Hello, I'm</p>
 
     <h1>Resurect<span>.</span></h1>
 
-    <h2 data-en="Minecraft Developer & Software Developer"
+    <h2 class="hero-role"
+        data-en="Minecraft Developer & Software Developer"
         data-fa="Minecraft Developer va Software Developer">
       Minecraft Developer & Software Developer
     </h2>
 
-    <p class="description"
-       data-en="I build digital projects focused on Minecraft development, server systems, community tools, and security-oriented solutions."
-       data-fa="Man projehaye digital dar zamine Minecraft, systemhaye server, abzarhaye community va rahkarhaye amniati misazam.">
-      I build digital projects focused on Minecraft development, server systems, community tools, and security-oriented solutions.
+    <p class="hero-description"
+       data-en="I create digital experiences and development projects focused on Minecraft, server ecosystems, community tools, and software engineering. My goal is to turn ideas into useful and meaningful products."
+       data-fa="Man tajrobehaye digital va projehaye development dar zamine Minecraft, server ecosystem, abzarhaye community va software engineering misazam. Hadafam tabdile ide be mahsulati mofid va karbordie.">
+      I create digital experiences and development projects focused on Minecraft, server ecosystems, community tools, and software engineering. My goal is to turn ideas into useful and meaningful products.
     </p>
 
     <div class="hero-buttons">
-      <a href="#projects" class="btn primary" data-en="Explore Projects ↗" data-fa="Didane Projeha ↗">Explore Projects ↗</a>
-      <a href="#about" class="btn secondary" data-en="About Me" data-fa="Darbare Man">About Me</a>
+      <a href="#projects" class="btn btn-primary"
+         data-en="Explore My Projects ↗"
+         data-fa="Didane Projehaye Man ↗">
+        Explore My Projects ↗
+      </a>
+
+      <a href="#about" class="btn btn-outline"
+         data-en="Discover More"
+         data-fa="Etelaate Bishtar">
+        Discover More
+      </a>
     </div>
 
-    <div class="hero-footer">
-      <span>● Building Projects</span>
-      <span>● Learning</span>
-      <span>● Improving</span>
+    <div class="hero-meta">
+      <span>⌘ MINECRAFT DEVELOPMENT</span>
+      <span>⌘ SOFTWARE PROJECTS</span>
     </div>
+
   </div>
 
-  <div class="hero-visual">
-    <div class="orbit one"></div>
-    <div class="orbit two"></div>
+  <div class="hero-art">
 
-    <div class="identity-card">
-      <div class="card-top"><span>IDENTITY.SYS</span><span>● ● ●</span></div>
-      <div class="avatar">R<span>.</span></div>
-      <h3>Resurect</h3>
-      <p>Minecraft Developer</p>
-      <div class="card-divider"></div>
-      <div class="card-status"><span class="status-dot"></span> Turning Ideas Into Projects</div>
+    <div class="art-ring ring-one"></div>
+    <div class="art-ring ring-two"></div>
+
+    <div class="profile-visual">
+
+      <div class="visual-top">
+        <span>IDENTITY / PROFILE</span>
+        <span>R-001</span>
+      </div>
+
+      <div class="visual-avatar">
+        <strong>R<span>.</span></strong>
+      </div>
+
+      <div class="visual-name">Resurect</div>
+      <div class="visual-role">MINECRAFT DEVELOPER</div>
+
+      <div class="visual-line"></div>
+
+      <div class="visual-bottom">
+        <span>PKDEV</span>
+        <span>CREATING THE FUTURE</span>
+      </div>
+
     </div>
 
-    <div class="floating-tag tag-java">☕ Java</div>
-    <div class="floating-tag tag-minecraft">▦ Minecraft</div>
-    <div class="floating-tag tag-code">&lt;/&gt; CODE</div>
+    <div class="floating float-one">JAVA.DEV</div>
+    <div class="floating float-two">MINECRAFT.SYS</div>
+    <div class="floating float-three">SECURITY //</div>
+
   </div>
+
 </section>
 
-<section class="section" id="about">
-  <div class="section-title"><span>01 /</span><h2 data-en="About Me" data-fa="Darbare Man">About Me</h2></div>
+<!-- ABOUT -->
+
+<section class="container section reveal" id="about">
+
+  <div class="section-heading">
+    <span class="section-number">01 /</span>
+    <h2 data-en="About Me" data-fa="Darbare Man">About Me</h2>
+  </div>
 
   <div class="about-grid">
-    <div class="panel about-main">
-      <small>PROFILE</small>
 
-      <h3 data-en="Building ideas for the Minecraft ecosystem."
-          data-fa="Sakhtane ide baraye ecosystem Minecraft.">
-        Building ideas for the Minecraft ecosystem.
+    <div class="panel">
+
+      <div class="panel-label">WHO AM I?</div>
+
+      <h3 data-en="A developer with a passion for building."
+          data-fa="Yek developer ba alaghe be sakhtan.">
+        A developer with a passion for building.
       </h3>
 
-      <p data-en="I'm Resurect, an independent developer interested in software development and the Minecraft ecosystem. I work on projects involving Minecraft server experiences, community management, development tools, and security-focused concepts."
-         data-fa="Man Resurect hastam, yek developer mostaghel ke be software development va ecosystem Minecraft alaghe daram. Rooye projehaye marboot be tajrobe server, modiriat community, abzarhaye development va idehaye security kar mikonam.">
-        I'm Resurect, an independent developer interested in software development and the Minecraft ecosystem. I work on projects involving Minecraft server experiences, community management, development tools, and security-focused concepts.
+      <p data-en="I'm Resurect, an independent developer interested in Minecraft development and software engineering. I enjoy building projects that solve problems, improve communities, and create better experiences for users."
+         data-fa="Man Resurect hastam, yek developer mostaghel ke be Minecraft development va software engineering alaghe daram. Az sakhtane projehayi ke moshkelat ra hal mikonan va tajrobe behtari baraye karbaran misazan lezat mibaram.">
+        I'm Resurect, an independent developer interested in Minecraft development and software engineering. I enjoy building projects that solve problems, improve communities, and create better experiences for users.
       </p>
 
-      <p data-en="PKDEV is the professional title I use for my work and projects. Resurect is my personal identity and primary username."
-         data-fa="PKDEV onvani ast ke baraye karha va projehayam estefade mikonam. Resurect hoviyat va username asli mane.">
-        PKDEV is the professional title I use for my work and projects. Resurect is my personal identity and primary username.
+      <p data-en="PKDEV is the professional title I use for my work. Resurect is my primary identity, personal username, and the name people know me by."
+         data-fa="PKDEV onvane herfei karhaye mane. Resurect hoviyat asli, username shakhsi va esmi ast ke man ra ba an mishenasand.">
+        PKDEV is the professional title I use for my work. Resurect is my primary identity, personal username, and the name people know me by.
       </p>
+
     </div>
 
-    <div class="about-details">
-      <div class="info-card"><span>⌘</span><div><small>MAIN ROLE</small><strong>Minecraft Developer</strong></div></div>
-      <div class="info-card"><span>◇</span><div><small>FOCUS</small><strong>Plugins & Server Systems</strong></div></div>
-      <div class="info-card"><span>◎</span><div><small>DISCORD</small><strong>.resurect.</strong></div></div>
-      <div class="info-card"><span>↗</span><div><small>GITHUB</small><a href="https://github.com/resurect63" target="_blank" rel="noreferrer">github.com/resurect63</a></div></div>
+    <div class="info-list">
+
+      <div class="info-item">
+        <div class="info-icon">⌘</div>
+        <div>
+          <small>PRIMARY ROLE</small>
+          <strong>Minecraft Developer</strong>
+        </div>
+      </div>
+
+      <div class="info-item">
+        <div class="info-icon">◇</div>
+        <div>
+          <small>MAIN INTEREST</small>
+          <strong>Plugins & Server Systems</strong>
+        </div>
+      </div>
+
+      <div class="info-item">
+        <div class="info-icon">◈</div>
+        <div>
+          <small>DISCORD</small>
+          <strong>.resurect.</strong>
+        </div>
+      </div>
+
+      <div class="info-item">
+        <div class="info-icon">↗</div>
+        <div>
+          <small>GITHUB</small>
+          <a href="https://github.com/resurect63" target="_blank" rel="noopener noreferrer">
+            @resurect63
+          </a>
+        </div>
+      </div>
+
     </div>
+
   </div>
+
 </section>
 
-<section class="section" id="skills">
-  <div class="section-title"><span>02 /</span><h2 data-en="Languages & Technologies" data-fa="Zabanha va Technologyha">Languages & Technologies</h2></div>
+<!-- TECHNOLOGIES -->
 
-  <p class="section-description">Technologies connected to my development work and Minecraft projects.</p>
+<section class="container section reveal" id="skills">
 
-  <h3 class="subheading">Core Languages</h3>
-
-  <div class="tech-grid">
-    <div class="tech-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML5"><span>HTML5</span></div>
-    <div class="tech-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS3"><span>CSS3</span></div>
-    <div class="tech-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript"><span>JavaScript</span></div>
-    <div class="tech-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" alt="Java"><span>Java</span></div>
+  <div class="section-heading">
+    <span class="section-number">02 /</span>
+    <h2 data-en="Technologies" data-fa="Technologyha">Technologies</h2>
   </div>
 
-  <h3 class="subheading">Minecraft & Project Technologies</h3>
+  <p class="section-subtitle">
+    Tools, languages and technologies connected to my work.
+  </p>
 
-  <div class="tech-grid">
-    <div class="tech-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kotlin/kotlin-original.svg" alt="Kotlin"><span>Kotlin</span></div>
-    <div class="tech-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" alt="TypeScript"><span>TypeScript</span></div>
-    <div class="tech-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" alt="Node.js"><span>Node.js</span></div>
-    <div class="tech-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg" alt="Spring"><span>Spring Boot</span></div>
-    <div class="tech-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" alt="PostgreSQL"><span>PostgreSQL</span></div>
-    <div class="tech-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg" alt="Linux"><span>Linux</span></div>
-    <div class="tech-card"><div class="text-logo">{ }</div><span>JSON</span></div>
-    <div class="tech-card"><div class="text-logo">ƒx</div><span>MCFunction</span></div>
-    <div class="tech-card"><div class="text-logo">V</div><span>Velocity API</span></div>
-    <div class="tech-card"><div class="text-logo">P</div><span>Paper API</span></div>
+  <div class="skills-group">
+
+    <h3>Core Languages</h3>
+
+    <div class="tech-grid">
+
+      <div class="tech-card">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML5">
+        <span>HTML5</span>
+      </div>
+
+      <div class="tech-card">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS3">
+        <span>CSS3</span>
+      </div>
+
+      <div class="tech-card">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript">
+        <span>JavaScript</span>
+      </div>
+
+      <div class="tech-card">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" alt="Java">
+        <span>Java</span>
+      </div>
+
+    </div>
+
   </div>
 
-  <p class="tech-note">Core languages represent my current skills. Other technologies are related to my projects and areas of exploration.</p>
+  <div class="skills-group">
+
+    <h3>Development & Minecraft Ecosystem</h3>
+
+    <div class="tech-grid">
+
+      <div class="tech-card">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kotlin/kotlin-original.svg" alt="Kotlin">
+        <span>Kotlin</span>
+      </div>
+
+      <div class="tech-card">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" alt="TypeScript">
+        <span>TypeScript</span>
+      </div>
+
+      <div class="tech-card">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" alt="Node.js">
+        <span>Node.js</span>
+      </div>
+
+      <div class="tech-card">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg" alt="Spring Boot">
+        <span>Spring Boot</span>
+      </div>
+
+      <div class="tech-card">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" alt="PostgreSQL">
+        <span>PostgreSQL</span>
+      </div>
+
+      <div class="tech-card">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg" alt="Linux">
+        <span>Linux</span>
+      </div>
+
+      <div class="tech-card">
+        <i class="devicon-git-plain colored" aria-hidden="true"></i>
+        <span>Git</span>
+      </div>
+
+      <div class="tech-card">
+        <i class="devicon-github-original" aria-hidden="true"></i>
+        <span>GitHub</span>
+      </div>
+
+      <div class="tech-card">
+        <i class="devicon-mysql-original colored" aria-hidden="true"></i>
+        <span>MySQL</span>
+      </div>
+
+      <div class="tech-card">
+        <i class="devicon-docker-plain colored" aria-hidden="true"></i>
+        <span>Docker</span>
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="skills-group">
+
+    <h3>Minecraft Development APIs</h3>
+
+    <div class="tech-grid">
+
+      <div class="tech-card">
+        <i class="devicon-java-plain colored" aria-hidden="true"></i>
+        <span>Paper API</span>
+      </div>
+
+      <div class="tech-card">
+        <i class="devicon-java-plain colored" aria-hidden="true"></i>
+        <span>Spigot API</span>
+      </div>
+
+      <div class="tech-card">
+        <i class="devicon-java-plain colored" aria-hidden="true"></i>
+        <span>Velocity API</span>
+      </div>
+
+      <div class="tech-card">
+        <i class="devicon-java-plain colored" aria-hidden="true"></i>
+        <span>Bukkit API</span>
+      </div>
+
+    </div>
+
+  </div>
+
+  <p class="tech-note">
+    Some technologies are related to my project stack and areas of exploration, rather than confirmed professional proficiency.
+  </p>
+
 </section>
 
-<section class="section" id="projects">
-  <div class="section-title"><span>03 /</span><h2 data-en="My Projects" data-fa="Projehaye Man">My Projects</h2></div>
+<!-- PROJECTS -->
 
-  <div class="project-grid">
+<section class="container section reveal" id="projects">
+
+  <div class="section-heading">
+    <span class="section-number">03 /</span>
+    <h2 data-en="Featured Projects" data-fa="Projehaye Man">Featured Projects</h2>
+  </div>
+
+  <p class="section-subtitle">
+    A selection of my development work and ideas.
+  </p>
+
+  <div class="projects-grid">
 
     <article class="project-card">
-      <div class="project-number">PROJECT_01</div>
-      <div class="project-icon imperial">I</div>
+
+      <div class="project-number">PROJECT_001</div>
+      <div class="project-symbol symbol-one">I</div>
+
       <h3>Imperial Launcher</h3>
-      <p>A Minecraft launcher project focused on creating a dedicated launch experience.</p>
-      <div class="project-tags"><span>Java</span><span>Minecraft</span></div>
-      <a href="https://github.com/resurect63/Imperial-Launcher" target="_blank" rel="noreferrer" class="project-link">View GitHub Repository ↗</a>
+
+      <p>
+        A Minecraft launcher project focused on delivering a dedicated and customized launch experience.
+      </p>
+
+      <div class="tags">
+        <span>Java</span>
+        <span>Minecraft</span>
+      </div>
+
+      <a class="project-link"
+         href="https://github.com/resurect63/Imperial-Launcher"
+         target="_blank" rel="noopener noreferrer">
+        VIEW SOURCE CODE ↗
+      </a>
+
     </article>
 
     <article class="project-card">
-      <div class="project-number">PROJECT_02</div>
-      <div class="project-icon academy">M</div>
+
+      <div class="project-number">PROJECT_002</div>
+      <div class="project-symbol symbol-two">M</div>
+
       <h3>Moderator Academy</h3>
-      <p>An educational project designed to teach Minecraft server moderation and prepare moderation teams.</p>
-      <div class="project-tags"><span>Education</span><span>Minecraft</span></div>
-      <a href="https://github.com/resurect63/moderator-academy" target="_blank" rel="noreferrer" class="project-link">View GitHub Repository ↗</a>
+
+      <p>
+        An educational platform designed to teach Minecraft server moderation and help prepare moderation teams.
+      </p>
+
+      <div class="tags">
+        <span>Education</span>
+        <span>Minecraft</span>
+      </div>
+
+      <a class="project-link"
+         href="https://github.com/resurect63/moderator-academy"
+         target="_blank" rel="noopener noreferrer">
+        VIEW SOURCE CODE ↗
+      </a>
+
     </article>
 
     <article class="project-card">
-      <div class="project-number">PROJECT_03</div>
-      <div class="development-label"><span class="status-dot"></span> IN DEVELOPMENT</div>
-      <div class="project-icon security">⌑</div>
+
+      <div class="project-number">PROJECT_003</div>
+      <div class="project-symbol symbol-three">R.</div>
+
+      <div class="project-status">
+        <span class="live-dot"></span>
+        IN DEVELOPMENT
+      </div>
+
       <h3>PKDEV.SECURITY</h3>
-      <p>A planned security and management platform for Minecraft networks, designed to bring monitoring, security insights, and server administration into one ecosystem.</p>
-      <div class="project-tags"><span>Security</span><span>Monitoring</span><span>Minecraft</span></div>
-      <span class="project-link">Coming Soon</span>
+
+      <p>
+        A planned Minecraft network security and management ecosystem focused on infrastructure monitoring, security insights, and server administration.
+      </p>
+
+      <div class="tags">
+        <span>Security</span>
+        <span>Monitoring</span>
+        <span>Minecraft</span>
+      </div>
+
+      <span class="project-link">COMING SOON</span>
+
     </article>
 
   </div>
+
 </section>
 
-<section class="section" id="contact">
+<!-- MINI CONSOLE -->
+
+<section class="container section reveal" id="console">
+
+  <div class="section-heading">
+    <span class="section-number">04 /</span>
+    <h2>Developer Console</h2>
+  </div>
+
+  <p class="section-subtitle">
+    A small interactive terminal — explore my portfolio using commands.
+  </p>
+
+  <div class="console">
+
+    <div class="console-header">
+      <div class="console-dots">
+        <span style="background:#ef6464"></span>
+        <span style="background:#eabf55"></span>
+        <span style="background:#4cbd79"></span>
+      </div>
+
+      <div class="console-title">RESURECT@PKDEV — TERMINAL</div>
+
+      <span style="font:9px var(--mono);color:#6d82a0">v1.0</span>
+    </div>
+
+    <div class="console-body">
+
+      <div class="console-output" id="consoleOutput">Welcome to Resurect's developer terminal.
+Type "help" to see available commands.
+
+System: PKDEV Portfolio
+Identity: Resurect
+Status: Online
+</div>
+
+      <div class="console-input-line">
+        <span class="console-prompt">resurect@pkdev:~$</span>
+        <input id="consoleInput" type="text" placeholder="Type a command..." autocomplete="off">
+      </div>
+
+      <div class="console-hint">
+        Available commands: help, about, projects, github, discord, clear
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- CONTACT -->
+
+<section class="container section reveal" id="contact">
+
   <div class="contact-box">
-    <span class="section-index">04 / CONTACT</span>
+
+    <span class="section-number">05 / CONTACT</span>
+
     <h2>Let's Build Something.</h2>
-    <p>Interested in my work? Find me through GitHub or Discord.</p>
+
+    <p>
+      Have an idea, project, or collaboration in mind? Find me on GitHub or Discord.
+    </p>
 
     <div class="contact-buttons">
-      <a href="https://github.com/resurect63" target="_blank" rel="noreferrer" class="btn primary">GitHub ↗</a>
-      <button class="btn secondary" id="discordCopy">Copy Discord Username</button>
+
+      <a href="https://github.com/resurect63"
+         target="_blank" rel="noopener noreferrer"
+         class="btn btn-primary">
+        GITHUB ↗
+      </a>
+
+      <button class="discord-copy" id="discordCopy">
+        COPY DISCORD USERNAME
+      </button>
+
     </div>
 
     <small id="copyMessage">Discord: .resurect.</small>
+
   </div>
+
 </section>
 
 </main>
 
 <footer>
-  <div><strong>PKDEV</strong> / Resurect</div>
-  <p>© <span id="year"></span> Resurect. Built with code.</p>
-  <a href="#home">Back to Top ↑</a>
+
+  <div class="footer-brand">
+    R. <span>PKDEV</span>
+  </div>
+
+  <p>© <span id="year"></span> Resurect. All rights reserved.</p>
+
+  <a href="#home">BACK TO TOP ↑</a>
+
 </footer>
 
 <script>
-// Language switcher
-let language = "en";
+
+/* LANGUAGE */
+
+let currentLanguage = "en";
 
 document.getElementById("languageBtn").addEventListener("click", () => {
-  language = language === "en" ? "fa" : "en";
+
+  currentLanguage = currentLanguage === "en" ? "fa" : "en";
 
   document.querySelectorAll("[data-en]").forEach(element => {
-    element.textContent = element.dataset[language];
+    element.textContent = element.dataset[currentLanguage];
   });
 
   document.getElementById("languageBtn").textContent =
-    language === "en" ? "EN / FA-LATIN" : "FA-LATIN / EN";
+    currentLanguage === "en" ? "EN / FA-LATIN" : "FA-LATIN / EN";
+
 });
 
-// Mobile navigation
+/* MOBILE MENU */
+
 document.getElementById("menuBtn").addEventListener("click", () => {
-  document.getElementById("nav").classList.toggle("open");
+  document.getElementById("navLinks").classList.toggle("open");
 });
 
-document.querySelectorAll("nav a").forEach(link => {
+document.querySelectorAll(".nav-links a").forEach(link => {
   link.addEventListener("click", () => {
-    document.getElementById("nav").classList.remove("open");
+    document.getElementById("navLinks").classList.remove("open");
   });
 });
 
-// Discord copy
+/* DISCORD COPY */
+
 document.getElementById("discordCopy").addEventListener("click", async () => {
+
   const message = document.getElementById("copyMessage");
 
   try {
     await navigator.clipboard.writeText(".resurect.");
-    message.textContent = "Discord username copied!";
+    message.textContent = "Username copied successfully!";
   } catch {
     message.textContent = "Discord username: .resurect.";
   }
+
 });
 
-// Current year
+/* FOOTER YEAR */
+
 document.getElementById("year").textContent = new Date().getFullYear();
 
-// Background particles
-const canvas = document.getElementById("particles");
+/* MINI TERMINAL */
+
+const terminalInput = document.getElementById("consoleInput");
+const terminalOutput = document.getElementById("consoleOutput");
+
+const commands = {
+
+  help:
+`Available commands:
+
+help       - Show available commands
+about      - Learn about Resurect
+projects   - View development projects
+github     - Open GitHub profile
+discord    - Show Discord username
+clear      - Clear terminal`,
+
+  about:
+`Identity: Resurect
+Professional Title: PKDEV
+Role: Minecraft Developer
+Focus: Software Development
+Discord: .resurect.`,
+
+  projects:
+`PROJECT_001: Imperial Launcher
+PROJECT_002: Moderator Academy
+PROJECT_003: PKDEV.SECURITY
+
+Status: See project cards above.`,
+
+  discord:
+`Discord Username: .resurect.`,
+
+  github:
+`Opening GitHub profile...`,
+
+};
+
+terminalInput.addEventListener("keydown", event => {
+
+  if (event.key !== "Enter") return;
+
+  const command = terminalInput.value.trim().toLowerCase();
+
+  if (!command) return;
+
+  if (command === "clear") {
+    terminalOutput.textContent = "";
+    terminalInput.value = "";
+    return;
+  }
+
+  if (command === "github") {
+    window.open("https://github.com/resurect63", "_blank", "noopener,noreferrer");
+  }
+
+  const response = commands[command] || "Command not found. Type 'help' for available commands.";
+
+  terminalOutput.textContent +=
+    `\n\nresurect@pkdev:~$ ${command}\n${response}`;
+
+  terminalInput.value = "";
+
+  terminalOutput.scrollTop = terminalOutput.scrollHeight;
+
+});
+
+/* PARTICLES */
+
+const canvas = document.getElementById("background");
 const ctx = canvas.getContext("2d");
 
 let particles = [];
-let width, height;
+let w = 0;
+let h = 0;
 
-function resize() {
-  width = canvas.width = window.innerWidth;
-  height = canvas.height = window.innerHeight;
+function resizeCanvas() {
+
+  const ratio = Math.min(window.devicePixelRatio || 1, 2);
+
+  w = window.innerWidth;
+  h = window.innerHeight;
+
+  canvas.width = w * ratio;
+  canvas.height = h * ratio;
+
+  ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
 
   particles = Array.from(
-    { length: Math.min(75, Math.floor(width / 18)) },
+    { length: Math.min(85, Math.floor(w / 13)) },
     () => ({
-      x: Math.random() * width,
-      y: Math.random() * height,
-      vx: (Math.random() - 0.5) * 0.25,
-      vy: (Math.random() - 0.5) * 0.25,
-      radius: Math.random() * 1.5 + 0.4
+      x: Math.random() * w,
+      y: Math.random() * h,
+      vx: (Math.random() - .5) * .22,
+      vy: (Math.random() - .5) * .22,
+      r: Math.random() * 1.4 + .4
     })
   );
+
 }
 
-function animate() {
-  ctx.clearRect(0, 0, width, height);
+function drawParticles() {
+
+  ctx.clearRect(0, 0, w, h);
 
   particles.forEach((p, i) => {
+
     p.x += p.vx;
     p.y += p.vy;
 
-    if (p.x < 0 || p.x > width) p.vx *= -1;
-    if (p.y < 0 || p.y > height) p.vy *= -1;
+    if (p.x < 0 || p.x > w) p.vx *= -1;
+    if (p.y < 0 || p.y > h) p.vy *= -1;
 
     ctx.beginPath();
-    ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-    ctx.fillStyle = "rgba(74,139,255,.65)";
+    ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+    ctx.fillStyle = "rgba(82,155,255,.65)";
     ctx.fill();
 
     for (let j = i + 1; j < particles.length; j++) {
+
       const q = particles[j];
       const distance = Math.hypot(p.x - q.x, p.y - q.y);
 
-      if (distance < 105) {
+      if (distance < 115) {
+
         ctx.beginPath();
         ctx.moveTo(p.x, p.y);
         ctx.lineTo(q.x, q.y);
+
         ctx.strokeStyle =
-          `rgba(55,120,230,${(1 - distance / 105) * 0.13})`;
+          `rgba(54,123,225,${(1 - distance / 115) * .15})`;
+
         ctx.stroke();
+
       }
+
     }
+
   });
 
-  requestAnimationFrame(animate);
+  requestAnimationFrame(drawParticles);
+
 }
 
-window.addEventListener("resize", resize);
-resize();
-animate();
+resizeCanvas();
+drawParticles();
+
+window.addEventListener("resize", resizeCanvas);
+
+/* SCROLL REVEAL */
+
+const observer = new IntersectionObserver(entries => {
+
+  entries.forEach(entry => {
+
+    if (entry.isIntersecting) {
+      entry.target.classList.add("visible");
+      observer.unobserve(entry.target);
+    }
+
+  });
+
+}, { threshold: .12 });
+
+document.querySelectorAll(".reveal").forEach(element => {
+  observer.observe(element);
+});
+
 </script>
 
 </body>
