@@ -4,698 +4,522 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#050a12">
-<meta name="description" content="Resurect — Minecraft Developer & Software Developer. Projects, technologies and development work under PKDEV.">
-<title>pkdev</title>
+<meta name="theme-color" content="#f7f7f5">
+<meta name="description" content="PKDEV — Independent software development brand by Resurect.">
+<title>PKDEV — Built by Resurect</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
 <style>
-:root{--bg:#050a12;--panel:#0a1421;--panel2:#0d1b2b;--blue:#16baff;--blue2:#0879dc;--green:#00d69a;--text:#e9f4ff;--muted:#8296aa;--border:rgba(105,174,220,.15);--mono:"JetBrains Mono",monospace}
-*{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth;scroll-padding-top:95px}
-body{background:var(--bg);color:var(--text);font-family:Inter,Arial,sans-serif;overflow-x:hidden}
-body.loading{overflow:hidden}
+:root {
+  --bg:#f7f7f5;
+  --surface:#fff;
+  --text:#191919;
+  --muted:#777771;
+  --line:#e7e7e2;
+  --orange:#f28c28;
+  --orange-soft:#fff0df;
+  --dark:#171717;
+  --mono:"DM Mono",monospace;
+  --sans:"Manrope",sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:90px}
+body{background:var(--bg);color:var(--text);font-family:var(--sans);line-height:1.6}
 a{color:inherit;text-decoration:none}
-button{font:inherit}
-::selection{background:#16baff55;color:white}
-.container{width:min(1160px,92%);margin:auto}
-#particles{position:fixed;inset:0;width:100%;height:100%;z-index:-3;pointer-events:none}
-body:before{content:"";position:fixed;inset:0;z-index:-2;pointer-events:none;background:linear-gradient(rgba(16,80,125,.055) 1px,transparent 1px),linear-gradient(90deg,rgba(16,80,125,.055) 1px,transparent 1px);background-size:48px 48px;mask-image:linear-gradient(to bottom,black,transparent 90%)}
-body:after{content:"";position:fixed;inset:0;z-index:-2;pointer-events:none;background:radial-gradient(ellipse at 50% 0%,rgba(0,130,220,.13),transparent 55%)}
-.mouse-glow{position:fixed;width:420px;height:420px;left:0;top:0;z-index:-1;pointer-events:none;border-radius:50%;background:radial-gradient(circle,rgba(22,186,255,.075),transparent 68%);transform:translate(-50%,-50%);opacity:0;transition:opacity .3s}
-
-/* LOADER */
-#loader{position:fixed;inset:0;z-index:99999;display:grid;place-items:center;background:#050a12;opacity:1;visibility:visible;transition:opacity .45s ease,visibility .45s ease}
-#loader.hidden{opacity:0;visibility:hidden;pointer-events:none}
-.loader-content{text-align:center}
-.loader-logo{display:flex;justify-content:center;gap:8px;margin-bottom:22px}
-.loader-logo span{width:10px;height:10px;border-radius:50%;animation:loaderPulse 1s infinite ease-in-out}
-.loader-logo span:nth-child(1){background:#ff4e5d}
-.loader-logo span:nth-child(2){background:#ffd34e;animation-delay:.15s}
-.loader-logo span:nth-child(3){background:#00e58b;animation-delay:.3s}
-.loader-name{font-size:24px;font-weight:900;letter-spacing:4px}
-.loader-caption{color:#7895ad;font:10px var(--mono);letter-spacing:3px;margin-top:10px}
-.loader-bar{width:170px;height:2px;background:#14283a;margin:25px auto 0;overflow:hidden}
-.loader-bar:after{content:"";display:block;width:45%;height:100%;background:var(--blue);box-shadow:0 0 12px var(--blue);animation:loaderMove 1.2s infinite ease-in-out}
-@keyframes loaderPulse{0%,100%{opacity:.35;transform:scale(.8)}50%{opacity:1;transform:scale(1.2)}}
-@keyframes loaderMove{from{transform:translateX(-110%)}to{transform:translateX(250%)}}
-
-/* NAV */
-header{position:sticky;top:0;z-index:100;background:rgba(5,10,18,.86);backdrop-filter:blur(18px);border-bottom:1px solid var(--border)}
-.nav{min-height:78px;display:flex;align-items:center;justify-content:space-between;gap:25px}
-.brand{display:flex;align-items:center;gap:13px}
-.brand-name{font-weight:900;font-size:21px;letter-spacing:1px}
-.brand-sub{font-size:10px;color:var(--muted);letter-spacing:2px;margin-top:3px}
-.server-logo{display:flex;align-items:center;gap:5px}
-.server-logo .dot{width:7px;height:7px}
-.dot{width:4px;height:4px;border-radius:50%;display:inline-block}
-.red{background:#ff4e5d;box-shadow:0 0 6px #ff4e5d}
-.yellow{background:#ffd34e;box-shadow:0 0 6px #ffd34e}
-.green{background:#00e58b;box-shadow:0 0 6px #00e58b}
-.nav-links{display:flex;align-items:center;gap:25px}
-.nav-links a{font-size:12px;color:#a9bbce;transition:.2s}
-.nav-links a:hover,.nav-links a.active{color:var(--blue)}
-.nav-right{display:flex;align-items:center;gap:7px}
-.lang{border:1px solid var(--border);background:#0b1724;color:#b9cde0;padding:8px 11px;border-radius:8px;cursor:pointer;font-size:10px;transition:.2s}
-.lang.active{color:var(--blue);border-color:var(--blue)}
-.menu-btn{display:none;background:none;border:0;color:white;font-size:24px;cursor:pointer}
-
-/* HERO */
-.hero{min-height:610px;display:grid;grid-template-columns:1.05fr .95fr;align-items:center;gap:50px;padding:85px 0 75px}
-.eyebrow{display:inline-flex;align-items:center;gap:9px;color:var(--blue);font:11px var(--mono);letter-spacing:2px;text-transform:uppercase;border:1px solid #16baff35;background:#0a1a2a;padding:9px 13px;border-radius:30px}
-.pulse{width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 12px var(--green);animation:statusPulse 1.8s infinite}
-@keyframes statusPulse{50%{opacity:.45;box-shadow:0 0 3px var(--green)}}
-.hero h1{font-size:clamp(48px,7vw,82px);line-height:1.03;letter-spacing:-4px;margin:25px 0 15px;font-weight:900}
-.gradient{background:linear-gradient(100deg,#eaf7ff 5%,#19baff 55%,#0879dc);-webkit-background-clip:text;background-clip:text;color:transparent}
-.hero h2{font-size:18px;color:#a8bdd0;font-weight:500}
-.typing-line{min-height:25px;margin-top:13px;color:var(--blue);font:12px var(--mono)}
-.typing-cursor{display:inline-block;width:7px;height:14px;background:var(--blue);margin-left:4px;vertical-align:middle;animation:blink .8s infinite}
-@keyframes blink{50%{opacity:0}}
-.hero p{color:var(--muted);line-height:1.9;font-size:14px;max-width:520px;margin:22px 0 28px}
-.actions{display:flex;flex-wrap:wrap;gap:12px}
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:13px 19px;border-radius:8px;font-size:12px;font-weight:700;transition:.25s;border:1px solid var(--border);cursor:pointer}
-.btn-primary{background:linear-gradient(110deg,#0879dc,#13baff);color:white;border:0}
-.btn-secondary{background:#0b1724;color:#c6d8e8}
-.btn:hover{transform:translateY(-3px);box-shadow:0 8px 30px #079bff25}
-.hero-visual{position:relative;display:grid;place-items:center;min-height:390px}
-.server-stage{width:min(340px,85%);padding:27px;border:1px solid #168ccc50;border-radius:22px;background:linear-gradient(145deg,#10283cdd,#07111ddd);box-shadow:0 0 80px #009eff20,inset 0 0 35px #0789cb10;transform:perspective(900px) rotateY(-9deg);animation:stageFloat 5s ease-in-out infinite}
-@keyframes stageFloat{50%{transform:perspective(900px) rotateY(-5deg) translateY(-9px)}}
-.stage-label{font:10px var(--mono);color:#6b9bbd;letter-spacing:2px;margin-bottom:20px}
-.rack-unit{background:linear-gradient(110deg,#132b40,#091521);border:1px solid #1c6b99;border-radius:8px;padding:18px 15px;margin:12px 0;display:flex;align-items:center;justify-content:space-between;box-shadow:inset 0 0 20px #008acb12}
-.rack-slots{display:flex;gap:6px;align-items:center}
-.rack-slots i{display:block;width:27px;height:5px;border-radius:4px;background:#145579}
-.rack-lights{display:flex;gap:7px}
-.rack-lights span{width:8px;height:8px;border-radius:50%}
-.stage-footer{display:flex;justify-content:space-between;margin-top:20px;color:#7194ae;font:10px var(--mono)}
-.orbit{position:absolute;width:390px;height:390px;border:1px solid #16baff25;border-radius:50%;animation:spin 22s linear infinite;pointer-events:none}
-.orbit:after{content:"";position:absolute;top:35px;left:30px;width:8px;height:8px;border-radius:50%;background:var(--blue);box-shadow:0 0 20px var(--blue)}
-@keyframes spin{to{transform:rotate(360deg)}}
-
-/* SECTIONS */
-.section{padding:75px 0}
-.section-heading{margin-bottom:30px}
-.kicker{color:var(--blue);font:10px var(--mono);letter-spacing:2px}
-.section-heading h2{font-size:30px;margin-top:10px;letter-spacing:-1px}
-.section-heading p{font-size:13px;color:var(--muted);margin-top:10px;line-height:1.8}
-.about-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:20px}
-.panel{background:linear-gradient(145deg,#0d1b2b,#08121e);border:1px solid var(--border);border-radius:15px;padding:27px}
-.panel p{color:#9db1c4;font-size:13px;line-height:2}
-.info-list{display:grid;gap:15px}
-.info-row{display:flex;justify-content:space-between;gap:12px;font-size:12px}
-.info-row span:first-child{color:var(--muted)}
-.info-row span:last-child{color:#d9edff;text-align:right}
-
-/* STATUS */
-.status-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}
-.status-card{background:linear-gradient(145deg,#0d1b2b,#08121e);border:1px solid var(--border);border-radius:13px;padding:21px;transition:.25s}
-.status-card:hover{border-color:#168bc9;transform:translateY(-4px)}
-.status-card-top{display:flex;align-items:center;gap:10px;color:#8ba6bd;font:10px var(--mono);letter-spacing:1px}
-.status-card strong{display:block;margin-top:15px;font-size:16px}
-.status-card small{display:block;margin-top:8px;color:var(--muted);font-size:11px;line-height:1.7}
-.status-icon{width:30px;height:30px;display:grid;place-items:center;border:1px solid #168bc955;border-radius:8px;color:var(--blue);background:#0b2032;font-size:14px}
-
-/* PROJECTS */
-.projects-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
-.project{position:relative;isolation:isolate;overflow:hidden;padding:25px;border-radius:15px;background:linear-gradient(145deg,#0d1b2b,#08121e);border:1px solid var(--border);transition:transform .3s,border-color .3s,box-shadow .3s;cursor:default}
-.project:hover{transform:translateY(-5px);border-color:#168dc9;box-shadow:0 12px 35px #0003,0 0 18px #16baff0b}
-.project.featured{grid-column:1/-1;border-color:#168bc966}
-.project.featured:before{content:"";position:absolute;right:-100px;top:-130px;width:330px;height:330px;background:radial-gradient(circle,#087fdc22,transparent 70%);pointer-events:none;z-index:-1}
-.project.emerald{border-color:#00d69a40}
-.project.emerald:hover{border-color:#00d69a;box-shadow:0 12px 35px #0003,0 0 20px #00d69a0d}
-.project-top{display:flex;justify-content:space-between;align-items:center;gap:15px}
-.project-heading{display:flex;align-items:center;gap:13px}
-.project-title{font-size:19px;font-weight:800}
-.project-mark{width:42px;height:42px;flex:0 0 42px;display:grid;place-items:center;border-radius:11px;border:1px solid #168bc966;background:linear-gradient(145deg,#10314a,#091827);color:#6bd1ff;font:700 19px var(--mono);box-shadow:inset 0 0 15px #16baff0a}
-.emerald .project-mark{color:#00dfa2;border-color:#00d69a55;background:linear-gradient(145deg,#0c3029,#091c1b)}
-.project-mark.dots-mark{display:flex;justify-content:center;align-items:center;gap:4px;font-size:0}
-.dots-mark span{width:5px;height:5px;border-radius:50%;background:#00d69a;box-shadow:0 0 7px #00d69a80}
-.project-label{font:9px var(--mono);color:#60caff;border:1px solid #168bc955;padding:7px 9px;border-radius:5px;white-space:nowrap}
-.emerald .project-label{color:#00dfa2;border-color:#00d69a55}
-.project p{color:var(--muted);font-size:12px;line-height:1.9;margin:17px 0 22px;max-width:700px}
-.project-bottom{display:flex;justify-content:space-between;align-items:center;gap:12px}
-.project-dots{display:flex;gap:7px}
-.project-dots span{width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 9px #00d69a75}
-.project-link{position:relative;z-index:5;display:inline-block;font-size:11px;font-weight:700;color:#7bd6ff;transition:.2s;pointer-events:auto}
-.project-link:hover{color:white;text-decoration:underline}
-.emerald .project-link{color:#00dfa2}
-
-/* ROADMAP */
-.roadmap{position:relative;display:grid;gap:15px}
-.roadmap-item{display:grid;grid-template-columns:42px 1fr auto;align-items:center;gap:16px;padding:20px;background:linear-gradient(145deg,#0d1b2b,#08121e);border:1px solid var(--border);border-radius:13px;transition:.25s}
-.roadmap-item:hover{border-color:#168bc9}
-.roadmap-icon{width:42px;height:42px;display:grid;place-items:center;border-radius:10px;background:#0d2940;border:1px solid #168bc955;color:var(--blue);font:700 17px var(--mono)}
-.roadmap-item h3{font-size:14px}
-.roadmap-item p{color:var(--muted);font-size:11px;line-height:1.7;margin-top:6px}
-.roadmap-status{color:#60caff;border:1px solid #168bc955;border-radius:5px;padding:7px 9px;font:9px var(--mono);white-space:nowrap}
-
-/* TECHNOLOGIES */
-.tech-group-title{color:#789ab5;font:11px var(--mono);letter-spacing:2px;margin:34px 0 16px;padding-left:12px;border-left:2px solid var(--blue)}
-.skills-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:13px}
-.skill{padding:20px 12px;text-align:center;background:#0b1724;border:1px solid var(--border);border-radius:12px;transition:.25s}
-.skill:hover{transform:translateY(-4px);border-color:#168bc9;background:#0d1e30}
-.skill i{font-size:31px;display:block;margin-bottom:12px}
-.skill span{font-size:11px;color:#b5c9da}
-.tech-pills{display:flex;flex-wrap:wrap;gap:11px}
-.tech-pill{display:flex;align-items:center;gap:10px;padding:13px 16px;background:#0b1724;border:1px solid var(--border);border-radius:9px;color:#c5d9e9;font-size:12px;transition:.25s}
-.tech-pill:hover{border-color:#16baff;transform:translateY(-3px)}
-.tech-symbol{width:23px;height:23px;display:grid;place-items:center;border-radius:6px;background:#10314a;color:#51caff;font:11px var(--mono);font-weight:700}
-.skill-note{color:var(--muted);font-size:11px;margin-top:20px;line-height:1.9}
-
-/* CONSOLE */
-.terminal{background:#050c14;border:1px solid #168bc955;border-radius:14px;overflow:hidden;box-shadow:0 20px 70px #0005}
-.terminal-head{padding:13px 16px;background:#0d1a28;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:7px}
-.terminal-head .dot{width:9px;height:9px}
-.terminal-title{margin-left:8px;color:#7795ad;font:10px var(--mono)}
-.terminal-body{padding:20px;font:12px/2 var(--mono);min-height:190px}
-.terminal-output{color:#9db5c9;white-space:pre-wrap;overflow-wrap:anywhere}
-.terminal-input-row{display:flex;gap:9px;margin-top:12px}
-.terminal-input-row b{color:var(--green)}
-.terminal-input{background:transparent;border:0;outline:0;color:#e9f4ff;font:12px var(--mono);width:100%;min-width:0}
-.contact-row{display:flex;flex-wrap:wrap;gap:12px}
-footer{padding:28px 0;border-top:1px solid var(--border);color:#71869a;font-size:11px}
-.footer-inner{display:flex;justify-content:space-between;gap:15px;flex-wrap:wrap}
-footer strong{color:#cce5f7}
-.footer-meta{display:flex;gap:15px;flex-wrap:wrap}
-
-/* BACK TO TOP */
-#backToTop{position:fixed;right:24px;bottom:24px;width:42px;height:42px;display:grid;place-items:center;border:1px solid #168bc966;border-radius:10px;background:#0b1b2b;color:var(--blue);font-size:19px;cursor:pointer;opacity:0;visibility:hidden;transform:translateY(10px);transition:.25s;z-index:50}
-#backToTop.show{opacity:1;visibility:visible;transform:translateY(0)}
-#backToTop:hover{background:#10314a;box-shadow:0 0 20px #16baff25}
-.reveal{opacity:0;transform:translateY(20px);transition:opacity .7s ease,transform .7s ease}
-.reveal.visible{opacity:1;transform:none}
-
-@media(max-width:900px){.nav-links{gap:15px}.nav-links a{font-size:11px}.hero{gap:20px}}
-@media(max-width:800px){
-.nav-links{display:none;position:absolute;top:78px;left:0;right:0;background:#07111e;padding:22px;flex-direction:column;border-bottom:1px solid var(--border)}
-.nav-links.open{display:flex}.menu-btn{display:block}
-.hero{grid-template-columns:1fr;text-align:center;padding:65px 0}
-.hero p{margin-left:auto;margin-right:auto}.actions{justify-content:center}
-.hero-visual{min-height:350px}.about-grid{grid-template-columns:1fr}.status-grid{grid-template-columns:1fr 1fr}
+button,input,textarea,select{font:inherit}
+button{cursor:pointer}
+.container{width:min(1100px,calc(100% - 42px));margin:auto}
+.mono{font-family:var(--mono)}
+.orange{color:var(--orange)}
+header{
+  height:76px;position:sticky;top:0;z-index:20;
+  background:#f7f7f5eF;backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--line)
+}
+.navbar{height:100%;display:flex;align-items:center;justify-content:space-between}
+.logo{font-size:22px;font-weight:800;letter-spacing:-1.2px}
+.logo span{color:var(--orange)}
+.nav{display:flex;align-items:center;gap:27px}
+.nav a{font-size:11px;color:var(--muted);transition:.2s}
+.nav a:hover{color:var(--orange)}
+.nav .nav-btn{background:var(--dark);color:white;padding:10px 16px;border-radius:4px}
+.menu-toggle{display:none;background:none;border:0;font-size:22px}
+.hero{
+  padding:105px 0 90px;display:grid;
+  grid-template-columns:1.35fr .65fr;gap:55px;align-items:center
+}
+.availability{
+  display:inline-flex;align-items:center;gap:9px;
+  padding:7px 12px;border:1px solid #e9d8c5;
+  background:#fff9f2;color:#a75c16;border-radius:30px;
+  font:10px var(--mono);letter-spacing:.3px
+}
+.dot{width:7px;height:7px;border-radius:50%;background:#36a66b;box-shadow:0 0 0 4px #36a66b20}
+.hero h1{font-size:clamp(48px,7vw,78px);line-height:1.05;letter-spacing:-4px;margin:27px 0 20px;font-weight:800}
+.hero h1 span{color:var(--orange)}
+.hero-description{max-width:550px;color:var(--muted);font-size:14px;line-height:2}
+.actions{display:flex;gap:11px;flex-wrap:wrap;margin-top:29px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:12px 18px;border:1px solid var(--line);border-radius:4px;font-size:11px;font-weight:700;transition:.2s}
+.btn-dark{background:var(--dark);color:white;border-color:var(--dark)}
+.btn-dark:hover{background:var(--orange);border-color:var(--orange);transform:translateY(-2px)}
+.btn-light:hover{border-color:var(--orange);color:var(--orange)}
+.hero-terminal{background:var(--dark);color:white;border-radius:7px;padding:23px;min-height:245px;position:relative;overflow:hidden}
+.hero-terminal:after{content:"";position:absolute;width:180px;height:180px;right:-80px;bottom:-90px;background:var(--orange);filter:blur(85px);opacity:.35}
+.terminal-head{display:flex;justify-content:space-between;padding-bottom:15px;border-bottom:1px solid #ffffff20;color:#999;font:9px var(--mono)}
+.terminal-content{position:relative;z-index:1;padding-top:20px;font:11px/2.2 var(--mono)}
+.terminal-content .prompt{color:var(--orange)}
+.terminal-content .value{color:#c5c5c5}
+.terminal-content .bright{color:white}
+.section{padding:82px 0;border-top:1px solid var(--line)}
+.section-header{display:flex;justify-content:space-between;align-items:end;gap:25px;margin-bottom:32px}
+.eyebrow{font:10px var(--mono);letter-spacing:1.5px;color:var(--orange);margin-bottom:10px;text-transform:uppercase}
+.section h2{font-size:clamp(27px,4vw,38px);letter-spacing:-1.7px;line-height:1.2}
+.section-intro{max-width:340px;color:var(--muted);font-size:11px;line-height:1.9}
+.filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:22px}
+.filter{border:1px solid var(--line);background:transparent;color:var(--muted);padding:8px 13px;border-radius:4px;font-size:10px;transition:.2s}
+.filter.active,.filter:hover{background:var(--dark);border-color:var(--dark);color:white}
+.project-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+.project{background:var(--surface);border:1px solid var(--line);border-radius:6px;overflow:hidden;transition:.25s}
+.project:hover{transform:translateY(-4px);border-color:#e9b77f;box-shadow:0 14px 35px #00000008}
+.project[hidden]{display:none}
+.project-cover{height:190px;display:grid;place-items:center;position:relative;overflow:hidden;color:white}
+.cover-security{background:linear-gradient(135deg,#171717,#33312e)}
+.cover-imperial{background:linear-gradient(135deg,#14241a,#314c36)}
+.cover-academy{background:linear-gradient(135deg,#242424,#47443e)}
+.cover-hub{background:linear-gradient(135deg,#302014,#573c25)}
+.cover-delta{background:linear-gradient(135deg,#182321,#384a43)}
+.cover-swat{background:linear-gradient(135deg,#252525,#44382b)}
+.cover-inner{width:75%;height:65%;border:1px solid #ffffff38;background:#ffffff0b;border-radius:5px;padding:14px;transform:rotate(-2deg);box-shadow:0 15px 40px #0005}
+.cover-top{display:flex;gap:5px;margin-bottom:17px}
+.cover-top i{width:6px;height:6px;background:#ffffff75;border-radius:50%}
+.cover-title{font-size:22px;font-weight:800;letter-spacing:-1px}
+.cover-small{font:8px var(--mono);color:#c4c4c4;margin-top:5px}
+.cover-line{height:4px;width:70%;background:#ffffff2b;border-radius:5px;margin-top:9px}
+.cover-line.orange{background:var(--orange);width:45%}
+.project-info{padding:19px}
+.project-meta{display:flex;justify-content:space-between;gap:8px;align-items:center;margin-bottom:12px}
+.project-type{font:9px var(--mono);color:var(--muted);text-transform:uppercase}
+.status{font:9px var(--mono);padding:5px 8px;border-radius:3px;background:#eaf6ed;color:#287b42}
+.status.dev{background:var(--orange-soft);color:#a75c16}
+.project h3{font-size:18px;letter-spacing:-.5px;margin-bottom:7px}
+.project p{font-size:11px;color:var(--muted);line-height:1.8;min-height:40px}
+.tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:15px}
+.tag{font:9px var(--mono);padding:5px 8px;background:#f4f4f1;color:#666;border-radius:3px}
+.project-bottom{display:flex;gap:16px;border-top:1px solid var(--line);margin-top:17px;padding-top:13px}
+.project-bottom a,.project-bottom span{font-size:10px;font-weight:700}
+.project-bottom a:hover{color:var(--orange)}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:55px}
+.about-text{font-size:12px;color:var(--muted);line-height:2.1}
+.about-text strong{color:var(--text)}
+.about-cards{display:grid;gap:11px}
+.about-card{padding:16px;background:white;border:1px solid var(--line);border-radius:5px}
+.about-card h3{font-size:12px;margin-bottom:4px}
+.about-card p{font-size:10px;color:var(--muted);line-height:1.8}
+.tool-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:13px}
+.tool-group{background:white;border:1px solid var(--line);padding:19px;border-radius:5px}
+.tool-group h3{font-size:12px;margin-bottom:13px}
+.tool-items{display:flex;flex-wrap:wrap;gap:7px}
+.tool{font:9px var(--mono);padding:6px 8px;border:1px solid var(--line);border-radius:3px;color:#666}
+.journey{border-left:1px solid #e3b17e;margin-left:7px;padding-left:25px;display:grid;gap:24px}
+.journey-item{position:relative}
+.journey-item:before{content:"";position:absolute;left:-30px;top:7px;width:9px;height:9px;background:var(--orange);border:3px solid var(--bg);border-radius:50%}
+.journey-item small{font:9px var(--mono);color:var(--orange)}
+.journey-item h3{font-size:13px;margin:4px 0}
+.journey-item p{font-size:11px;color:var(--muted)}
+.contact-panel{background:var(--dark);color:white;border-radius:7px;padding:38px;display:grid;grid-template-columns:1fr 1fr;gap:35px}
+.contact-panel h2{font-size:clamp(28px,4vw,43px);letter-spacing:-1.7px;line-height:1.2;margin:13px 0}
+.contact-panel p{font-size:11px;color:#aaa;line-height:1.9}
+.contact-options{display:grid;gap:10px;align-content:center}
+.contact-option{border:1px solid #ffffff28;border-radius:4px;padding:14px;display:flex;justify-content:space-between;align-items:center;font-size:11px;transition:.2s}
+.contact-option:hover{border-color:var(--orange);color:var(--orange)}
+.contact-option small{font:9px var(--mono);color:#999}
+.form{display:grid;gap:13px;margin-top:20px}
+.form label{display:grid;gap:6px;font-size:10px;color:#bbb}
+.form input,.form textarea,.form select{width:100%;background:#222;border:1px solid #ffffff27;color:white;padding:11px;border-radius:4px;outline:none;font-size:11px}
+.form input:focus,.form textarea:focus,.form select:focus{border-color:var(--orange)}
+.form textarea{resize:vertical;min-height:95px}
+.form select option{background:#222}
+.form button{background:var(--orange);border:0;color:#171717;padding:12px;border-radius:4px;font-size:11px;font-weight:800}
+.form-message{font-size:10px;color:#d8b98e;min-height:16px}
+.footer{padding:25px 0;display:flex;justify-content:space-between;gap:15px;color:var(--muted);font:9px var(--mono)}
+.footer a:hover{color:var(--orange)}
+.reveal{opacity:0;transform:translateY(15px);transition:.65s}
+.reveal.visible{opacity:1;transform:translateY(0)}
+@media(max-width:760px){
+ .hero{grid-template-columns:1fr;padding:75px 0;gap:35px}
+ .project-grid{grid-template-columns:1fr}
+ .about-grid{grid-template-columns:1fr;gap:25px}
+ .tool-grid{grid-template-columns:1fr 1fr}
+ .contact-panel{grid-template-columns:1fr;padding:26px}
+ .section{padding:62px 0}
+ .section-header{align-items:start;flex-direction:column}
 }
 @media(max-width:560px){
-.projects-grid{grid-template-columns:1fr}.project.featured{grid-column:auto}
-.skills-grid{grid-template-columns:repeat(2,1fr)}
-.hero h1{letter-spacing:-2px}.section{padding:55px 0}
-.project-top{align-items:flex-start}.project-heading{gap:10px}.project-title{font-size:16px}
-.project-label{font-size:8px}.project-bottom{align-items:flex-start}
-.orbit{width:300px;height:300px}.tech-pill{font-size:11px;padding:11px}
-.status-grid{grid-template-columns:1fr}
-.roadmap-item{grid-template-columns:38px 1fr;gap:12px}
-.roadmap-icon{width:38px;height:38px}.roadmap-status{grid-column:2;justify-self:start}
-.footer-inner{flex-direction:column}.mouse-glow{display:none}
-#backToTop{right:15px;bottom:15px}
-}
-@media(prefers-reduced-motion:reduce){
-*,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
-.reveal{opacity:1;transform:none}
+ .container{width:calc(100% - 30px)}
+ .menu-toggle{display:block}
+ .nav{display:none;position:absolute;top:76px;left:0;right:0;padding:20px;background:var(--bg);border-bottom:1px solid var(--line);flex-direction:column;align-items:stretch;gap:18px}
+ .nav.open{display:flex}
+ .nav a{font-size:12px}
+ .nav a:nth-child(2),.nav a:nth-child(4){display:block}
+ .hero h1{letter-spacing:-2.7px}
+ .tool-grid{grid-template-columns:1fr}
+ .footer{flex-direction:column}
 }
 </style>
 </head>
 
-<body class="loading">
-
-<div id="loader" aria-label="Loading website">
-  <div class="loader-content">
-    <div class="loader-logo"><span></span><span></span><span></span></div>
-    <div class="loader-name">PKDEV</div>
-    <div class="loader-caption">INITIALIZING EXPERIENCE</div>
-    <div class="loader-bar"></div>
-  </div>
-</div>
-
-<!-- Independent loader failsafe: runs before the main application script -->
-<script>
-(function(){
-  function releasePage(){
-    var loader=document.getElementById("loader");
-    if(loader) loader.classList.add("hidden");
-    if(document.body) document.body.classList.remove("loading");
-  }
-  window.addEventListener("load",function(){setTimeout(releasePage,250);},{once:true});
-  window.addEventListener("error",function(){releasePage();});
-  window.addEventListener("unhandledrejection",function(){releasePage();});
-  setTimeout(releasePage,5000);
-})();
-</script>
-
-<canvas id="particles"></canvas>
-<div class="mouse-glow" id="mouseGlow"></div>
+<body>
 
 <header>
-<div class="container nav">
-  <a class="brand" href="#home">
-    <div class="server-logo" aria-label="PKDEV three-dot logo">
-      <i class="dot red"></i><i class="dot yellow"></i><i class="dot green"></i>
-    </div>
-    <div>
-      <div class="brand-name">PKDEV</div>
-      <div class="brand-sub">BUILD · DEVELOP · INNOVATE</div>
-    </div>
-  </a>
-
-  <nav class="nav-links" id="navLinks">
-    <a href="#home" data-en="Home" data-fa="Home">Home</a>
-    <a href="#about" data-en="About" data-fa="About">About</a>
-    <a href="#projects" data-en="Projects" data-fa="Project-ha">Projects</a>
-    <a href="#roadmap" data-en="Roadmap" data-fa="Roadmap">Roadmap</a>
-    <a href="#skills" data-en="Technologies" data-fa="Technology-ha">Technologies</a>
-    <a href="#terminal" data-en="Console" data-fa="Console">Console</a>
-    <a href="#contact" data-en="Contact" data-fa="Ertebat">Contact</a>
+ <div class="container navbar">
+  <a class="logo" href="#">PKDEV<span>.</span></a>
+  <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation">☰</button>
+  <nav class="nav" id="navigation">
+   <a href="#about">About</a>
+   <a href="#projects">Projects</a>
+   <a href="#toolbox">Toolbox</a>
+   <a href="#journey">Journey</a>
+   <a href="#contact" class="nav-btn">Let's Talk ↗</a>
   </nav>
-
-  <div class="nav-right">
-    <button class="lang active" id="enBtn" type="button">EN</button>
-    <button class="lang" id="faBtn" type="button">FA-LATIN</button>
-    <button class="menu-btn" id="menuBtn" type="button" aria-label="Open menu">☰</button>
-  </div>
-</div>
+ </div>
 </header>
 
 <main>
-<section class="container hero" id="home">
-  <div class="reveal">
-    <div class="eyebrow"><span class="pulse"></span><span data-en="INDEPENDENT DEVELOPER" data-fa="DEVELOPER-E MOSTAGHEL">INDEPENDENT DEVELOPER</span></div>
-    <h1>RESURECT<span class="gradient">.</span></h1>
-    <h2 data-en="Minecraft Developer & Software Developer" data-fa="Minecraft Developer va Software Developer">Minecraft Developer & Software Developer</h2>
-    <div class="typing-line"><span id="typingText">Building Minecraft Projects</span><span class="typing-cursor"></span></div>
-    <p data-en="I build digital experiences, Minecraft-related projects, and software with a focus on clean design, functionality, and continuous improvement." data-fa="Man tajrobe-haye digital, project-haye Minecraft va software misazam. Tamarkozam rooye tarahi tamiz, karbord va behtar kardan-e mostamer-e project-hast.">I build digital experiences, Minecraft-related projects, and software with a focus on clean design, functionality, and continuous improvement.</p>
-    <div class="actions">
-      <a class="btn btn-primary" href="#projects" data-en="Explore Projects ↗" data-fa="Didan-e Project-ha ↗">Explore Projects ↗</a>
-      <a class="btn btn-secondary" href="#contact" data-en="Get in Touch" data-fa="Ertebat ba Man">Get in Touch</a>
-    </div>
-  </div>
 
-  <div class="hero-visual reveal">
-    <div class="orbit"></div>
-    <div class="server-stage">
-      <div class="stage-label">PKDEV // SERVER SYSTEM</div>
-      <div class="rack-unit"><div class="rack-slots"><i></i><i></i><i></i></div><div class="rack-lights"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span></div></div>
-      <div class="rack-unit"><div class="rack-slots"><i></i><i></i><i></i></div><div class="rack-lights"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span></div></div>
-      <div class="rack-unit"><div class="rack-slots"><i></i><i></i><i></i></div><div class="rack-lights"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span></div></div>
-      <div class="stage-footer"><span>DEVELOPMENT NODE</span><span>PK // 001</span></div>
-    </div>
+<section class="container hero">
+ <div>
+  <div class="availability"><span class="dot"></span> OPEN TO PROJECT INQUIRIES</div>
+  <h1>Ideas into<br><span>digital reality.</span></h1>
+  <p class="hero-description">
+   PKDEV is an independent development brand built by Resurect.
+   We focus on software, web experiences, desktop applications
+   and custom Minecraft systems.
+  </p>
+  <div class="actions">
+   <a class="btn btn-dark" href="#projects">Explore Projects ↗</a>
+   <a class="btn btn-light" href="#contact">Start a Project</a>
   </div>
+ </div>
+
+ <div class="hero-terminal">
+  <div class="terminal-head">
+   <span>PKDEV / SYSTEM PROFILE</span>
+   <span>v1.0</span>
+  </div>
+  <div class="terminal-content">
+   <div><span class="prompt">pkdev@resurect:~$</span> whoami</div>
+   <div class="bright">PKDEV</div>
+   <div class="value">Independent Development Brand</div>
+   <br>
+   <div><span class="prompt">creator:</span> <span class="bright">Resurect</span></div>
+   <div><span class="prompt">focus:</span> <span class="value">Software & Minecraft</span></div>
+   <div><span class="prompt">status:</span> <span class="value">Building what's next.</span></div>
+  </div>
+ </div>
 </section>
 
-<section class="container section" id="about">
-  <div class="section-heading reveal">
-    <div class="kicker">01 / ABOUT</div>
-    <h2 data-en="Behind the Code" data-fa="Posht-e Code">Behind the Code</h2>
-    <p data-en="A little introduction." data-fa="Ye moarefi-e kootah az man.">A little introduction.</p>
+<section class="section" id="projects">
+ <div class="container">
+  <div class="section-header">
+   <div>
+    <div class="eyebrow">01 / Selected Work</div>
+    <h2>Projects & Experiments</h2>
+   </div>
+   <p class="section-intro">A collection of platforms, applications and custom systems built under the PKDEV identity.</p>
+  </div>
+
+  <div class="filters">
+   <button class="filter active" data-filter="all">All Projects</button>
+   <button class="filter" data-filter="web">Websites</button>
+   <button class="filter" data-filter="desktop">Desktop</button>
+   <button class="filter" data-filter="minecraft">Minecraft</button>
+  </div>
+
+  <div class="project-grid">
+
+   <article class="project reveal" data-category="web">
+    <div class="project-cover cover-security">
+     <div class="cover-inner">
+      <div class="cover-top"><i></i><i></i><i></i></div>
+      <div class="cover-title">PKDEV.SECURITY</div>
+      <div class="cover-small">SERVER SECURITY SYSTEM</div>
+      <div class="cover-line orange"></div>
+      <div class="cover-line"></div>
+     </div>
+    </div>
+    <div class="project-info">
+     <div class="project-meta"><span class="project-type">WEB / SECURITY</span><span class="status">LIVE</span></div>
+     <h3>PKDEV.Security</h3>
+     <p>A security-focused interface concept for server monitoring and management.</p>
+     <div class="tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span></div>
+     <div class="project-bottom"><a href="https://resurect63.github.io/Pkdev.Security-/" target="_blank" rel="noopener">Visit Website ↗</a><span>01 / 06</span></div>
+    </div>
+   </article>
+
+   <article class="project reveal" data-category="desktop">
+    <div class="project-cover cover-imperial">
+     <div class="cover-inner">
+      <div class="cover-top"><i></i><i></i><i></i></div>
+      <div class="cover-title">IMPERIAL</div>
+      <div class="cover-small">MINECRAFT JAVA LAUNCHER</div>
+      <div class="cover-line orange"></div>
+      <div class="cover-line"></div>
+     </div>
+    </div>
+    <div class="project-info">
+     <div class="project-meta"><span class="project-type">DESKTOP / MINECRAFT</span><span class="status">WEBSITE LIVE</span></div>
+     <h3>Imperial Launcher</h3>
+     <p>A custom Minecraft Java launcher concept with version management and a modern interface.</p>
+     <div class="tags"><span class="tag">Electron</span><span class="tag">JavaScript</span><span class="tag">Minecraft</span></div>
+     <div class="project-bottom"><a href="https://resurect63.github.io/Imperial-Launcher-Website-/" target="_blank" rel="noopener">Visit Website ↗</a><span>02 / 06</span></div>
+    </div>
+   </article>
+
+   <article class="project reveal" data-category="web">
+    <div class="project-cover cover-academy">
+     <div class="cover-inner">
+      <div class="cover-top"><i></i><i></i><i></i></div>
+      <div class="cover-title">ACADEMY</div>
+      <div class="cover-small">MODERATOR TRAINING</div>
+      <div class="cover-line orange"></div>
+      <div class="cover-line"></div>
+     </div>
+    </div>
+    <div class="project-info">
+     <div class="project-meta"><span class="project-type">WEB / EDUCATION</span><span class="status">LIVE</span></div>
+     <h3>Moderator Academy</h3>
+     <p>An educational platform concept for Minecraft server moderation and staff training.</p>
+     <div class="tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">Community</span></div>
+     <div class="project-bottom"><a href="https://resurect63.github.io/moderator-academy/" target="_blank" rel="noopener">Visit Website ↗</a><span>03 / 06</span></div>
+    </div>
+   </article>
+
+   <article class="project reveal" data-category="desktop">
+    <div class="project-cover cover-hub">
+     <div class="cover-inner">
+      <div class="cover-top"><i></i><i></i><i></i></div>
+      <div class="cover-title">PKDEV.HUB</div>
+      <div class="cover-small">YOUR DIGITAL WORKSPACE</div>
+      <div class="cover-line orange"></div>
+      <div class="cover-line"></div>
+     </div>
+    </div>
+    <div class="project-info">
+     <div class="project-meta"><span class="project-type">DESKTOP / PRODUCTIVITY</span><span class="status dev">IN DEVELOPMENT</span></div>
+     <h3>PKDEV.Hub</h3>
+     <p>A Windows workspace bringing everyday tools and productivity features together.</p>
+     <div class="tags"><span class="tag">Electron</span><span class="tag">React</span><span class="tag">TypeScript</span></div>
+     <div class="project-bottom"><span>Development Preview</span><span>04 / 06</span></div>
+    </div>
+   </article>
+
+   <article class="project reveal" data-category="minecraft">
+    <div class="project-cover cover-delta">
+     <div class="cover-inner">
+      <div class="cover-top"><i></i><i></i><i></i></div>
+      <div class="cover-title">PROJECT DELTA</div>
+      <div class="cover-small">SURVIVE. LOOT. EXTRACT.</div>
+      <div class="cover-line orange"></div>
+      <div class="cover-line"></div>
+     </div>
+    </div>
+    <div class="project-info">
+     <div class="project-meta"><span class="project-type">MINECRAFT / GAME MODE</span><span class="status dev">IN DEVELOPMENT</span></div>
+     <h3>Project Delta</h3>
+     <p>A custom survival and shooter-inspired Minecraft experience with PvP and extraction mechanics.</p>
+     <div class="tags"><span class="tag">Java</span><span class="tag">Paper</span><span class="tag">Game Design</span></div>
+     <div class="project-bottom"><span>Development Preview</span><span>05 / 06</span></div>
+    </div>
+   </article>
+
+   <article class="project reveal" data-category="minecraft">
+    <div class="project-cover cover-swat">
+     <div class="cover-inner">
+      <div class="cover-top"><i></i><i></i><i></i></div>
+      <div class="cover-title">SWAT FORCE</div>
+      <div class="cover-small">SPECIAL OPERATIONS</div>
+      <div class="cover-line orange"></div>
+      <div class="cover-line"></div>
+     </div>
+    </div>
+    <div class="project-info">
+     <div class="project-meta"><span class="project-type">MINECRAFT / GAME MODE</span><span class="status dev">IN DEVELOPMENT</span></div>
+     <h3>SWAT Force</h3>
+     <p>A mission-based Minecraft game mode focused on special operations and custom maps.</p>
+     <div class="tags"><span class="tag">Java</span><span class="tag">Paper</span><span class="tag">Game Design</span></div>
+     <div class="project-bottom"><span>Development Preview</span><span>06 / 06</span></div>
+    </div>
+   </article>
+
+  </div>
+ </div>
+</section>
+
+<section class="section" id="about">
+ <div class="container">
+  <div class="section-header">
+   <div><div class="eyebrow">02 / About PKDEV</div><h2>Behind the Brand</h2></div>
+   <p class="section-intro">A personal journey built around technology, creativity and independent development.</p>
   </div>
   <div class="about-grid">
-    <div class="panel reveal"><p data-en="I'm Resurect, a developer interested in Minecraft development and software engineering. I enjoy building useful tools, experimenting with ideas, and turning concepts into working projects. PKDEV is the identity behind my development work." data-fa="Man Resurect hastam; be Minecraft Development va Software Engineering alaghe daram. Az sakhtan-e abzarhaye karbordi, tajrobe kardan-e ide-ha va tabdil-e fekr be project lezzat mibaram. PKDEV hoviyat-e karhaye development-e mane.">I'm Resurect, a developer interested in Minecraft development and software engineering. I enjoy building useful tools, experimenting with ideas, and turning concepts into working projects. PKDEV is the identity behind my development work.</p></div>
-    <div class="panel info-list reveal">
-      <div class="info-row"><span>Developer</span><span>Resurect</span></div>
-      <div class="info-row"><span>Brand</span><span>PKDEV</span></div>
-      <div class="info-row"><span>Focus</span><span>Minecraft Development</span></div>
-      <div class="info-row"><span>Discord</span><span>.resurect.</span></div>
+   <div class="about-text">
+    <p><strong>PKDEV</strong> is an independent development brand created by <strong>Resurect</strong>.</p>
+    <br>
+    <p>My work combines software development, web technologies and Minecraft server development. I enjoy turning concepts into functional projects, experimenting with new ideas and building systems that solve real problems.</p>
+    <br>
+    <p>From custom applications to game systems and web platforms, every project is an opportunity to learn, improve and create something meaningful.</p>
+   </div>
+   <div class="about-cards">
+    <div class="about-card"><h3>Software Development</h3><p>Building applications, tools and digital experiences.</p></div>
+    <div class="about-card"><h3>Minecraft Development</h3><p>Custom plugins, server systems and gameplay experiences.</p></div>
+    <div class="about-card"><h3>Independent Projects</h3><p>Designing and developing products under the PKDEV brand.</p></div>
+   </div>
+  </div>
+ </div>
+</section>
+
+<section class="section" id="toolbox">
+ <div class="container">
+  <div class="section-header">
+   <div><div class="eyebrow">03 / Technologies</div><h2>My Toolbox</h2></div>
+   <p class="section-intro">Technologies and tools I work with across different development areas.</p>
+  </div>
+  <div class="tool-grid">
+   <div class="tool-group"><h3>Programming</h3><div class="tool-items"><span class="tool">Java</span><span class="tool">JavaScript</span><span class="tool">TypeScript</span><span class="tool">PHP</span><span class="tool">C</span></div></div>
+   <div class="tool-group"><h3>Frontend</h3><div class="tool-items"><span class="tool">HTML</span><span class="tool">CSS</span><span class="tool">React</span><span class="tool">Next.js</span><span class="tool">Tailwind</span></div></div>
+   <div class="tool-group"><h3>Backend & Database</h3><div class="tool-items"><span class="tool">Node.js</span><span class="tool">MySQL</span><span class="tool">MongoDB</span><span class="tool">REST API</span></div></div>
+   <div class="tool-group"><h3>Minecraft</h3><div class="tool-items"><span class="tool">Paper</span><span class="tool">Spigot</span><span class="tool">Velocity</span><span class="tool">BungeeCord</span></div></div>
+   <div class="tool-group"><h3>Tools & Systems</h3><div class="tool-items"><span class="tool">Git</span><span class="tool">Docker</span><span class="tool">Linux</span><span class="tool">IntelliJ IDEA</span></div></div>
+   <div class="tool-group"><h3>Currently Exploring</h3><div class="tool-items"><span class="tool">Electron</span><span class="tool">Desktop Apps</span><span class="tool">System Design</span></div></div>
+  </div>
+ </div>
+</section>
+
+<section class="section" id="journey">
+ <div class="container">
+  <div class="section-header">
+   <div><div class="eyebrow">04 / Experience</div><h2>Development Journey</h2></div>
+   <p class="section-intro">A growing journey through software, Minecraft systems and independent projects.</p>
+  </div>
+  <div class="journey">
+   <div class="journey-item"><small>SOFTWARE DEVELOPMENT</small><h3>Independent Developer</h3><p>Working on web applications, desktop software and personal products.</p></div>
+   <div class="journey-item"><small>MINECRAFT ECOSYSTEM</small><h3>Minecraft Developer</h3><p>Developing custom plugins, server systems and gameplay features.</p></div>
+   <div class="journey-item"><small>PROJECT CREATION</small><h3>Building PKDEV</h3><p>Bringing independent development projects together under one brand.</p></div>
+  </div>
+ </div>
+</section>
+
+<section class="section" id="contact">
+ <div class="container">
+  <div class="contact-panel">
+   <div>
+    <div class="eyebrow">05 / Work Together</div>
+    <h2>Have a project<br>in mind?</h2>
+    <p>Have an idea, need a custom solution or want to collaborate? Tell me about it and let's discuss the possibilities.</p>
+    <form class="form" id="projectForm">
+     <label>Your name<input id="clientName" required placeholder="Your name"></label>
+     <label>Project type
+      <select id="projectType" required>
+       <option value="">Choose a category</option>
+       <option>Website Development</option>
+       <option>Minecraft Plugin Development</option>
+       <option>Custom Minecraft Game Mode</option>
+       <option>Desktop Application</option>
+       <option>Collaboration</option>
+       <option>Other</option>
+      </select>
+     </label>
+     <label>Project details<textarea id="projectDetails" required placeholder="Tell me about your idea..."></textarea></label>
+     <button type="submit">Copy Project Request ↗</button>
+     <div class="form-message" id="formMessage" aria-live="polite"></div>
+    </form>
+   </div>
+   <div class="contact-options">
+    <a class="contact-option" href="https://t.me/Resurect63" target="_blank" rel="noopener"><span>Telegram</span><small>@Resurect63 ↗</small></a>
+    <a class="contact-option" href="https://github.com/resurect63" target="_blank" rel="noopener"><span>GitHub</span><small>Resurect63 ↗</small></a>
+    <a class="contact-option" href="https://discord.com/users/" target="_blank" rel="noopener"><span>Discord</span><small>.Resurect.</small></a>
+    <div style="font-size:10px;color:#999;line-height:1.8;margin-top:8px">
+     The form prepares your project request and copies it to your clipboard. You can then send it through Telegram.
     </div>
+   </div>
   </div>
+ </div>
 </section>
 
-<section class="container section" id="status">
-  <div class="section-heading reveal">
-    <div class="kicker">02 / DEVELOPER STATUS</div>
-    <h2 data-en="What I'm Working On" data-fa="Dar Hale Kar Rooye Chi Hastam">What I'm Working On</h2>
-    <p data-en="A quick overview of my development focus." data-fa="Ye negah-e sari be tamarkoz-e development-e man.">A quick overview of my development focus.</p>
-  </div>
-  <div class="status-grid">
-    <div class="status-card reveal"><div class="status-card-top"><span class="status-icon">⌘</span><span data-en="CURRENT FOCUS" data-fa="TAMARKOZ-E FELI">CURRENT FOCUS</span></div><strong>Minecraft Development</strong><small data-en="Building Minecraft-related projects and development tools." data-fa="Sakhtan-e project-ha va abzarhaye mortabet ba Minecraft.">Building Minecraft-related projects and development tools.</small></div>
-    <div class="status-card reveal"><div class="status-card-top"><span class="status-icon">⌁</span><span data-en="WORKSPACE" data-fa="MAHIT-E KAR">WORKSPACE</span></div><strong>PKDEV</strong><small data-en="Independent development identity and project workspace." data-fa="Hoviyat-e mostaghel-e development va mahit-e project-ha.">Independent development identity and project workspace.</small></div>
-    <div class="status-card reveal"><div class="status-card-top"><span class="status-icon">↗</span><span data-en="DEVELOPMENT" data-fa="TOSE'E">DEVELOPMENT</span></div><strong data-en="Building & Improving" data-fa="Dar Hale Sakht va Behtar Sazi">Building & Improving</strong><small data-en="Working on current projects and exploring new ideas." data-fa="Kar rooye project-haye feli va barrasi-e idehaye jadid.">Working on current projects and exploring new ideas.</small></div>
-  </div>
-</section>
-
-<section class="container section" id="projects">
-  <div class="section-heading reveal">
-    <div class="kicker">03 / SELECTED WORK</div>
-    <h2 data-en="Featured Projects" data-fa="Project-haye Man">Featured Projects</h2>
-    <p data-en="A selection of projects built and developed under PKDEV." data-fa="Nemone-i az project-hayi ke zir-e PKDEV sakhtam ya dar hale tose'e hastand.">A selection of projects built and developed under PKDEV.</p>
-  </div>
-
-  <div class="projects-grid">
-    <article class="project featured reveal" id="securityProject">
-      <div class="project-top"><div class="project-heading"><div class="project-mark" aria-hidden="true">◇</div><div class="project-title">PKDEV.SECURITY</div></div><span class="project-label">IN DEVELOPMENT</span></div>
-      <p data-en="A project focused on Minecraft network management, monitoring, and security. The platform is under development, with planned tools for centralized visibility and administration." data-fa="Project-i baraye modiriat, monitoring va amniat-e network-haye Minecraft. Platform dar hale tose'e ast va abzarhaye modiriat-e markazi baraye an barname-rizi shode-and.">A project focused on Minecraft network management, monitoring, and security. The platform is under development, with planned tools for centralized visibility and administration.</p>
-      <div class="project-bottom"><div class="project-dots" aria-label="Decorative three-dot mark"><span></span><span></span><span></span></div><a class="project-link" href="https://resurect63.github.io/Pkdev.Security-/" target="_blank" rel="noopener noreferrer">VISIT WEBSITE ↗</a></div>
-    </article>
-
-    <article class="project emerald reveal">
-      <div class="project-top"><div class="project-heading"><div class="project-mark dots-mark" aria-hidden="true"><span></span><span></span><span></span></div><div class="project-title">Imperial Launcher</div></div><span class="project-label">MINECRAFT</span></div>
-      <p data-en="A Minecraft launcher project designed to provide a dedicated entry point for the game." data-fa="Ye project launcher baraye Minecraft ke yek masir-e makhsoos baraye ejraye bazi faraham mikone.">A Minecraft launcher project designed to provide a dedicated entry point for the game.</p>
-      <div class="project-bottom"><div class="project-dots"><span></span><span></span><span></span></div><a class="project-link" href="https://resurect63.github.io/Imperial-Launcher-Website-/" target="_blank" rel="noopener noreferrer">VISIT WEBSITE ↗</a></div>
-    </article>
-
-    <article class="project emerald reveal">
-      <div class="project-top"><div class="project-heading"><div class="project-mark dots-mark" aria-hidden="true"><span></span><span></span><span></span></div><div class="project-title">Moderator Academy</div></div><span class="project-label">EDUCATION</span></div>
-      <p data-en="An educational project designed to help Minecraft server staff learn moderation principles and responsibilities." data-fa="Ye project amoozeshi baraye komak be staff-haye server-haye Minecraft ta ba osoul va masouliat-haye moderation ashena beshan.">An educational project designed to help Minecraft server staff learn moderation principles and responsibilities.</p>
-      <div class="project-bottom"><div class="project-dots"><span></span><span></span><span></span></div><a class="project-link" href="https://resurect63.github.io/moderator-academy/" target="_blank" rel="noopener noreferrer">VISIT WEBSITE ↗</a></div>
-    </article>
-
-    <article class="project reveal">
-      <div class="project-top"><div class="project-heading"><div class="project-mark" aria-hidden="true">Δ</div><div class="project-title">Project Delta</div></div><span class="project-label">IN DEVELOPMENT</span></div>
-      <p data-en="A custom Minecraft game mode combining survival gameplay, shooter mechanics, and PvP combat. Players will experience a mix of survival challenges and competitive battles." data-fa="Ye game mode-e custom baraye Minecraft ke gameplay-e baqa ro ba mechanic-haye shooter va PvP tarkib mikone. Player-ha ba challenge-haye baqa va mobareze-haye PvP rooberoo mishan.">A custom Minecraft game mode combining survival gameplay, shooter mechanics, and PvP combat. Players will experience a mix of survival challenges and competitive battles.</p>
-      <div class="project-bottom"><div class="project-dots"><span></span><span></span><span></span></div><span class="project-label">GAME MODE</span></div>
-    </article>
-
-    <article class="project reveal">
-      <div class="project-top"><div class="project-heading"><div class="project-mark" aria-hidden="true">⌖</div><div class="project-title">Swat Force</div></div><span class="project-label">IN DEVELOPMENT</span></div>
-      <p data-en="A custom tactical shooter game mode featuring special missions, different maps, and a simulation-style gameplay experience built around coordinated team scenarios." data-fa="Ye game mode-e tactical shooter ba mamooriyat-haye makhsoos, map-haye mokhtalef va tajrobe-e gameplay-e shabih-sazi shode ke baraye senariohaye teami tarahi mishe.">A custom tactical shooter game mode featuring special missions, different maps, and a simulation-style gameplay experience built around coordinated team scenarios.</p>
-      <div class="project-bottom"><div class="project-dots"><span></span><span></span><span></span></div><span class="project-label">GAME MODE</span></div>
-    </article>
-  </div>
-</section>
-
-<section class="container section" id="roadmap">
-  <div class="section-heading reveal">
-    <div class="kicker">04 / DEVELOPMENT ROADMAP</div>
-    <h2 data-en="What's Next" data-fa="Ghadam-haye Badi">What's Next</h2>
-    <p data-en="A look at projects currently being developed and planned." data-fa="Negahi be project-haye dar hale tose'e va barname-rizi shode.">A look at projects currently being developed and planned.</p>
-  </div>
-  <div class="roadmap">
-    <div class="roadmap-item reveal"><div class="roadmap-icon">◇</div><div><h3>PKDEV.SECURITY</h3><p data-en="Minecraft network management, monitoring, and security project." data-fa="Project-e modiriat, monitoring va amniat-e network-haye Minecraft.">Minecraft network management, monitoring, and security project.</p></div><span class="roadmap-status">IN DEVELOPMENT</span></div>
-    <div class="roadmap-item reveal"><div class="roadmap-icon">Δ</div><div><h3>Project Delta</h3><p data-en="Custom survival, shooter, and PvP game mode." data-fa="Game mode-e custom ba gameplay-e survival, shooter va PvP.">Custom survival, shooter, and PvP game mode.</p></div><span class="roadmap-status">IN DEVELOPMENT</span></div>
-    <div class="roadmap-item reveal"><div class="roadmap-icon">⌖</div><div><h3>Swat Force</h3><p data-en="Mission-based tactical game mode with multiple maps." data-fa="Game mode-e tactical mabni bar mamooriyat ba map-haye mokhtalef.">Mission-based tactical game mode with multiple maps.</p></div><span class="roadmap-status">IN DEVELOPMENT</span></div>
-  </div>
-</section>
-
-<section class="container section" id="skills">
-  <div class="section-heading reveal">
-    <div class="kicker">05 / TECHNOLOGY STACK</div>
-    <h2 data-en="Technologies & Ecosystem" data-fa="Technology-ha va Ecosystem">Technologies & Ecosystem</h2>
-    <p data-en="Languages, Minecraft development APIs, frameworks, and tools connected to my projects." data-fa="Zaban-ha, API-haye Minecraft, framework-ha va abzarhaye mortabet ba project-haye man.">Languages, Minecraft development APIs, frameworks, and tools connected to my projects.</p>
-  </div>
-
-  <h3 class="tech-group-title">CORE LANGUAGES</h3>
-  <div class="skills-grid reveal">
-    <div class="skill"><i class="devicon-html5-plain colored"></i><span>HTML5</span></div>
-    <div class="skill"><i class="devicon-css3-plain colored"></i><span>CSS3</span></div>
-    <div class="skill"><i class="devicon-javascript-plain colored"></i><span>JavaScript</span></div>
-    <div class="skill"><i class="devicon-java-plain colored"></i><span>Java</span></div>
-    <div class="skill"><i class="devicon-kotlin-plain colored"></i><span>Kotlin</span></div>
-    <div class="skill"><i class="devicon-typescript-plain colored"></i><span>TypeScript</span></div>
-  </div>
-
-  <h3 class="tech-group-title">MINECRAFT DEVELOPMENT</h3>
-  <div class="tech-pills reveal">
-    <div class="tech-pill"><span class="tech-symbol">P</span>Paper API</div>
-    <div class="tech-pill"><span class="tech-symbol">S</span>Spigot API</div>
-    <div class="tech-pill"><span class="tech-symbol">B</span>Bukkit API</div>
-    <div class="tech-pill"><span class="tech-symbol">V</span>Velocity API</div>
-    <div class="tech-pill"><span class="tech-symbol">MC</span>Minecraft Plugins</div>
-    <div class="tech-pill"><span class="tech-symbol">MC</span>Server Development</div>
-  </div>
-
-  <h3 class="tech-group-title">FRAMEWORKS & BACKEND</h3>
-  <div class="skills-grid reveal">
-    <div class="skill"><i class="devicon-spring-original colored"></i><span>Spring Boot</span></div>
-    <div class="skill"><i class="devicon-nodejs-plain colored"></i><span>Node.js</span></div>
-    <div class="skill"><i class="devicon-postgresql-plain colored"></i><span>PostgreSQL</span></div>
-    <div class="skill"><i class="devicon-mysql-plain colored"></i><span>MySQL</span></div>
-  </div>
-
-  <h3 class="tech-group-title">TOOLS & ENVIRONMENT</h3>
-  <div class="skills-grid reveal">
-    <div class="skill"><i class="devicon-git-plain colored"></i><span>Git</span></div>
-    <div class="skill"><i class="devicon-github-original"></i><span>GitHub</span></div>
-    <div class="skill"><i class="devicon-linux-plain"></i><span>Linux</span></div>
-    <div class="skill"><i class="devicon-docker-plain colored"></i><span>Docker</span></div>
-    <div class="skill"><i class="devicon-ubuntu-plain colored"></i><span>Ubuntu</span></div>
-  </div>
-
-  <p class="skill-note" data-en="This stack includes technologies used, explored, or related to my projects. It does not imply equal proficiency in every technology." data-fa="In list shamel technology-haye morede estefade, dar hale yadgiri ya mortabet ba project-hast. In be mani-e tasallot-e yeksan be hame nist.">This stack includes technologies used, explored, or related to my projects. It does not imply equal proficiency in every technology.</p>
-</section>
-
-<section class="container section" id="terminal">
-  <div class="section-heading reveal">
-    <div class="kicker">06 / INTERACTIVE</div>
-    <h2 data-en="Developer Console" data-fa="Developer Console">Developer Console</h2>
-    <p data-en="Try a command below." data-fa="Yek dastoor vared kon.">Try a command below.</p>
-  </div>
-  <div class="terminal reveal">
-    <div class="terminal-head"><i class="dot red"></i><i class="dot yellow"></i><i class="dot green"></i><span class="terminal-title">pkdev-terminal — interactive</span></div>
-    <div class="terminal-body">
-      <div class="terminal-output" id="output">PKDEV Developer Console
-Type "help" to see available commands.</div>
-      <div class="terminal-input-row"><b>visitor@pkdev:~$</b><input class="terminal-input" id="command" placeholder="type a command..." autocomplete="off"></div>
-    </div>
-  </div>
-</section>
-
-<section class="container section" id="contact">
-  <div class="section-heading reveal">
-    <div class="kicker">07 / CONTACT</div>
-    <h2 data-en="Let's Connect" data-fa="Ertebat">Let's Connect</h2>
-    <p data-en="Find me on my developer platforms." data-fa="Man ro dar platform-haye zir peyda kon.">Find me on my developer platforms.</p>
-  </div>
-  <div class="contact-row reveal">
-    <a class="btn btn-primary" href="https://github.com/resurect63" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
-    <button class="btn btn-secondary" id="discordBtn" type="button">Discord: .resurect. ⧉</button>
-  </div>
-</section>
 </main>
 
-<footer>
-  <div class="container footer-inner">
-    <span>© <span id="year">2026</span> <strong>PKDEV</strong> · Powered by Resurect</span>
-    <div class="footer-meta"><span>VERSION 2.0.0</span><span>BUILD · DEVELOP · INNOVATE</span></div>
-  </div>
+<footer class="container footer">
+ <span>© 2026 PKDEV. All rights reserved.</span>
+ <span>Built by <a href="https://github.com/resurect63" target="_blank" rel="noopener" style="color:var(--orange)">Resurect</a>.</span>
 </footer>
 
-<button id="backToTop" aria-label="Back to top" title="Back to top">↑</button>
-
 <script>
-/* LOADER SAFETY */
-(function(){
-  let released=false;
-  function hideLoader(){
-    if(released)return;
-    released=true;
-    const loader=document.getElementById("loader");
-    if(loader)loader.classList.add("hidden");
-    document.body.classList.remove("loading");
-  }
-  window.addEventListener("load",()=>setTimeout(hideLoader,250),{once:true});
-  setTimeout(hideLoader,2500);
-  window.addEventListener("error",hideLoader);
-  window.addEventListener("unhandledrejection",hideLoader);
-})();
+const menuToggle = document.getElementById("menuToggle");
+const navigation = document.getElementById("navigation");
 
-/* TYPING ANIMATION */
-const typingText=document.getElementById("typingText");
-const typingPhrases={
-  en:["Building Minecraft Projects","Developing Software","Exploring New Technologies","Creating Digital Experiences"],
-  fa:["Sakht-e Project-haye Minecraft","Tose'e Software","Yadgiri Technology-haye Jadid","Sakht-e Tajrobe-haye Digital"]
-};
-let typingLanguage="en",phraseIndex=0,charIndex=0,deleting=false,typingTimer=null;
-
-function updateTypingLanguage(lang){
-  typingLanguage=lang;
-  phraseIndex=0;
-  charIndex=0;
-  deleting=false;
-  if(typingTimer)clearTimeout(typingTimer);
-  typingText.textContent="";
-  typeLoop();
-}
-function typeLoop(){
-  const phrases=typingPhrases[typingLanguage];
-  const phrase=phrases[phraseIndex];
-  if(!deleting){
-    charIndex++;
-    typingText.textContent=phrase.substring(0,charIndex);
-    if(charIndex===phrase.length){
-      deleting=true;
-      typingTimer=setTimeout(typeLoop,1500);
-      return;
-    }
-  }else{
-    charIndex--;
-    typingText.textContent=phrase.substring(0,charIndex);
-    if(charIndex===0){
-      deleting=false;
-      phraseIndex=(phraseIndex+1)%phrases.length;
-    }
-  }
-  typingTimer=setTimeout(typeLoop,deleting?35:65);
-}
-
-/* LANGUAGE SWITCHER — called only after typingText exists */
-function setLanguage(lang){
-  document.querySelectorAll("[data-en][data-fa]").forEach(el=>{
-    el.textContent=el.dataset[lang]||el.dataset.en;
-  });
-  document.getElementById("enBtn").classList.toggle("active",lang==="en");
-  document.getElementById("faBtn").classList.toggle("active",lang==="fa");
-  document.documentElement.lang="en";
-  try{localStorage.setItem("pkdev-language",lang)}catch(e){}
-  updateTypingLanguage(lang);
-}
-document.getElementById("enBtn").addEventListener("click",()=>setLanguage("en"));
-document.getElementById("faBtn").addEventListener("click",()=>setLanguage("fa"));
-let savedLanguage="en";
-try{savedLanguage=localStorage.getItem("pkdev-language")||"en"}catch(e){}
-setLanguage(savedLanguage);
-
-/* MOBILE NAVIGATION */
-const navLinks=document.getElementById("navLinks");
-const menuBtn=document.getElementById("menuBtn");
-function toggleMenu(){navLinks.classList.toggle("open")}
-menuBtn.addEventListener("click",toggleMenu);
-document.querySelectorAll(".nav-links a").forEach(a=>{
-  a.addEventListener("click",()=>navLinks.classList.remove("open"));
-});
-document.addEventListener("keydown",e=>{
-  if(e.key==="Escape")navLinks.classList.remove("open");
+menuToggle.addEventListener("click", () => {
+  navigation.classList.toggle("open");
 });
 
-/* DEVELOPER CONSOLE */
-const output=document.getElementById("output");
-const input=document.getElementById("command");
-const commands={
-  help:`Available commands:
-
-help      - Show commands
-about     - About Resurect
-projects  - List projects
-github    - GitHub profile
-discord   - Discord username
-clear     - Clear terminal`,
-  about:`Developer: Resurect
-Brand: PKDEV
-Focus: Minecraft Development & Software Development`,
-  projects:`[01] PKDEV.SECURITY
-[02] Imperial Launcher
-[03] Moderator Academy
-[04] Project Delta
-[05] Swat Force`,
-  github:"https://github.com/resurect63",
-  discord:"Discord: .resurect."
-};
-function runCommand(){
-  const cmd=input.value.trim().toLowerCase();
-  if(!cmd)return;
-  if(cmd==="clear"){output.textContent="Terminal cleared.";input.value="";return}
-  output.textContent+="\n\nvisitor@pkdev:~$ "+cmd+"\n"+(commands[cmd]||"Command not found. Type help.");
-  input.value="";
-}
-input.addEventListener("keydown",e=>{if(e.key==="Enter")runCommand()});
-
-/* COPY DISCORD */
-document.getElementById("discordBtn").addEventListener("click",()=>{
-  if(navigator.clipboard&&window.isSecureContext){
-    navigator.clipboard.writeText(".resurect.")
-      .then(()=>alert("Discord username copied: .resurect."))
-      .catch(()=>alert("Discord: .resurect."));
-  }else alert("Discord: .resurect.");
+navigation.querySelectorAll("a").forEach(link => {
+  link.addEventListener("click", () => navigation.classList.remove("open"));
 });
 
-/* SCROLL REVEAL — fallback if IntersectionObserver is unavailable */
-if("IntersectionObserver" in window){
-  const observer=new IntersectionObserver(entries=>{
-    entries.forEach(entry=>{
-      if(entry.isIntersecting){
-        entry.target.classList.add("visible");
-        observer.unobserve(entry.target);
-      }
+document.querySelectorAll(".filter").forEach(button => {
+  button.addEventListener("click", () => {
+    document.querySelector(".filter.active")?.classList.remove("active");
+    button.classList.add("active");
+
+    const filter = button.dataset.filter;
+
+    document.querySelectorAll(".project").forEach(project => {
+      project.hidden = filter !== "all" && project.dataset.category !== filter;
     });
-  },{threshold:.12});
-  document.querySelectorAll(".reveal").forEach(el=>observer.observe(el));
-}else{
-  document.querySelectorAll(".reveal").forEach(el=>el.classList.add("visible"));
-}
-
-/* BACKGROUND PARTICLE NETWORK */
-const canvas=document.getElementById("particles");
-const ctx=canvas&&canvas.getContext?canvas.getContext("2d"):null;
-let particles=[];
-let animationFrame=null;
-
-function resize(){
-  if(!ctx)return;
-  const ratio=Math.min(window.devicePixelRatio||1,2);
-  canvas.width=innerWidth*ratio;
-  canvas.height=innerHeight*ratio;
-  ctx.setTransform(ratio,0,0,ratio,0,0);
-  particles=Array.from({length:Math.min(75,Math.floor(innerWidth/16))},()=>({
-    x:Math.random()*innerWidth,y:Math.random()*innerHeight,
-    vx:(Math.random()-.5)*.35,vy:(Math.random()-.5)*.35
-  }));
-}
-function animate(){
-  if(!ctx)return;
-  ctx.clearRect(0,0,innerWidth,innerHeight);
-  for(let i=0;i<particles.length;i++){
-    const p=particles[i];
-    p.x+=p.vx;p.y+=p.vy;
-    if(p.x<0||p.x>innerWidth)p.vx*=-1;
-    if(p.y<0||p.y>innerHeight)p.vy*=-1;
-    ctx.fillStyle="rgba(22,186,255,.55)";
-    ctx.fillRect(p.x,p.y,2,2);
-    for(let j=i+1;j<particles.length;j++){
-      const q=particles[j],dx=p.x-q.x,dy=p.y-q.y,d=Math.sqrt(dx*dx+dy*dy);
-      if(d<115){
-        ctx.strokeStyle=`rgba(22,186,255,${(1-d/115)*.13})`;
-        ctx.lineWidth=.7;ctx.beginPath();ctx.moveTo(p.x,p.y);ctx.lineTo(q.x,q.y);ctx.stroke();
-      }
-    }
-  }
-  animationFrame=requestAnimationFrame(animate);
-}
-if(ctx){
-  window.addEventListener("resize",resize);
-  resize();
-  if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)animate();
-}
-
-/* MOUSE FOLLOW GLOW */
-const mouseGlow=document.getElementById("mouseGlow");
-if(window.matchMedia("(pointer:fine)").matches){
-  window.addEventListener("mousemove",e=>{
-    mouseGlow.style.left=e.clientX+"px";
-    mouseGlow.style.top=e.clientY+"px";
-    mouseGlow.style.opacity="1";
   });
-  document.addEventListener("mouseleave",()=>mouseGlow.style.opacity="0");
-}
+});
 
-/* BACK TO TOP */
-const backToTop=document.getElementById("backToTop");
-window.addEventListener("scroll",()=>{
-  backToTop.classList.toggle("show",window.scrollY>450);
-},{passive:true});
-backToTop.addEventListener("click",()=>window.scrollTo({top:0,behavior:"smooth"}));
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add("visible");
+      observer.unobserve(entry.target);
+    }
+  });
+}, {threshold:0.1});
 
-/* CURRENT YEAR */
-document.getElementById("year").textContent=new Date().getFullYear();
+document.querySelectorAll(".reveal").forEach(item => observer.observe(item));
 
-/* ACTIVE NAVIGATION */
-if("IntersectionObserver" in window){
-  const sections=document.querySelectorAll("main section[id]");
-  const navAnchors=document.querySelectorAll(".nav-links a");
-  const sectionObserver=new IntersectionObserver(entries=>{
-    entries.forEach(entry=>{
-      if(entry.isIntersecting){
-        navAnchors.forEach(link=>{
-          link.classList.toggle("active",link.getAttribute("href")==="#"+entry.target.id);
-        });
-      }
-    });
-  },{rootMargin:"-35% 0px -55% 0px"});
-  sections.forEach(section=>sectionObserver.observe(section));
-}
+document.getElementById("projectForm").addEventListener("submit", async event => {
+  event.preventDefault();
 
-/* LAST RESORT: never leave the page locked */
-setTimeout(()=>{
-  document.body.classList.remove("loading");
-  const loader=document.getElementById("loader");
-  if(loader)loader.classList.add("hidden");
-},3000);
+  const name = document.getElementById("clientName").value.trim();
+  const type = document.getElementById("projectType").value;
+  const details = document.getElementById("projectDetails").value.trim();
+
+  const request =
+`PKDEV — PROJECT INQUIRY
+
+Name: ${name}
+Project Type: ${type}
+
+Project Details:
+${details}
+
+Sent through the PKDEV website.`;
+
+  const message = document.getElementById("formMessage");
+
+  try {
+    await navigator.clipboard.writeText(request);
+    message.textContent = "Request copied! Open Telegram and send your message to @Resurect63.";
+  } catch {
+    message.textContent = "Clipboard unavailable. Please copy your details manually and send them via Telegram.";
+  }
+});
 </script>
+
 </body>
 </html>
